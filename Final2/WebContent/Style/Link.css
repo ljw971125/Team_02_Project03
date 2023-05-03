@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+h1 {
+    text-align: center;
+}
+.menu-link {
+    position: relative;
+	display: inline-block;
+	margin-right: 20px;
+}
+.submenu-link {
+	position: relative;
+	display: inline-block;
+	margin-right: 20px;
+}
+.company-menu { 
+	margin-top:0; 
+} 
+#company-menu, #meeting-menu, #review-menu, #mypage-menu, #cs-menu {
+	position: absolute;
+}
+
+img {
+	position: relative;
+	display: block;
+}
+#company-menu a {
+	display: block;
+	text-align: left;
+	font-size: 20px;
+}
+#meeting-menu a {
+    text-align: left;
+    font-size: 20px;
+}
+#review-menu a {
+    text-align: left;
+    font-size: 20px;
+}
+#mypage-menu a {
+       text-align: left;
+       font-size: 20px;
+   }
+#cs-menu a {
+	display:block; 
+	text-align:left; 
+	font-size:20px; 
+} 
+table { 
+	width:100%; 
+} 
+td { 
+	font-size:2vw; 
+	white-space:nowrap; 
+	position:relative; 
+} 
