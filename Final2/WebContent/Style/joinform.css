@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.form-group {
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.form-group label {
+    width: 100px;
+    font-size: 18px;
+    margin-right: 150px;
+}
+input[type="text"]{
+    min-width: 150px;
+    height: 30px;
+    font-size: 18px;
+}
+input[type="date"] {
+	width: 220px;
+    height: 30px;
+    font-size: 18px;
+}
+input[type="submit"]{
+    display: block;
+    width: 200px;
+    height: 70px;
+}
+.back{
+	display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 70px;
+}
+.check-button {
+	width: 80px;
+	height: 30px;
+    margin-left: 20px;
+}
