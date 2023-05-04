@@ -30,6 +30,9 @@ dao.close();  // DB 연결 닫기
 <title>회원제 게시판</title>
 </head>
 <body>
+<aside>
+ <jsp:include page="../LogIn/LoginForm.jsp" />
+</aside>
 <div style="height: 200px;"></div>
 
     <h2>회의실 리뷰</h2>
@@ -98,6 +101,6 @@ else {
                 </button></td>
         </tr>
     </table>
-<script src="../Common/ex.js"></script>
+<script src="../Common/link.js"></script>
 </body>
 </html>
