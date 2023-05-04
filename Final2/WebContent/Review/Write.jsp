@@ -50,7 +50,7 @@ function validateForm(form) {  // 폼 내용 검증
             </td>
         </tr>
     </table>
-    <script src="../Common/ex.js"></script>
+    <script src="../Common/link.js"></script>
 </form>
 </body>
 </html>
