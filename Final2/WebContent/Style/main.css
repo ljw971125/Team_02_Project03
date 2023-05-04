@@ -14,23 +14,11 @@ button{
 .edit-container {
     display: inline-block;
     vertical-align: top;
-    margin-left: 300px;
+    margin-left: 150px;
 }
 .company-name {
     position: absolute;
     bottom: 0;
     right: 0;
     font-size: 0.8em;
-}
-footer {    
-	clear:both;    
-	background-color:black;    
-	color:white;    
-	padding:10px;    
-	text-align:center;    
-	width:auto;    
-	bottom:auto;    
-	left:auto;    
-	right:auto;    
-	position:relative;    
 }

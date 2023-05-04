@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../Style/main.css">
 <%
     response.sendRedirect("LogIn/main.jsp");
 %>

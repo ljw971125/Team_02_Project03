@@ -12,11 +12,21 @@
 </head>
 
 <body>
+
+<aside>
+    <jsp:include page="../LogIn/LoginForm.jsp" />
+</aside>
+
+<article>
 <div style="height: 100px;"></div>
 <div id="year-text">
 <p style="font-size:300%" align="center"> 회 사 연 혁 </p>
 </div>
+</article>
+<article>
 <img src="year.jpg" width=60% height="300" style="display: block; margin: auto;" >
-<script src="../Common/ex.js"></script>
+</article>
+<jsp:include page="../Common/rfooter.jsp" />
+<script src="../Common/link.js"></script>
 </body>
 </html>

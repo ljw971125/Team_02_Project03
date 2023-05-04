@@ -12,6 +12,12 @@
 </head>
 
 <body>
+
+<aside>
+    <jsp:include page="../LogIn/LoginForm.jsp" />
+</aside>
+
+<article>
 <div style="height: 40px;"></div>
 <div id="op-text">
 <p style="font-size:200%" align="center">회사의 목표</p>
@@ -29,6 +35,8 @@
 <p style="font-size:200%" align="center">5. 받은 돈 만큼 제공</p>
 <p style="font-size:200%" align="center">6. 환불 불가</p>
 </div>
-<script src="../Common/ex.js"></script>
+</article>
+<jsp:include page="../Common/rfooter.jsp" />
+<script src="../Common/link.js"></script>
 </body>
 </html>

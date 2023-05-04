@@ -8,8 +8,11 @@ String folderName = parts[2];
 
 if (folderName.equals("LogIn")) {
 %>
-
+<header>
 <h1><a href="/Final2/LogIn/main.jsp">회의실 예약시스템</a></h1>
+</header>
+
+<nav>
 <div>
     <table border="1">
         <tr>
@@ -51,13 +54,17 @@ if (folderName.equals("LogIn")) {
         </tr> 
     </table> 
 </div>
-<jsp:include page="../LogIn/LoginForm.jsp" />
+</nav>
 <%
 }
 else
 {
 %>
+<header>
 <h1><a href="../LogIn/main.jsp">회의실 예약시스템</a></h1>
+</header>
+
+<nav>
 <div>
     <table border="1">
         <tr>
@@ -99,7 +106,7 @@ else
         </tr> 
     </table> 
 </div>
-<jsp:include page="../LogIn/LoginForm.jsp" />
+</nav>
 <%
 }
 %>
