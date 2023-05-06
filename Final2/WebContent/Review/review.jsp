@@ -3,6 +3,7 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="model1.board.BoardDAO"%>
 <%@ page import="model1.board.BoardDTO"%>
+<%@ page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -19,27 +20,53 @@ if (searchWord != null) {
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
-List<BoardDTO> boardLists = dao.selectList(param);  // 게시물 목록 받기
+
+/*** 페이지 처리 start ***/
+//전체 페이지 수 계산
+int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
+int totalPage = (int)Math.ceil((double)totalCount / pageSize); // 전체 페이지 수
+//현재 페이지 확인
+int pageNum = 1;  // 기본값
+String pageTemp = request.getParameter("pageNum");
+if (pageTemp != null && !pageTemp.equals(""))
+ pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
+//목록에 출력할 게시물 범위 계산
+int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
+int end = pageNum * pageSize; // 마지막 게시물 번호
+param.put("start", start);
+param.put("end", end);
+/*** 페이지 처리 end ***/
+
+List<BoardDTO> boardLists = dao.selectListPage(param);  // 게시물 목록 받기
 dao.close();  // DB 연결 닫기
 %>
 
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <jsp:include page="../Common/Link.jsp" />  <!-- 공통 링크 -->
 <title>회원제 게시판</title>
 </head>
-<body>
-<div style="height: 200px;"></div>
 
+<body>
+<div style="height: 140px;"></div>
+<h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
+
+<div style="float: right;">
+<aside>
+    <jsp:include page="LoginForm.jsp" />
+</aside>
+</div>
+
+<div style="margin-right: 400px;">
     <h2>회의실 리뷰</h2>
     <!-- 검색폼 --> 
     <form method="get">  
     <table border="1" width="90%">
     <tr>
-        <td align="center">
+        <td align="left">
             <select name="searchField"> 
                 <option value="title">제목</option> 
                 <option value="content">내용</option>
@@ -75,9 +102,10 @@ if (boardLists.isEmpty()) {
 else {
     // 게시물이 있을 때 
     int virtualNum = 0;  // 화면상에서의 게시물 번호
+    int countNum = 0;
     for (BoardDTO dto : boardLists)
     {
-        virtualNum = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
+        virtualNum = totalCount - (((pageNum -1) * pageSize) + countNum++); // 전체 게시물 수에서 시작해 1씩 감소
 %>
         <tr align="center">
             <td><%= virtualNum %></td>  <!--게시물 번호-->
@@ -96,21 +124,24 @@ else {
     <!--목록 하단의 [글쓰기] 버튼-->
     <table border="1" width="90%">
         <tr align="center">
-            <td><button type="button" style=background-color:lightgreen onclick="location.href='Write.jsp';">글쓰기
+                   <!--페이징 처리-->
+            <td>
+                <%= BoardPage.pagingStr(totalCount, pageSize,
+                       blockPage, pageNum, request.getRequestURI()) %>  
+            </td>
+            <td><button type="button" style="background-color:lightgreen; width:100px; height:50px; font-size: 15px; border-radius: 15px; cursor:pointer; " onclick="location.href='Write.jsp';">글쓰기
                 </button></td>
         </tr>
     </table>
+    
 <script src="../Common/link.js"></script>
 	<script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.2.1.min.js"></script>
-	<!--<![endif]-->
 	
-	<link rel="stylesheet"
-href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/base16/default-dark.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js">
-  </script>
-	<script>hljs.initHighlightingOnLoad();</script>
-<!--마우스 커서 적용-->
-<style type="text/css">* {cursor: url(https://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), auto !important;}</style><a href="https://www.cursors-4u.com/cursor/2012/02/11/chrome-pointer.html" target="_blank" title="Chrome Pointer"><img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="Chrome Pointer" style="position:absolute; top: 0px; right: 0px;" /></a>
+	
+	
+
+<!-- 마우스 커서 적용 -->
+<!-- <style type="text/css">* {cursor: url(https://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), auto !important;}</style><a href="https://www.cursors-4u.com/cursor/2012/02/11/chrome-pointer.html" target="_blank" title="Chrome Pointer"><img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="Chrome Pointer" style="position:absolute; top: 0px; right: 0px;" /></a> -->
 <!-- 마우스 애니메이션 효과 적용 -->
 <script type="text/javascript">
 // <![CDATA[
