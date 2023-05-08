@@ -26,6 +26,9 @@ function deletePost() {
     }
 }
 </script>
+<%
+	String virtualNum = request.getParameter("virtualNum");
+%>
 </head>
 <body>
 <jsp:include page="../Common/Link.jsp" />
@@ -36,7 +39,7 @@ function deletePost() {
     <table border="1" width="90%">
         <tr>
             <td>번호</td>
-            <td><%= dto.getNum() %></td>
+            <td><%= virtualNum %></td>
             <td>작성자</td>
             <td><%= dto.getName() %></td>
         </tr>
