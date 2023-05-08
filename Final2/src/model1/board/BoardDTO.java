@@ -9,8 +9,15 @@ public class BoardDTO {
     private java.sql.Date postdate;
     private String visitcount;
     private String name;
+    private String starreview;
 
-    // 게터/세터
+    public String getStarreview() {
+		return starreview;
+	}
+	public void setStarreview(String starreview) {
+		this.starreview = starreview;
+	}
+	// 게터/세터
     public String getNum() {
         return num;
     }

@@ -42,6 +42,16 @@ function validateForm(form) {  // 폼 내용 검증
             </td>
         </tr>
         <tr>
+        	<td>평점</td>
+        	<td>
+		        <label><input type="radio" name="rating" value="1">★</label>
+		        <label><input type="radio" name="rating" value="2">★★</label>
+		        <label><input type="radio" name="rating" value="3">★★★</label>
+		        <label><input type="radio" name="rating" value="4">★★★★</label>
+		        <label><input type="radio" name="rating" value="5">★★★★★</label>
+        	</td>
+        </tr>
+        <tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
