@@ -1,14 +1,14 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="model1.board.BoardDAO"%>
-<%@ page import="model1.board.BoardDTO"%>
+<%@ page import="reviewPage.ReviewDTO"%>
+<%@ page import="reviewPage.ReviewDAO"%>
 <%@ page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 // DAO를 생성해 DB에 연결
-BoardDAO dao = new BoardDAO(application);
+ReviewDAO dao = new ReviewDAO(application);
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>(); 
@@ -20,6 +20,9 @@ if (searchWord != null) {
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
+/* String nik = (String)session.getAttribute("Nik"); // 로그인중인 닉네임 */
+List<ReviewDTO> reviewLists = dao.selectList(param);  // 게시물 목록 받기
+dao.close();  // DB 연결 닫기
 
 /*** 페이지 처리 start ***/
 //전체 페이지 수 계산
@@ -38,7 +41,7 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
-List<BoardDTO> boardLists = dao.selectListPage(param);  // 게시물 목록 받기
+List<ReviewDTO> boardLists = dao.selectListPage(param);  // 게시물 목록 받기
 dao.close();  // DB 연결 닫기
 %>
 
@@ -84,17 +87,17 @@ dao.close();  // DB 연결 닫기
             <th width="10%">번호</th>
             <th width="30%">제목</th>
             <th width="15%">작성자</th>
-            <th width="10%">조회수</th>
+            <th width="10%">회의실 번호</th>
+            <th width="20%">평점</th>
             <th width="15%">작성일</th>
-             <th width="20%">평점</th>
         </tr>
         <!-- 목록의 내용 --> 
 <%
-if (boardLists.isEmpty()) {
+if (reviewLists.isEmpty()) {
     // 게시물이 하나도 없을 때 
 %>
         <tr>
-            <td colspan="5" align="center">
+            <td colspan="6" align="center">
                 <h3>등록된 리뷰가 없습니다</h3>
             </td>
         </tr>
@@ -104,7 +107,7 @@ else {
     // 게시물이 있을 때 
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
-    for (BoardDTO dto : boardLists)
+    for (ReviewDTO dto : reviewLists)
     {
         virtualNum = totalCount - (((pageNum -1) * pageSize) + countNum++); // 전체 게시물 수에서 시작해 1씩 감소
 %>
@@ -113,9 +116,10 @@ else {
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                 <a href="View.jsp?num=<%= dto.getNum() %>&virtualNum=<%=virtualNum%>"><%= dto.getTitle() %></a> 
             </td>
-            <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getVisitcount() %></td>  <!--조회수-->
-            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
+            <td align="center"><%= dto.getNik() %></td>     <!--작성자 닉네임-->
+            <td align="center"><%= dto.getRnum() %></td>  <!--방번호-->
+            <td align="center"><%= dto.getRate() %></td>  <!--평점-->
+            <td align="center"><%= dto.getRedate() %></td>    <!--작성일-->
         </tr>
 <%
     }

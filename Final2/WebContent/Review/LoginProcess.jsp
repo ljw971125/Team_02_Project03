@@ -23,6 +23,7 @@ if (memberDTO.getId() != null) {
  	// 로그인 성공(성공시 로그인 할 때의 페이지 상태로 돌아가기)
 	session.setAttribute("UserId", memberDTO.getId()); 
 	session.setAttribute("UserName", memberDTO.getName());
+	session.setAttribute("Nik", memberDTO.getNik());
 	response.sendRedirect("review.jsp");
 }
 else {

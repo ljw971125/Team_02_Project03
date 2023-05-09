@@ -1,13 +1,14 @@
-<%@ page import="model1.board.BoardDAO"%>
-<%@ page import="model1.board.BoardDTO"%>
+<%@ page import="reviewPage.ReviewDTO"%>
+<%@ page import="reviewPage.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
+String virtualNum = request.getParameter("virtualNum");
 
-BoardDAO dao = new BoardDAO(application);  // DAO 생성 
-dao.updateVisitCount(num);                 // 조회수 증가 
-BoardDTO dto = dao.selectView(num);        // 게시물 가져오기 
+ReviewDAO dao = new ReviewDAO(application);  // DAO 생성 
+/* dao.updateVisitCount(num);  */                // 조회수 증가 
+ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
 dao.close();                               // DB 연결 해제
 %>
 <!DOCTYPE html>
@@ -26,9 +27,7 @@ function deletePost() {
     }
 }
 </script>
-<%
-	String virtualNum = request.getParameter("virtualNum");
-%>
+
 </head>
 <body>
 <jsp:include page="../Common/Link.jsp" />
@@ -41,13 +40,13 @@ function deletePost() {
             <td>번호</td>
             <td><%= virtualNum %></td>
             <td>작성자</td>
-            <td><%= dto.getName() %></td>
+            <td><%= dto.getNik() %></td>
         </tr>
         <tr>
             <td>작성일</td>
-            <td><%= dto.getPostdate() %></td>
-            <td>조회수</td>
-            <td><%= dto.getVisitcount() %></td>
+            <td><%= dto.getRedate() %></td>
+            <td>방번호</td>
+            <td><%= dto.getRnum() %></td>
         </tr>
         <tr>
             <td>제목</td>
@@ -56,13 +55,13 @@ function deletePost() {
         <tr>
             <td>내용</td>
             <td colspan="3" height="100">
-                <%= dto.getContent().replace("\r\n", "<br/>") %></td> 
+                <%= dto.getRecontent().replace("\r\n", "<br/>") %></td> 
         </tr>
         <tr>
             <td colspan="4" align="center">
             <%
-            if (session.getAttribute("UserId") != null
-                && session.getAttribute("UserId").toString().equals(dto.getId())) {
+            if (session.getAttribute("Nik") != null
+                && session.getAttribute("Nik").toString().equals(dto.getNik())) {
             %>
                 <button type="button"
                         onclick="location.href='Edit.jsp?num=<%= dto.getNum() %>';">

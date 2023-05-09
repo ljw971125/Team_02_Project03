@@ -19,6 +19,16 @@ function validateForm(form) {  // 폼 내용 검증
         form.content.focus();
         return false;
     }
+    if (form.rate.value == "") {
+        alert("별점을 체크해주세요.");
+        form.rate.focus();
+        return false;
+    }
+    if (form.num.value == "") {
+        alert("방 번호를 체크해주세요.");
+        form.num.focus();
+        return false;
+    }
 }
 </script>
 </head>
@@ -38,17 +48,25 @@ function validateForm(form) {  // 폼 내용 검증
         <tr>
             <td>내용</td>
             <td>
-                <textarea name="content" style="width: 90%; height: 100px;"></textarea>
+                <textarea name="recontent" style="width: 90%; height: 100px;"></textarea>
             </td>
+        </tr>
+        <tr>
+        	<td>회의실 번호</td>
+        	<td>
+        		<label><input type="radio" name="rnum" value="1">1번 회의실</label>
+        		<label><input type="radio" name="rnum" value="2">2번 회의실</label>
+        		<label><input type="radio" name="rnum" value="3">3번 회의실</label>
+        	</td>
         </tr>
         <tr>
         	<td>평점</td>
         	<td>
-		        <label><input type="radio" name="rating" value="1">★</label>
-		        <label><input type="radio" name="rating" value="2">★★</label>
-		        <label><input type="radio" name="rating" value="3">★★★</label>
-		        <label><input type="radio" name="rating" value="4">★★★★</label>
-		        <label><input type="radio" name="rating" value="5">★★★★★</label>
+		        <label><input type="radio" name="rate" value="1">★</label>
+		        <label><input type="radio" name="rate" value="2">★★</label>
+		        <label><input type="radio" name="rate" value="3">★★★</label>
+		        <label><input type="radio" name="rate" value="4">★★★★</label>
+		        <label><input type="radio" name="rate" value="5">★★★★★</label>
         	</td>
         </tr>
         <tr>

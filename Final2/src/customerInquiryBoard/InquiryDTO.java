@@ -2,11 +2,12 @@ package customerInquiryBoard;
 
 public class InquiryDTO {
     // 멤버 변수 선언 - 필드
-    private String title;
-    private String icontent;
-    private String nik;
-    private String icomment;
-    private int num;
+    private String title;    //글제목
+    private String icontent; //글내용
+    private String nik;		 //회원닉네임
+    private String icomment; //관리자댓글
+    private String num;		 //글번호
+    private String id;
     
     // 멤버 변수별 게터와 세터 메서드
 
@@ -34,11 +35,17 @@ public class InquiryDTO {
 	public void setIcomment(String icomment) {
 		this.icomment = icomment;
 	}
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

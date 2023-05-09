@@ -44,9 +44,9 @@ if (folderName.equals("LogIn")) {
                 <a href="#" class="menu-link" onclick="showMenu(event, 'cs-menu')">고객센터</a>
                 <ul id="cs-menu" style="display: none;">
                     <a href="00.jsp">공지사항</a><br>
-                    <a href="../CustomerService/CustomerInquiry.jsp">고객 문의 사항</a>
+                    <a href="../CustomerService/InquiryMain.jsp">고객 문의 사항</a>
                     <ul id="cs-question" style="display: none;">
-                        <li><a href="5.jsp">고객 문의</a></li><br>
+                        <li><a href="../CustomerService/InquiryMain.jsp">고객 문의</a></li><br>
                         <li><a href="xxxxx.jsp">자주 묻는 질문</a></li>
                     </ul>
                 </ul> 

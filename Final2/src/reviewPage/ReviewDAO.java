@@ -1,4 +1,4 @@
-package model1.board;
+package reviewPage;
 
 import java.util.List;
 import java.util.Map;
@@ -6,13 +6,13 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import common.JDBConnect;
 
-public class BoardDAO extends JDBConnect {
+public class ReviewDAO extends JDBConnect {
 	
-    public BoardDAO(ServletContext application) {
+	public ReviewDAO(ServletContext application) {
         super(application);
     }
-
-    // 검색 조건에 맞는 게시물의 개수를 반환합니다.
+	
+	// 검색 조건에 맞는 게시물의 개수를 반환합니다.
     public int selectCount(Map<String, Object> map) {
         int totalCount = 0; // 결과(게시물 수)를 담을 변수
 
@@ -37,11 +37,11 @@ public class BoardDAO extends JDBConnect {
         return totalCount; 
     }
     
-    // 검색 조건에 맞는 게시물 목록을 반환합니다.
-    public List<BoardDTO> selectList(Map<String, Object> map) { 
-        List<BoardDTO> bbs = new Vector<BoardDTO>();  // 결과(게시물 목록)를 담을 변수
+ // 검색 조건에 맞는 게시물 목록을 반환합니다.
+    public List<ReviewDTO> selectList(Map<String, Object> map) { 
+        List<ReviewDTO> bbs = new Vector<ReviewDTO>();  // 결과(게시물 목록)를 담을 변수
 
-        String query = "SELECT * FROM board "; 
+        String query = "SELECT * FROM review "; 
         if (map.get("searchWord") != null) {
             query += " WHERE " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%' ";
@@ -54,15 +54,17 @@ public class BoardDAO extends JDBConnect {
 
             while (rs.next()) {  // 결과를 순화하며...
                 // 한 행(게시물 하나)의 내용을 DTO에 저장
-                BoardDTO dto = new BoardDTO(); 
+            	ReviewDTO dto = new ReviewDTO(); 
 
-                dto.setNum(rs.getString("num"));          // 일련번호
-                dto.setTitle(rs.getString("title"));      // 제목
-                dto.setContent(rs.getString("content"));  // 내용
-                dto.setPostdate(rs.getDate("postdate"));  // 작성일
-                dto.setId(rs.getString("id"));            // 작성자 아이디
-                dto.setVisitcount(rs.getString("visitcount"));  // 조회수
-
+                dto.setNum(rs.getString("num"));          // 리뷰글 번호
+                dto.setNik(rs.getString("nik"));      // 닉네임
+                dto.setRnum(rs.getString("rnum"));  // 방번호
+                dto.setRecomment(rs.getString("recomment"));  // 관리자 댓글
+                dto.setTitle(rs.getString("title"));            // 제목
+                dto.setRecontent(rs.getString("recontent"));  // 내용
+                dto.setRedate(rs.getDate("redate")); //오류 발생 가능
+                dto.setRate(rs.getFloat("rate")); // 평점
+                
                 bbs.add(dto);  // 결과 목록에 저장
             }
         } 
@@ -74,14 +76,14 @@ public class BoardDAO extends JDBConnect {
         return bbs;
     }
     
-    // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
-    public List<BoardDTO> selectListPage(Map<String, Object> map) {
-        List<BoardDTO> bbs = new Vector<BoardDTO>();  // 결과(게시물 목록)를 담을 변수
+ // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
+    public List<ReviewDTO> selectListPage(Map<String, Object> map) {
+        List<ReviewDTO> bbs = new Vector<ReviewDTO>();  // 결과(게시물 목록)를 담을 변수
         
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                     + "        SELECT * FROM board ";
+                     + "        SELECT * FROM reivew ";
 
         // 검색 조건 추가 
         if (map.get("searchWord") != null) {
@@ -105,13 +107,15 @@ public class BoardDAO extends JDBConnect {
             
             while (rs.next()) {
                 // 한 행(게시물 하나)의 데이터를 DTO에 저장
-                BoardDTO dto = new BoardDTO();
-                dto.setNum(rs.getString("num"));
-                dto.setTitle(rs.getString("title"));
-                dto.setContent(rs.getString("content"));
-                dto.setPostdate(rs.getDate("postdate"));
-                dto.setId(rs.getString("id"));
-                dto.setVisitcount(rs.getString("visitcount"));
+                ReviewDTO dto = new ReviewDTO();
+                dto.setNum(rs.getString("num"));          // 리뷰글 번호
+                dto.setNik(rs.getString("nik"));      // 닉네임
+                dto.setRnum(rs.getString("rnum"));  // 방번호
+                dto.setRecomment(rs.getString("recomment"));  // 관리자 댓글
+                dto.setTitle(rs.getString("title"));            // 제목
+                dto.setRecontent(rs.getString("recontent"));  // 내용
+                dto.setRedate(rs.getDate("redate")); //오류 발생 가능
+                dto.setRate(rs.getFloat("rate")); // 평점
 
                 // 반환할 결과 목록에 게시물 추가
                 bbs.add(dto);
@@ -125,22 +129,24 @@ public class BoardDAO extends JDBConnect {
         // 목록 반환
         return bbs;
     }
-
-    // 게시글 데이터를 받아 DB에 추가합니다. 
-    public int insertWrite(BoardDTO dto) {
+	
+ // 게시글 데이터를 받아 DB에 추가합니다. 
+    public int insertWrite(ReviewDTO dto) {
         int result = 0;
         
         try {
             // INSERT 쿼리문 작성 
-            String query = "INSERT INTO board ( "
-                         + " num,title,content,id,visitcount) "
+            String query = "INSERT INTO review ( "
+                         + " num,title,recontent,nik,rnum,redate,rate) "
                          + " VALUES ( "
-                         + " seq_board_num.NEXTVAL, ?, ?, ?, 0)";  
+                         + " seq_review_num.NEXTVAL, ?, ?, ?, ?, sysdate, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setString(1, dto.getTitle());  
-            psmt.setString(2, dto.getContent());
-            psmt.setString(3, dto.getId());  
+            psmt.setString(2, dto.getRecontent());
+            psmt.setString(3, dto.getNik()); 
+            psmt.setString(4, dto.getRnum());
+            psmt.setFloat(5, dto.getRate());
             
             result = psmt.executeUpdate(); 
         }
@@ -154,13 +160,13 @@ public class BoardDAO extends JDBConnect {
 
 
     // 지정한 게시물을 찾아 내용을 반환합니다.
-    public BoardDTO selectView(String num) { 
-        BoardDTO dto = new BoardDTO();
+    public ReviewDTO selectView(String num) { 
+        ReviewDTO dto = new ReviewDTO();
         
         // 쿼리문 준비
-        String query = "SELECT B.*, M.name " 
-                     + " FROM member M INNER JOIN board B " 
-                     + " ON M.id=B.id "
+        String query = "SELECT R.*, M.nik " 
+                     + " FROM member1 M INNER JOIN review R " 
+                     + " ON M.nik=R.nik "
                      + " WHERE num=?";
 
         try {
@@ -170,13 +176,14 @@ public class BoardDAO extends JDBConnect {
 
             // 결과 처리
             if (rs.next()) {
-                dto.setNum(rs.getString(1)); 
-                dto.setTitle(rs.getString(2));
-                dto.setContent(rs.getString("content"));
-                dto.setPostdate(rs.getDate("postdate"));
-                dto.setId(rs.getString("id"));
-                dto.setVisitcount(rs.getString(6));
-                dto.setName(rs.getString("name")); 
+                dto.setNum(rs.getString("num"));          // 리뷰글 번호
+                dto.setNik(rs.getString("nik"));      // 닉네임
+                dto.setRnum(rs.getString("rnum"));  // 방번호
+                dto.setRecomment(rs.getString("recomment"));  // 관리자 댓글
+                dto.setTitle(rs.getString("title"));            // 제목
+                dto.setRecontent(rs.getString("recontent"));  // 내용
+                dto.setRedate(rs.getDate("redate")); //오류 발생 가능
+                dto.setRate(rs.getFloat("rate")); // 평점
             }
         } 
         catch (Exception e) {
@@ -190,7 +197,7 @@ public class BoardDAO extends JDBConnect {
     // 지정한 게시물의 조회수를 1 증가시킵니다.
     public void updateVisitCount(String num) { 
         // 쿼리문 준비 
-        String query = "UPDATE board SET "
+        String query = "UPDATE review SET "
                      + " visitcount=visitcount+1 "
                      + " WHERE num=?";
         
@@ -206,7 +213,7 @@ public class BoardDAO extends JDBConnect {
     }
     
     // 지정한 게시물을 수정합니다.
-    public int updateEdit(BoardDTO dto) { 
+    public int updateEdit(ReviewDTO dto) { 
         int result = 0;
         
         try {
@@ -218,7 +225,7 @@ public class BoardDAO extends JDBConnect {
             // 쿼리문 완성
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getTitle());
-            psmt.setString(2, dto.getContent());
+            psmt.setString(2, dto.getRecontent());
             psmt.setString(3, dto.getNum());
             
             // 쿼리문 실행 
@@ -233,12 +240,12 @@ public class BoardDAO extends JDBConnect {
     }
 
     // 지정한 게시물을 삭제합니다.
-    public int deletePost(BoardDTO dto) { 
+    public int deletePost(ReviewDTO dto) { 
         int result = 0;
 
         try {
             // 쿼리문 템플릿
-            String query = "DELETE FROM board WHERE num=?"; 
+            String query = "DELETE FROM review WHERE num=?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(query); 
@@ -254,4 +261,5 @@ public class BoardDAO extends JDBConnect {
         
         return result; // 결과 반환
     }
+	
 }
