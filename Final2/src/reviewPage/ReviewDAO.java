@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 import common.JDBConnect;
+import model1.board.BoardDTO;
 
 public class ReviewDAO extends JDBConnect {
 	
@@ -77,30 +78,29 @@ public class ReviewDAO extends JDBConnect {
     }
     
  // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
-    public List<ReviewDTO> selectListPage(Map<String, Object> map) {
+    public List<ReviewDTO> selectListPage(Map<String, Object> map) {	
         List<ReviewDTO> bbs = new Vector<ReviewDTO>();  // 결과(게시물 목록)를 담을 변수
         
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
-                     + "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                     + "        SELECT * FROM reivew ";
+                + "    SELECT Tb.*, ROWNUM RowABC FROM ( "
+                + "        SELECT * FROM review ";
+   // 검색 조건 추가 
+   if (map.get("searchWord") != null) {
+       query += " WHERE " + map.get("searchField")
+              + " LIKE '%" + map.get("searchWord") + "%' ";
+   }
 
-        // 검색 조건 추가 
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField")
-                   + " LIKE '%" + map.get("searchWord") + "%' ";
-        }
-        
-        query += "      ORDER BY num DESC "
-               + "     ) Tb "
-               + " ) "
-               + " WHERE rNum BETWEEN ? AND ?"; 
-
+   query += "      ORDER BY num DESC "
+          + "     ) Tb "
+          + " ) "
+          + " WHERE RowABC BETWEEN ? AND ?";
+		 
         try {
             // 쿼리문 완성 
-            psmt = con.prepareStatement(query);
-            psmt.setString(1, map.get("start").toString());
-            psmt.setString(2, map.get("end").toString());
+        	psmt = con.prepareStatement(query);
+        	psmt.setInt(1, (int)map.get("start"));
+        	psmt.setInt(2, (int)map.get("end"));
             
             // 쿼리문 실행 
             rs = psmt.executeQuery();
@@ -129,6 +129,8 @@ public class ReviewDAO extends JDBConnect {
         // 목록 반환
         return bbs;
     }
+    
+    
 	
  // 게시글 데이터를 받아 DB에 추가합니다. 
     public int insertWrite(ReviewDTO dto) {

@@ -9,7 +9,17 @@
 String title = request.getParameter("title");
 String recontent = request.getParameter("recontent");
 String rnum = request.getParameter("rnum");
-Float rate = Float.parseFloat(request.getParameter("rate"));
+String rateStr = request.getParameter("rate");
+if (rnum == null) {
+    JSFunction.alertBack("회의실 번호를 체크해주세요.", out);
+    return;
+}
+if (rateStr == null) {
+    JSFunction.alertBack("별점을 체크해주세요.", out);
+    return;
+}
+
+Float rate = Float.parseFloat(rateStr);
 
 
 // 폼값을 DTO 객체에 저장
@@ -31,4 +41,5 @@ if (iResult == 1) {
 } else {
     JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
 }
+
 %>

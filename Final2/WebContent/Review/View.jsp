@@ -4,10 +4,10 @@
     pageEncoding="UTF-8"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
-String virtualNum = request.getParameter("virtualNum");
+
 
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성 
-/* dao.updateVisitCount(num);  */                // 조회수 증가 
+dao.updateVisitCount(num);              // 조회수 증가 
 ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
 dao.close();                               // DB 연결 해제
 %>
@@ -27,7 +27,9 @@ function deletePost() {
     }
 }
 </script>
-
+<%
+	String virtualNum = request.getParameter("virtualNum");
+%>
 </head>
 <body>
 <jsp:include page="../Common/Link.jsp" />

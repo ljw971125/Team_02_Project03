@@ -8,27 +8,23 @@
 <jsp:include page="../Common/Link.jsp" />
 <title>회원제 게시판</title>
 <script type="text/javascript">
-function validateForm(form) {  // 폼 내용 검증
+function validateForm(form) {
     if (form.title.value == "") {
         alert("제목을 입력하세요.");
         form.title.focus();
         return false;
     }
-    if (form.content.value == "") {
+    if (form.recontent.value == "") {
         alert("내용을 입력하세요.");
-        form.content.focus();
+        form.recontent.focus();
         return false;
     }
-    if (form.rate.value == "") {
-        alert("별점을 체크해주세요.");
-        form.rate.focus();
-        return false;
-    }
-    if (form.num.value == "") {
+
+/*     if (form.rnum.value == "") {
         alert("방 번호를 체크해주세요.");
-        form.num.focus();
+        form.rnum.focus();
         return false;
-    }
+    } */
 }
 </script>
 </head>
@@ -54,9 +50,9 @@ function validateForm(form) {  // 폼 내용 검증
         <tr>
         	<td>회의실 번호</td>
         	<td>
-        		<label><input type="radio" name="rnum" value="1">1번 회의실</label>
-        		<label><input type="radio" name="rnum" value="2">2번 회의실</label>
-        		<label><input type="radio" name="rnum" value="3">3번 회의실</label>
+        		<label><input type="radio" name="rnum" value="101">101호 회의실</label>
+        		<label><input type="radio" name="rnum" value="102">102호 회의실</label>
+        		<label><input type="radio" name="rnum" value="103">103호 회의실</label>
         	</td>
         </tr>
         <tr>

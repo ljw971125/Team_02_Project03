@@ -17,12 +17,11 @@ String searchWord = request.getParameter("searchWord");
 if (searchWord != null) {
     param.put("searchField", searchField);
     param.put("searchWord", searchWord);
-}
+}	
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
-/* String nik = (String)session.getAttribute("Nik"); // 로그인중인 닉네임 */
-List<ReviewDTO> reviewLists = dao.selectList(param);  // 게시물 목록 받기
-dao.close();  // DB 연결 닫기
+String nik = (String)session.getAttribute("Nik"); // 로그인중인 닉네임
+
 
 /*** 페이지 처리 start ***/
 //전체 페이지 수 계산
@@ -41,7 +40,7 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
-List<ReviewDTO> boardLists = dao.selectListPage(param);  // 게시물 목록 받기
+List<ReviewDTO> reviewLists = dao.selectListPage(param);  // 게시물 목록 받기
 dao.close();  // DB 연결 닫기
 %>
 
@@ -86,9 +85,9 @@ dao.close();  // DB 연결 닫기
         <tr>
             <th width="10%">번호</th>
             <th width="30%">제목</th>
-            <th width="15%">작성자</th>
+            <th width="25%">작성자</th>
             <th width="10%">회의실 번호</th>
-            <th width="20%">평점</th>
+            <th width="10%">평점</th>
             <th width="15%">작성일</th>
         </tr>
         <!-- 목록의 내용 --> 
@@ -114,11 +113,15 @@ else {
         <tr align="center">
             <td><%= virtualNum %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="View.jsp?num=<%= dto.getNum() %>&virtualNum=<%=virtualNum%>"><%= dto.getTitle() %></a> 
+                 <a href="View.jsp?num=<%= dto.getNum() %>&virtualNum=<%=virtualNum%>"><%= dto.getTitle() %></a> 
             </td>
             <td align="center"><%= dto.getNik() %></td>     <!--작성자 닉네임-->
-            <td align="center"><%= dto.getRnum() %></td>  <!--방번호-->
-            <td align="center"><%= dto.getRate() %></td>  <!--평점-->
+            <td align="center"><%= dto.getRnum()+"호" %></td>  <!--방번호-->
+            <td align="center">
+			    <% for(int i = 0; i < (int)dto.getRate(); i++) { %>
+			        &#9733;
+			    <% } %>
+			</td>  <!--평점-->
             <td align="center"><%= dto.getRedate() %></td>    <!--작성일-->
         </tr>
 <%
