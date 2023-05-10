@@ -220,8 +220,8 @@ public class ReviewDAO extends JDBConnect {
         
         try {
             // 쿼리문 템플릿 
-            String query = "UPDATE board SET "
-                         + " title=?, content=? "
+            String query = "UPDATE review SET "
+                         + " title=?, recontent=? "
                          + " WHERE num=?";
             
             // 쿼리문 완성
