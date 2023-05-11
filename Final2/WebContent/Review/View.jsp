@@ -68,7 +68,7 @@ function deletePost() {
             <%
             }
             %>
-                <button type="button" onclick="location.href='List.jsp';">
+                <button type="button" onclick="location.href='Review.jsp';">
                     목록 보기
                 </button>
             </td>

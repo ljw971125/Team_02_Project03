@@ -8,13 +8,13 @@
 
 String virtualNum = request.getParameter("virtualNum"); 
 String num = request.getParameter("num"); 
-String retitle = request.getParameter("title");
+String title = request.getParameter("title");
 String recontent = request.getParameter("recontent");
 
 // DTO에 저장
 ReviewDTO dto = new ReviewDTO();
 dto.setNum(num);
-dto.setTitle(retitle);
+dto.setTitle(title);
 dto.setRecontent(recontent); 
 
 // DB에 반영

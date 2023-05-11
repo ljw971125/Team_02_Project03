@@ -20,11 +20,6 @@ function validateForm(form) {
         return false;
     }
 
-/*     if (form.rnum.value == "") {
-        alert("방 번호를 체크해주세요.");
-        form.rnum.focus();
-        return false;
-    } */
 }
 </script>
 </head>
