@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../Style/LoginForm.css">
+<link rel="stylesheet" type="text/css" href="/Final1/Style/LoginForm.css">
 <title>로그인폼</title>
 </head>
 <body>

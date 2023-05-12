@@ -48,104 +48,105 @@ dao.close();  // DB 연결 닫기
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/Common/header.jsp" />  <!-- 공통 링크 -->
+<style>
+	article{
+		margin-left: 50px;
+	}
+</style>
 <title>리뷰</title>
 </head>
 
 <body>
-<div style="float: right;">
 <aside>
     <jsp:include page="/Review/LoginForm.jsp" />
 </aside>
-<div style="height: 200px;"></div>
+<div style="height: 230px;"></div>
 <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
 
 <div style="float: right;">
 </div>
 
 <article>
-<div style="margin-right: 400px;">
-    <h2>회의실 리뷰</h2>
-    <!-- 검색폼 --> 
-    <form method="get">  
-    <table border="1" width="90%">
-    <tr>
-        <td align="left">
-            <select name="searchField"> 
-                <option value="title">제목</option> 
-                <option value="content">내용</option>
-            </select>
-            <input type="text" name="searchWord" />
-            <input type="submit" value="검색하기" />
-        </td>
-    </tr>   
-    </table>
-    </form>
-    <!-- 게시물 목록 테이블(표) --> 
-    <table border="1" width="90%">
-        <!-- 각 칼럼의 이름 --> 
-        <tr>
-            <th width="10%">번호</th>
-            <th width="30%">제목</th>
-            <th width="25%">작성자</th>
-            <th width="10%">회의실 번호</th>
-            <th width="10%">평점</th>
-            <th width="15%">작성일</th>
-        </tr>
-        <!-- 목록의 내용 --> 
-<%
-int cnt=0;
 
-if (reviewLists.isEmpty()) {
-    // 게시물이 하나도 없을 때 
-%>
-        <tr>
-            <td colspan="6" align="center">
-                <h3>등록된 리뷰가 없습니다</h3>
-            </td>
-        </tr>
-<%
-}
-else {
-    // 게시물이 있을 때 
-    int virtualNum = 0;  // 화면상에서의 게시물 번호
-    int countNum = 0;
-    for (ReviewDTO dto : reviewLists)
-    {
-        virtualNum = totalCount - (((pageNum -1) * pageSize) + countNum++); // 전체 게시물 수에서 시작해 1씩 감소
-%>
-        <tr align="center">
-            <td><%= virtualNum %></td>  <!--게시물 번호-->
-            <td align="left">  <!--제목(+ 하이퍼링크)-->
-                 <a href="View.jsp?num=<%= dto.getNum() %>&virtualNum=<%=virtualNum%>"><%= dto.getTitle() %></a> 
-            </td>
-            <td align="center"><%= dto.getNik() %></td>     <!--작성자 닉네임-->
-            <td align="center"><%= dto.getRnum()+"호" %></td>  <!--방번호-->
-            <td align="center">
-			    <% for(int i = 0; i < (int)dto.getRate(); i++) { %>
-			        &#9733;
-			    <% } %>
-			</td>  <!--평점-->
-            <td align="center"><%= dto.getRedate() %></td>    <!--작성일-->
-        </tr>
-<%
-	cnt=countNum;
-    }
-}
-%>
-    </table>
-    <!--목록 하단의 [글쓰기] 버튼-->
-    <table border="1" width="90%">
-        <tr align="center">
-                   <!--페이징 처리-->
-            <td>
-                <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
-            </td>
-            <td><button type="button" style="background-color:lightgreen; width:100px; height:50px; font-size: 15px; border-radius: 15px; cursor:pointer; " onclick="location.href='Write.jsp';">글쓰기
-                </button></td>
-        </tr>
-    </table>
-</div>    
+	    <h2>회의실 리뷰</h2>
+	    <!-- 검색폼 --> 
+	    <form method="get">  
+	    <table border="1" width="90%">
+	    <tr>
+	        <td align="left">
+	            <select name="searchField"> 
+	                <option value="title">제목</option> 
+	                <option value="content">내용</option>
+	            </select>
+	            <input type="text" name="searchWord" />
+	            <input type="submit" value="검색하기" />
+	        </td>
+	    </tr>   
+	    </table>
+	    </form>
+	    <!-- 게시물 목록 테이블(표) --> 
+	    <table border="1" width="90%">
+	        <!-- 각 칼럼의 이름 --> 
+	        <tr>
+	            <th width="10%">번호</th>
+	            <th width="30%">제목</th>
+	            <th width="25%">작성자</th>
+	            <th width="10%">회의실 번호</th>
+	            <th width="10%">평점</th>
+	            <th width="15%">작성일</th>
+	        </tr>
+	        <!-- 목록의 내용 --> 
+	<%
+	if (reviewLists.isEmpty()) {
+	    // 게시물이 하나도 없을 때 
+	%>
+	        <tr>
+	            <td colspan="6" align="center">
+	                <h3>등록된 리뷰가 없습니다</h3>
+	            </td>
+	        </tr>
+	<%
+	}
+	else {
+	    // 게시물이 있을 때 
+	    int virtualNum = 0;  // 화면상에서의 게시물 번호
+	    int countNum = 0;
+	    for (ReviewDTO dto : reviewLists)
+	    {
+	        virtualNum = totalCount - (((pageNum -1) * pageSize) + countNum++); // 전체 게시물 수에서 시작해 1씩 감소
+	%>
+	        <tr align="center">
+	            <td><%= virtualNum %></td>  <!--게시물 번호-->
+	            <td align="left">  <!--제목(+ 하이퍼링크)-->
+	                 <a href="View.jsp?num=<%= dto.getNum() %>&virtualNum=<%=virtualNum%>"><%= dto.getTitle() %></a> 
+	            </td>
+	            <td align="center"><%= dto.getNik() %></td>     <!--작성자 닉네임-->
+	            <td align="center"><%= dto.getRnum()+"호" %></td>  <!--방번호-->
+	            <td align="center">
+				    <% for(int i = 0; i < (int)dto.getRate(); i++) { %>
+				        &#9733;
+				    <% } %>
+				</td>  <!--평점-->
+	            <td align="center"><%= dto.getRedate() %></td>    <!--작성일-->
+	        </tr>
+	<%
+	    }
+	}
+	%>
+	    </table>
+	    <!--목록 하단의 [글쓰기] 버튼-->
+	    <table border="1" width="90%">
+	        <tr align="center">
+	                   <!--페이징 처리-->
+	            <td>
+	                <%= BoardPage.pagingStr(totalCount, pageSize,
+	                       blockPage, pageNum, request.getRequestURI()) %>  
+	            </td>
+	            <td><button type="button" style="background-color:lightgreen; width:100px; height:50px; font-size: 15px; border-radius: 15px; cursor:pointer; " onclick="location.href='Write.jsp';">글쓰기
+	                </button></td>
+	        </tr>
+	    </table>
+	</div>    
  </article>
  
 <div style="height: 20px;"></div>

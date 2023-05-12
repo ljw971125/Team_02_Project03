@@ -29,14 +29,12 @@
 
                 <a href="#" class="menu-link" onclick="showMenu(event, 'mypage-menu')">마이 페이지</a>
                 <ul id="mypage-menu" style="display: none;">
-                    <a href="4.jsp">회의실 이용 정보</a><br>
-                    <a href="../MyPage/mypage.jsp">회의실 이용 정보</a>
+                    <a href="/Final1/MyPage/mypage.jsp">회의실 이용 정보</a>
                 </ul>
 
                 <a href="#" class="menu-link" onclick="showMenu(event, 'cs-menu')">고객센터</a>
                 <ul id="cs-menu" style="display: none;">
-                    <a href="00.jsp">공지사항</a><br>
-                    <a href="/Final1/CustomerService/InquiryMain.jsp">문의 사항</a>
+                    <a href="/Final1/CustomerService/InquiryMain.jsp">문의사항</a>
                 </ul> 
             </td> 
         </tr> 

@@ -18,7 +18,7 @@ dao.close();                               // DB 연결 해제
 <title>문의 게시판</title>
 </head>
 <body>
-
+<div style="height: 200px;"></div>
 <h2>문의 게시판 - <%=dto.getTitle()%></h2>
 <article>
 	<form name="writeFrm">

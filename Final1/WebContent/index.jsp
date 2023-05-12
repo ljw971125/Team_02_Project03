@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page import="room.*" %>
+<%@ page import="java.util.*" %>
+<%
+	String drv = application.getInitParameter("OracleDriver");
+	String url = application.getInitParameter("OracleURL");
+	String id = application.getInitParameter("OracleId");
+	String pw = application.getInitParameter("OraclePwd");
+    RoomDAO dao = new RoomDAO(drv, url, id, pw);
+    ArrayList<RoomDTO> roomList101 = dao.getList(101);
+    
+    RoomDAO dao1 = new RoomDAO(drv, url, id, pw);
+    ArrayList<RoomDTO> roomList102 = dao1.getList(102);
+    
+    RoomDAO dao2 = new RoomDAO(drv, url, id, pw);
+    ArrayList<RoomDTO> roomList103 = dao2.getList(103);
+%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/Final1/Style/main.css">
@@ -14,7 +30,7 @@
     <jsp:include page="/LogIn/LoginForm.jsp" />
 </aside>
 
-<div style="height: 200px;"></div>
+<div style="height: 230px;"></div>
 
 <article>
     <div class="image-container">
@@ -23,10 +39,17 @@
         </a>
     </div>
     <div class="edit-container">
-        <p id="text-101">- 101호 -</p>
-        <p id="text-101">에어컨 : 2대</p>
-        <p id="text-101">의자 : 10개</p>
-        <p id="text-101">냉장고 : o</p>
+    	<% for (RoomDTO room : roomList101) { %>
+            <p id="text-101">회의실 방번호 <%= room.getNum() %>호</p>
+            <p id="text-101">회의실 평수 : <%= room.getArea() %>대</p>
+            <p id="text-101">수용가능인원 : <%= room.getCapacity() %>명</p>
+            <p id="text-101">에어컨 갯수: <%= room.getAirConditioner() %>개</p>
+            <p id="text-101">컴퓨터 갯수: <%= room.getComputer() %>개</p>
+            <p id="text-101">화이트보드 갯수: <%= room.getWhiteboard() %>개</p>
+            <p id="text-101">wi-fi 유뮤 : <%= room.getWifi() %></p>
+            <p id="text-101">시간당 가격 : <%= room.getPrice()%>원</p>
+            
+        <% } %>
     </div>
 </article>
 
@@ -39,10 +62,16 @@
         </a>
     </div>
     <div class="edit-container">
-        <p id="text-102">- 102호 -</p>
-        <p id="text-102">에어컨 : 1대</p>
-        <p id="text-102">의자 : 8개</p>
-        <p id="text-102">냉장고 : o</p>
+        <% for (RoomDTO room : roomList102) { %>
+            <p id="text-102">회의실 방번호 <%= room.getNum() %>호</p>
+            <p id="text-102">회의실 평수 : <%= room.getArea() %>대</p>
+            <p id="text-102">수용가능인원 : <%= room.getCapacity() %>명</p>
+            <p id="text-102">에어컨 갯수: <%= room.getAirConditioner() %>개</p>
+            <p id="text-102">컴퓨터 갯수: <%= room.getComputer() %>개</p>
+            <p id="text-102">화이트보드 갯수: <%= room.getWhiteboard() %>개</p>
+            <p id="text-102">wi-fi 유뮤 : <%= room.getWifi() %></p>
+            <p id="text-102">시간당 가격 : <%= room.getPrice()%>원</p>      
+        <% } %>
     </div>
 </article>
 
@@ -55,10 +84,16 @@
         </a>
     </div>
     <div class="edit-container">
-        <p id="text-103">- 103호 -</p>
-        <p id="text-103">에어컨 : 2대</p>
-        <p id="text-103">의자 : 7개</p>
-        <p id="text-103">냉장고 : o</p>
+	<% for (RoomDTO room2 : roomList103) { %>
+            <p id="text-103">회의실 방번호 <%= room2.getNum() %>호</p>
+            <p id="text-103">회의실 평수 : <%= room2.getArea() %>대</p>
+            <p id="text-103">수용가능인원 : <%= room2.getCapacity() %>명</p>
+            <p id="text-103">에어컨 갯수: <%= room2.getAirConditioner() %>개</p>
+            <p id="text-103">컴퓨터 갯수: <%= room2.getComputer() %>개</p>
+            <p id="text-103">화이트보드 갯수: <%= room2.getWhiteboard() %>개</p>
+            <p id="text-103">wi-fi 유뮤 : <%= room2.getWifi() %></p>
+            <p id="text-103">시간당 가격 : <%= room2.getPrice()%>원</p>          
+        <% } %>
     </div>
 </article>
 
