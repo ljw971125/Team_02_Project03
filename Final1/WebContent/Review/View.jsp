@@ -5,7 +5,7 @@
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
 String virtualNum = request.getParameter("virtualNum");
-
+String room = (String)request.getParameter("room");
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성 
 ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
 dao.close();                               // DB 연결 해제
@@ -19,6 +19,7 @@ dao.close();                               // DB 연결 해제
 
 
 </head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <body>
 
 <div style="height: 200px;"></div>
@@ -28,7 +29,7 @@ dao.close();                               // DB 연결 해제
 <form name="writeFrm">
     <input type="hidden" name="num" value="<%= num %>" />  <!-- 공통 링크 -->
 
-    <table border="1" width="90%">
+    <table class = "table table-bordered" border="1" width="90%">
         <tr>
             <td>번호</td>
             <td><%= virtualNum %></td>
@@ -57,15 +58,17 @@ dao.close();                               // DB 연결 해제
                 && session.getAttribute("Nik").toString().equals(dto.getNik())) {
             %>
                 <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getNum()%>&virtualNum=<%=virtualNum%>';">수정하기
+                        onclick="location.href='Edit.jsp?num=<%= num%>&virtualNum=<%=virtualNum%>&room=<%= dto.getRnum() %>';">수정하기
                         </button>
-                <button type="button" onclick="deletePost();">삭제하기</button> 
+                <button type="button" onclick="location.href='DeleteProcess.jsp?room=<%= dto.getRnum() %>&num=<%= num %>';">삭제하기</button>
+
+
             <%
             }
             %>
-                <button type="button" onclick="location.href='review.jsp';">
-                    목록 보기
-                </button>
+                <button type="button" onclick="location.href='review.jsp?room=<%= room %>&num=<%= num %>';">목록보기</button>
+
+                
             </td>
         </tr>
     </table>

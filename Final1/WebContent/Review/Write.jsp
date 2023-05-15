@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="reviewPage.*"%>
 <%@ include file="./IsLoggedIn.jsp"%> <!--로그인 확인-->
+<%
+String room = request.getParameter("room");
+System.out.println(room);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +14,18 @@
 <title>리뷰 등록</title>
 
 </head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <body>
 
 <div style="height: 200px;"></div>
+<div align = "right">
 <h2>회원제 게시판 - 글쓰기(Write)</h2>
-
+</div>
 <article>
-<form name="writeFrm" method="post" action="WriteProcess.jsp"
+<form name="writeFrm" method="post" action="WriteProcess.jsp?room=<%= request.getParameter("room")%>"
       onsubmit="return validateForm(this);">
       
-    <table border="1" width="90%">
+ <table class = "table table-bordered" border="1" width="90%" style="margin-left: auto; margin-right: 0;">
         <tr>
             <td>제목</td>
             <td>
@@ -53,7 +60,7 @@
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='review.jsp';">
+                <button type="button" onclick="location.href='review.jsp?room=<%= room %>';">
                     목록 보기</button>
             </td>
         </tr>

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+footer {
+    clear: both;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    left: auto;
+    right: auto;
+    position: fixed;
+    box-sizing: border-box;
+    margin-top: 10px;
+}

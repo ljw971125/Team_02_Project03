@@ -7,7 +7,7 @@ var isDuplicateChecked1 = false;
 // id 중복체크 기능
 function checkDuplicate() {
   var id = document.getElementById('id').value;
-  if (id === '') {
+  if (!id) {
     alert('아이디를 입력해주세요');
     return;
   }
@@ -33,6 +33,10 @@ function checkDuplicate1() {
   // 입력 필드의 값을 가져옵니다.
   var nik = document.getElementById('nik').value;
   // XMLHttpRequest 객체를 생성합니다.
+  if (!nik) {
+    alert('닉네임을 입력해주세요');
+    return;
+  }
   var xhr = new XMLHttpRequest();
   // 새 연결을 엽니다. URL 엔드포인트에서 GET 요청을 사용합니다.
   xhr.open('GET', 'check-duplicate1.jsp?nik=' + nik, true);
@@ -67,7 +71,6 @@ function validateForm() {
 	  var birth = document.getElementById('birth').value;
 	  var phone = document.getElementById('phone').value;
 	  var adr = document.getElementById('adr').value;
-	  var jdate = document.getElementById('jdate').value;
 
 	  // 입력 필드의 값이 비어 있는지 확인합니다.
 	  if (!name) {
@@ -120,12 +123,6 @@ function validateForm() {
 	  else if(!adr){
 		// 메시지를 표시합니다.
 		    alert('주소 입력칸이 비어있습니다');
-		    // memberJoin.jsp로 이동하지 않습니다.
-		    return false;
-	  }
-	  else if(!jdate){
-		// 메시지를 표시합니다.
-		    alert('가입일 입력칸이 비어있습니다');
 		    // memberJoin.jsp로 이동하지 않습니다.
 		    return false;
 	  }

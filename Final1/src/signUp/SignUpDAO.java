@@ -29,7 +29,6 @@ public class SignUpDAO extends JDBConnect{
 					dto.setPhone(rs.getString("phone"));
 					dto.setAdr(rs.getString("adr"));
 					dto.setNik(rs.getString("nik"));
-					dto.setJdate(rs.getString("jdate"));
 					
 					testList.add(dto);
 				}		

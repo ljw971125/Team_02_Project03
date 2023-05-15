@@ -3,25 +3,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/Final1/Style/company.css">
 <jsp:include page="/Common/header.jsp" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/CSS/company.css">
 <meta charset="utf-8"/>
 <title>오시는길</title>
 </head>
 
 <body>
 
-<aside>
-    <jsp:include page="/LogIn/LoginForm.jsp" />
-</aside>
-
 <div style="height: 200px;"></div>
-
+<h1 align="center"> 오시는 길 </h1>
+<div style="height: 30px;"></div>
 <article style="margin-left: 200px;">
 <div id="map-location">
 <div id="map" style="width:1000px;height:800px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=98b1aacce40bd2d6e395140352e317de"></script>
-<script type="text/javascript" src="/Final1/js/kMap.js"></script>
+<script type="text/javascript" src="/Final/js/kMap.js"></script>
 <br>
 <p style="margin-left: 20px;">
     <span style= "font-size: larger;">주소</span>
@@ -45,7 +42,8 @@
 </article>
 
 <div style="height: 20px;"></div>
-<jsp:include page="/Common/rfooter.jsp" />
-<script src="/Final1/js/header.js"></script> 
 </body>
+<footer>
+	<jsp:include page="/Common/afooter.jsp" />
+</footer>
 </html>

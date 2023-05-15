@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+div.create{
+	width: 800px;
+	text-align: center;
+	padding: 30px;
+	border-bottom: 1px solid black;
+	margin: auto;
+}
+
+table{
+	height: 300px;
+	width: 900px;
+	border-top: 3px solid black;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+td{
+	border-bottom: 1px dotted black;
+}
+
+caption{
+	text-align: left;
+}
+
+.col1 {
+	background-color: #e8e8e8;
+	padding: 10px;
+	text-align: right;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+.col2 {
+	text-align: left;
+	padding: 5px;
+}
+
+.but1 {
+	height: 25px;
+	width: 80px;
+	color: white;
+	background-color: black;
+	border-color: black;
+}
+
+.but2 {
+	height: 27px;
+	width: 120px;
+	color: white;
+	background-color: black;
+	border-color: black;
+}
+
+.but3 {
+	height: 35px;
+	width: 150px;
+	background-color: white;
+	border: 2px solid black;
+}
+
+.but4{
+	height: 35px;
+	width: 150px;
+	background-color: white;
+	border: 2px solid black;
+}
+
+.but1:hover {
+	background-color: #b9b9b9;
+	color: black;
+	border: 2px solid black;
+}
+
+.but2:hover {
+	background-color: #b9b9b9;
+	color: black;
+	border: 2px solid black;
+}
+
+.but3:hover {
+	background-color: black;
+	color: white;
+	border: 2px solid black;
+}
+
+.but4:hover {
+	background-color: black;
+	color: white;
+	border: 2px solid black;
+}
+
+p{
+	font-size: 0.7em;
+}
+
+.g{
+	font-size: 0.7em;
+}
+
+.c{
+	font-size: 0.7em;
+}
+
+.a{
+	font-size: 0.7em;
+}
+
+.num{
+	color: red;
+}

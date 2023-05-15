@@ -6,29 +6,16 @@
 <html>
 <head>
 <style>
-    .button-container {
-        display: flex;
-    }
-    .button-container button {
-        width: 100px;
-        height: 50px;
-    }
-    .button-container div{
-    	margin-left: 200px;
-        margin-right: 200px;
-    }
+
 </style>
 <jsp:include page="/Common/header.jsp" />
-<link rel="stylesheet" type="text/css" href="/Final1/Style/company.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/CSS/company.css">
 <meta charset="UTF-8">
 <title>회사연혁</title>
 </head>
 
 <body>
 
-<aside>
-    <jsp:include page="/LogIn/LoginForm.jsp" />
-</aside>
 
 <div style="height: 200px;"></div>
 
@@ -62,7 +49,8 @@
 </script>
 </article>
 <div style="height: 20px;"></div>
-<jsp:include page="/Common/rfooter.jsp" />
-<script src="/Final1/js/header.js"></script> 
 </body>
+<footer>
+	<jsp:include page="/Common/rfooter.jsp" />
+</footer>
 </html>

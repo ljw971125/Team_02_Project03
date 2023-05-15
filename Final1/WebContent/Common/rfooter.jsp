@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/Final1/Style/rfooter.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/CSS/rfooter.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

@@ -2,13 +2,24 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/Final1/Style/LoginForm.css">
+<jsp:include page="/Common/header.jsp" />
+<link rel="stylesheet" type="text/css" href="/Final/CSS/loginform.css">
+<meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
 <title>로그인폼</title>
-<div id="login-form">
 <span style="color: red; font-size: 1.2em;"> 
         <%= request.getAttribute("LoginErrMsg") == null ?
                 "" : request.getAttribute("LoginErrMsg") %>
 </span>
+<%
+    String error = request.getParameter("error");
+    if ("true".equals(error)) {
+%>
+    <script>
+        alert("아이디와 패스워드를 다시 확인해주세요.");
+    </script>
+<%
+    }
+%>
  <%
  if (session.getAttribute("UserId") == null) {  // 로그인 상태 확인
      // 로그아웃 상태
@@ -25,26 +36,39 @@
      }
  }
  </script>
- <div>
-<form action="/Final1/LogIn/LoginProcess.jsp" method="post" name="loginFrm" onsubmit="return validateForm(this);">
-   <input type="text" name="user_id" id="user_id" placeholder="아이디"><br>
-   <input type="password" name="user_pw" id="user_pw" placeholder="비밀번호"><br>
-   <input type="submit" value="로그인">
-</form>
-</div>
-<div>
-<a href="/Final1/LogIn/register.jsp">회원가입</a> | <a href="/Final1/LogIn/find_id_pw.jsp">id/pw찾기</a>
-</div>
-<%
-} else { // 로그인된 상태
-%>
-    <%= session.getAttribute("UserName") %> 회원님, 로그인하셨습니다.<br />
-    <a href="/Final1/LogIn/Logout.jsp">[로그아웃]</a>
-<%
-}
-%>
-</div>
 </head>
 <body>
+
+<article>
+	<div id="login-form">
+		<div class="login-box">
+		  <h2>로그인</h2>
+		  <form action="/Final/LogIn/LoginProcess.jsp" method="post" name="loginFrm" onsubmit="return validateForm(this);">
+		    <div class="user-box">
+		      <input type="text" name="user_id" required="" placeholder="ID">
+		      <label>아이디</label>
+		    </div>
+		    <div class="user-box">
+		      <input type="password" name="user_pw" required="" placeholder="Password">
+		      <label>패스워드</label>
+		    <input type="submit" value="로그인">
+		    </div>
+		    <div class="links">
+			  <a href="<%=request.getContextPath() %>/register.do">회원가입</a>
+			  <a href="<%=request.getContextPath() %>/findID.do">ID/PW 찾기</a>
+			</div>
+		  </form>
+		</div>
+		<%
+		} else { // 로그인된 상태
+		%>
+		    <%= session.getAttribute("UserName") %> 회원님, 로그인하셨습니다.<br />
+		    <a href="<%=request.getContextPath() %>/Logout.do">[로그아웃]</a>
+		<%
+		}
+		%>
+	</div>
+</article>
+
 </body>
 </html>

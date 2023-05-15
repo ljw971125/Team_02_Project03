@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.bxslider li {
+  display: flex;
+}
+.bxslider li img {
+  margin-left: 50px;
+  object-fit: cover;
+}
+
+.bxslider li .description {
+  width: 40%;
+}
+.bx-caption {
+  display: none;
+}
+.bx-pager {
+  display: none;
+}
+.description p:first-of-type {
+    font-weight: bold;
+    font-size: 40px;
+    margin-left: 40px;
+}
+p{
+	font-size: 26px;
+}
+.description button {
+    margin-left: 40px;
+    height: 60px;
+    width: 90px;
+}
+.bx-wrapper {
+	top: 5% !important;
+	margin-left: 20% !important;
+  	max-width: 180px !important;
+  	height: 120px !important;
+}
+
+.bx-controls-direction a {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.image-container {
+    display: flex;
+}
+.image-container img {
+    margin-right: 20px;
+}
+.image-container:first-of-type {
+    margin-left: 5%;
+}
+#text-101, #text-102, #text-103 {
+	font-size: 20px;
+}
+button{
+	font-size: 20px;
+}
+
+#myChart{
+	width: 200px;
+	height: 200px;
+}

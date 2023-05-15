@@ -1,44 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="/Final1/Style/header.css">
-<header>
-<h1><a href="/Final1/index.jsp">MUF</a></h1>
+    
+<%
+	// 세션값 받아오기
+	String userId = (String)session.getAttribute("UserId");
+	String userNik = (String)session.getAttribute("Nik");
+%>    
+    
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/CSS/header.css">
 
-<nav>
-<div>
-    <table border="1">
-        <tr>
-            <td align="center">  
-                <a href="#" class="menu-link" onclick="showMenu(event, 'company-menu')">회사소개</a>
-                <ul id="company-menu" style="display: none;">
-                    <a href="/Final1/CompanyIntro/about.jsp">회사소개</a>
-                    <a href="/Final1/CompanyIntro/year.jsp">회사연혁</a>
-                    <a href="/Final1/CompanyIntro/op.jsp">회사 목표 및 방침</a>
-                    <a href="/Final1/CompanyIntro/howtocome.jsp">오시는 길</a>
-                </ul>
-
-                <a href="#" class="menu-link" onclick="showMenu(event, 'meeting-menu')">회의실</a>
-                <ul id="meeting-menu" style="display: none;">
-                    <a href="xx.jsp">회의실 예약</a>
-                </ul>
-
-                <a href="#" class="menu-link" onclick="showMenu(event, 'review-menu')">리뷰</a>
-                <ul id="review-menu" style="display: none;">
-                    <a href="/Final1/Review/review.jsp">회의실 리뷰</a></li>
-                </ul>
-
-                <a href="#" class="menu-link" onclick="showMenu(event, 'mypage-menu')">마이 페이지</a>
-                <ul id="mypage-menu" style="display: none;">
-                    <a href="/Final1/MyPage/mypage.jsp">회의실 이용 정보</a>
-                </ul>
-
-                <a href="#" class="menu-link" onclick="showMenu(event, 'cs-menu')">고객센터</a>
-                <ul id="cs-menu" style="display: none;">
-                    <a href="/Final1/CustomerService/InquiryMain.jsp">문의사항</a>
-                </ul> 
-            </td> 
-        </tr> 
-    </table> 
-</div>
-</nav>
-</header>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+/>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header class="headerBox">
+		<div class="top-bar text-align-center line-height-0-ch-only">
+			<i class="fas fa-stream" id="menu_box_img"></i>
+			<nav class="menu-box inline-block">
+				<ul class="row">
+					<li class="name">회사소개
+						<ul class="innerMenu">
+							<li><a href="<%=request.getContextPath() %>/about.do">회사소개</a></li>
+							<li><a href="<%=request.getContextPath() %>/year.do">회사연도</a></li>
+							<li><a href="<%=request.getContextPath() %>/op.do">방침 및 목표</a></li>
+							<li><a href="<%=request.getContextPath() %>/howtocome.do">오시는길</a></li>
+						</ul>
+					</li>
+					<li class="name">
+						회의실 예약
+						<ul class="innerMenu">
+							<li><a href="<%=request.getContextPath() %>/detail.do?room=101">101호</a></li>
+							<li><a href="<%=request.getContextPath() %>/detail.do?room=102">102호</a></li>
+							<li><a href="<%=request.getContextPath() %>/detail.do?room=103">103호</a></li>
+						</ul>
+					</li>
+	 				<li class="name">
+					 	고객센터
+					 	<ul class="innerMenu">
+					 		<li>공지사항</li>
+					 		<li>문의사항</li>
+					 	</ul>
+					 </li>
+				</ul>
+			</nav>
+			<div class="menu-box-bg"></div>
+			<div class="sub-menu-bar-bg"></div>
+		</div>
+		<div class="MUF-logo">
+	            <a href="<%=request.getContextPath() %>/index.do" class="sitename">MUF</a>
+	    </div>
+	   	<div class="menu">
+	            <ul>
+	            	<!-- 세션값으로 로그인 상태를 판단해 '헤더 메뉴' 클릭 시 로그인 or 마이 페이지 or 관리자 페이지 이동 작업 -->
+	            	<!-- 1> 회원/관리자 로그인 X ==> 메뉴 : 로그인/회원가입/예약확인
+	            	 	 2> 회원 O ==> 메뉴 : 마이페이지/로그아웃/예약확인
+	            	 	 3> 관리자 X ==> 메뉴 : 관리자페이지/로그아웃
+	            	 -->
+	            	<%
+	            		if(userId != null) {   // 회원 로그인 O
+	                %>
+	                		<li><%=userNik%>님</li>
+	                		<li><a href="<%=request.getContextPath() %>/mypage.do" class="login">마이페이지</a></li>
+	                		<li><a href="<%=request.getContextPath() %>/Logout.do" class="logout">로그아웃</a></li> 
+	                		<li><a href="<%=request.getContextPath() %>/inqiry.do" class="my_inquiry">문의사항</a></li>
+	                <%
+	            		}
+	            		else{
+	                %>
+	                 		<li><a href="<%=request.getContextPath() %>/Login.do">로그인</a></li>
+	               			<li><a href="<%=request.getContextPath() %>/register.do">회원가입</a></li> 
+	               	<%
+	            		}
+	               	%>
+	            </ul>
+	        </div>
+	</header>
+</body>
+</html>

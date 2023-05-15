@@ -13,12 +13,15 @@ ReviewDAO dao = new ReviewDAO(application);
 Map<String, Object> param = new HashMap<String, Object>(); 
 String searchField = request.getParameter("searchField");
 String searchWord = request.getParameter("searchWord");	
+String room = request.getParameter("room");
+
+
 if (searchWord != null) {
     param.put("searchField", searchField);
     param.put("searchWord", searchWord);
 }	
 
-int totalCount = dao.selectCount(param);  // 게시물 수 확인
+int totalCount = dao.selectCount(param, room);  // 게시물 수 확인
 String nik = (String)session.getAttribute("Nik"); // 로그인중인 닉네임
 
 
@@ -39,7 +42,8 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
-List<ReviewDTO> reviewLists = dao.selectListPage(param);  // 게시물 목록 받기
+
+List<ReviewDTO> reviewLists = dao.selectListPage(param, room);  // 게시물 목록 받기
 dao.close();  // DB 연결 닫기
 %>
 
@@ -55,11 +59,8 @@ dao.close();  // DB 연결 닫기
 </style>
 <title>리뷰</title>
 </head>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <body>
-<aside>
-    <jsp:include page="/Review/LoginForm.jsp" />
-</aside>
 <div style="height: 230px;"></div>
 <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
 
@@ -68,24 +69,9 @@ dao.close();  // DB 연결 닫기
 
 <article>
 
-	    <h2>회의실 리뷰</h2>
-	    <!-- 검색폼 --> 
-	    <form method="get">  
-	    <table border="1" width="90%">
-	    <tr>
-	        <td align="left">
-	            <select name="searchField"> 
-	                <option value="title">제목</option> 
-	                <option value="content">내용</option>
-	            </select>
-	            <input type="text" name="searchWord" />
-	            <input type="submit" value="검색하기" />
-	        </td>
-	    </tr>   
-	    </table>
-	    </form>
+	    
 	    <!-- 게시물 목록 테이블(표) --> 
-	    <table border="1" width="90%">
+	    <table class = "table table-hover" border="1" width="90%">
 	        <!-- 각 칼럼의 이름 --> 
 	        <tr>
 	            <th width="10%">번호</th>
@@ -112,13 +98,15 @@ dao.close();  // DB 연결 닫기
 	    int virtualNum = 0;  // 화면상에서의 게시물 번호
 	    int countNum = 0;
 	    for (ReviewDTO dto : reviewLists)
+	    	
 	    {
 	        virtualNum = totalCount - (((pageNum -1) * pageSize) + countNum++); // 전체 게시물 수에서 시작해 1씩 감소
 	%>
 	        <tr align="center">
 	            <td><%= virtualNum %></td>  <!--게시물 번호-->
 	            <td align="left">  <!--제목(+ 하이퍼링크)-->
-	                 <a href="View.jsp?num=<%= dto.getNum() %>&virtualNum=<%=virtualNum%>"><%= dto.getTitle() %></a> 
+	                 <a href="View.jsp?num=<%= dto.getNum() %>&virtualNum=<%= virtualNum %>&room=<%= room %>"><%= dto.getTitle() %></a>
+
 	            </td>
 	            <td align="center"><%= dto.getNik() %></td>     <!--작성자 닉네임-->
 	            <td align="center"><%= dto.getRnum()+"호" %></td>  <!--방번호-->
@@ -135,14 +123,25 @@ dao.close();  // DB 연결 닫기
 	%>
 	    </table>
 	    <!--목록 하단의 [글쓰기] 버튼-->
-	    <table border="1" width="90%">
+	    <table class="table table-hover" border="1" width="50%" align = "right">
 	        <tr align="center">
-	                   <!--페이징 처리-->
+	        <!-- 검색폼 -->
+            	<form method="get">  
+		            <td align="left" width = "20%">
+		            <select name="searchField"> 
+		                <option value="title">제목</option> 
+		                <option value="content">내용</option>
+		            </select>
+		            <input type="text" name="searchWord" />
+		            <input type="submit" value="검색하기" />
+	            </form>
+	        </td>
+	        <!--페이징 처리-->
 	            <td>
-	                <%= BoardPage.pagingStr(totalCount, pageSize,
-	                       blockPage, pageNum, request.getRequestURI()) %>  
+			<%= BoardPage.pagingStr(totalCount, pageSize,
+			       blockPage, pageNum, request.getRequestURI(), room) %> 
 	            </td>
-	            <td><button type="button" style="background-color:lightgreen; width:100px; height:50px; font-size: 15px; border-radius: 15px; cursor:pointer; " onclick="location.href='Write.jsp';">글쓰기
+	            <td><button align= "right" type="button" class="btn btn-primary" onclick="location.href='Write.jsp?room=<%= room %>';">글쓰기
 	                </button></td>
 	        </tr>
 	    </table>

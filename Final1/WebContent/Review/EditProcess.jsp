@@ -10,7 +10,7 @@ String virtualNum = request.getParameter("virtualNum");
 String num = request.getParameter("num"); 
 String title = request.getParameter("title");
 String recontent = request.getParameter("recontent");
-
+String room = (String)request.getParameter("room");
 // DTO에 저장
 ReviewDTO dto = new ReviewDTO();
 dto.setNum(num);
@@ -25,7 +25,8 @@ dao.close();
 // 성공/실패 처리
 if (affected == 1) { 
     // 성공 시 상세 보기 페이지로 이동
-    response.sendRedirect("View.jsp?num=" + dto.getNum() + "&virtualNum=" + virtualNum); 
+	response.sendRedirect("View.jsp?num=" + dto.getNum() +"&virtualNum="+ virtualNum + "&room=" + room);
+    System.out.println(dto.getNum());
 } 
 else {
     // 실패 시 이전 페이지로 이동

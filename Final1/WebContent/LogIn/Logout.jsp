@@ -8,5 +8,5 @@ session.removeAttribute("UserName");
 // 방법 2: 모든 속성 한꺼번에 삭제 
 session.invalidate();
 
-response.sendRedirect("../index.jsp");
+response.sendRedirect("/Final/index.do");
 %>

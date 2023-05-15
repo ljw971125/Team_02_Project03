@@ -24,12 +24,12 @@ if (memberDTO.getId() != null) {
 	session.setAttribute("UserId", memberDTO.getId()); 
 	session.setAttribute("UserName", memberDTO.getName());
 	session.setAttribute("Nik", memberDTO.getNik());
-	response.sendRedirect("/Final1/index.jsp");
+	response.sendRedirect("/Final/index.do");
 }
 else {
- // 로그인 실패 (현재 페이지 유지 하면서 오류메시지만 출력하기)
-	request.setAttribute("LoginErrMsg", "로그인 오류입니다.");
-	request.getRequestDispatcher("/index.jsp").forward(request, response);
+	// 로그인 실패 시 LoginForm.jsp 페이지로 리디렉션
+	response.sendRedirect("/Final/Login.do?error=true");
+
 }
 
 %>

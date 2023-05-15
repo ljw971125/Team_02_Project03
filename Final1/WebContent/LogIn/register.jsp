@@ -6,74 +6,80 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/Common/header.jsp" />
-<link rel="stylesheet" type="text/css" href="/Final1/Style/joinform.css">
+<link rel="stylesheet" type="text/css" href="/Final/CSS/register.css">
 <title>회원가입</title>
 </head>
 <body>
-<div style="height: 220px;"></div>
+<div style="height: 100px;"></div>
 
 <article>
-<form action="memberJoin.jsp" method="post" onsubmit="return validateForm()">
-	
-	<div class="form-group">
-	<label for="name">이름</label>
-	<input type="text" name="name" id="name">
-	</div>
-	
-	<div class="form-group">
-	<label for="id">ID</label>
-	<input type="text" name="id" id="id">
-	<button class="check-button" type="button" onclick="checkDuplicate()">중복체크</button>
-	</div>
-	
-	<div class="form-group">
-	<label for="pw">PASS</label>
-	<input type="text" name="pw" id="pw">
-	</div>
-	
-	<div class="form-group">
-	<label for="nik">닉네임</label>
-	<input type="text" name="nik" id="nik">
-	<button class="check-button" type="button" onclick="checkDuplicate1()">중복체크</button>
-	</div>
-	
-	
-	<div class="form-group">
-	<label for="birth">생년월일</label>
-	<input type="date" name="birth" id="birth">
-	</div>
-	
-	<div class="form-group">
-	<label for="gender">성별</label>
-	    <input type="radio" name="gender" id="gender_m" value="M" checked/>남자 
-	    <input type="radio" name="gender" id="gender_f" value="F" />여자  
-	</div>
-	
-	<div class="form-group">
-	<label for="phone">핸드폰</label>
-	<input type="text" name="phone" id="phone">
-	</div>
-	
-	<div class="form-group">
-	<label for="adr">주소</label>
-	<input type="text" name="adr" id="adr">
-	</div>
-	
-	<div class="form-group">
-	<label for="jdate">가입날짜</label>
-	<input type="date" name="jdate" id="jdate">
-	</div>
-
-    <div class="form-group">
-    	<button type="button" class="back" onclick="location.href='/Final1/index.jsp'">돌아가기</button>
-        <input type="submit" value="가입하기">
-    </div>
-</form>
+<form action="/Final/LogIn/memberJoin.jsp" method="post">
+    <div class="container">
+	    <div class="insert">
+	    	<table>
+			    <caption><h2>회원가입</h2></caption>
+			    <tr>
+			        <td class="col1">이름</td>
+			        <td class="col2"><input type="text" name="name" id="name" maxlength="5"></td>
+			    </tr>
+			    <tr>
+			        <td class="col1">아이디</td>
+			        <td class="col2">
+			            <input type="text" name="id" id="id" maxlength="10">
+			            <input class='but1' type="button" value="중복확인" onclick="checkDuplicate()">
+			        </td>
+			    </tr>
+			    <tr>
+			        <td class="col1">비밀번호</td>
+			        <td class="col2">
+			            <input type="password" name="pw" id="pw" maxlength="16">
+			        </td>
+			    </tr>
+			    <tr>
+			        <td class="col1">닉네임</td>
+			        <td class="col2">
+			        	<input type="text" name="nik" id="nik" maxlength="5">
+			        	<input class='but1' type="button" value="중복확인" onclick="checkDuplicate1()">
+			        </td>
+			    </tr>
+			    <tr>
+			        <td class="col1">생년월일</td>
+			        <td class="col2">
+			            <input type="date" name="birth" id="birth">
+			        </td>
+			    </tr>
+			    <tr>
+			        <td class="col1">성별</td>
+			        <td class="col2">
+			        	<input type="radio" name="gender" id="gender_m" value="M" checked/>남자 
+				    	<input type="radio" name="gender" id="gender_f" value="F" />여자 
+			        </td>
+			    </tr>
+			    <tr>
+			        <td class="col1">핸드폰</td>
+			        <td class="col2">
+			        	<input type="text" name="phone" id="phone">
+			        </td>
+			    </tr>
+			    <tr>
+			        <td class="col1">주소</td>
+			        <td class="col2">
+						<input type="text" name="adr" id="adr">
+			        </td>
+			    </tr>
+	    </table>
+	  </div>
+	 
+	  <div class="create">
+	        <input class="but3" type="button" value="돌아가기" onclick="location.href='/Login.do'">
+	        <input class="but4" type="submit" value="가입하기" onclick="return validateForm()">
+	  </div>
+  </div>
+  </form>
 </article>
 
 <div style="height: 20px;"></div>
 <jsp:include page="/Common/rfooter.jsp" />
-<script src="/Final1/js/register.js"></script> 
-<script src="/Final1/js/header.js"></script> 
+<script src="/Final/js/register.js"></script> 
 </body>
 </html>

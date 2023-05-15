@@ -10,6 +10,7 @@ String title = request.getParameter("title");
 String recontent = request.getParameter("recontent");
 String rnum = request.getParameter("rnum");
 String rateStr = request.getParameter("rate");
+String room = request.getParameter("room");
 if (rnum == null) {
     JSFunction.alertBack("회의실 번호를 체크해주세요.", out);
     return;
@@ -37,7 +38,8 @@ dao.close();
 
 // 성공 or 실패? 
 if (iResult == 1) {
-    response.sendRedirect("review.jsp");
+	response.sendRedirect("review.jsp?room=" + room);
+	
 } else {
     JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
 }

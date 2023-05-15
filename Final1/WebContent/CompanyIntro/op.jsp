@@ -5,16 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/Final1/Style/company.css">
 <jsp:include page="/Common/header.jsp" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/CSS/company.css">
 <meta charset="UTF-8">
 <title>회사의 목표 및 방침</title>
 </head>
 
 <body>
-<aside>
-    <jsp:include page="/LogIn/LoginForm.jsp" />
-</aside>
 
 <div style="height: 40px;"></div>
 
@@ -36,7 +33,8 @@
 </article>
 
 <div style="height: 20px;"></div>
-<jsp:include page="/Common/rfooter.jsp" />
-<script src="/Final1/js/header.js"></script> 
 </body>
+<footer>
+	<jsp:include page="/Common/rfooter.jsp" />
+</footer>
 </html>

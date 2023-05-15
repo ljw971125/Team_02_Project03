@@ -4,21 +4,19 @@
 <html>
 <head>
 <jsp:include page="/Common/header.jsp" />
-<link rel="stylesheet" type="text/css" href="/Final1/Style/company.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/CSS/company.css">
 <meta charset="UTF-8">
 <title>회사소개</title>
 </head>
 
 <body>
-<aside>
-    <jsp:include page="/LogIn/LoginForm.jsp" />
-</aside>
+
 <div style="height: 200px;"></div>
 <h1 align="center">"오르는 능률, 오르는 월급"</h1>
 <div style="height: 30px;"></div>
 <article>
 	<div class="image-container">
-		<img src="/Final1/Image/daewoo.jpg" width="600" height="300">
+		<img src="/Final/Image/daewoo.jpg" width="600" height="300">
 	</div>
 	<div class="edit-container">
 		<p id="muf-1"> MUF란? </p>
@@ -41,7 +39,8 @@
 	<p id="muf-3"> 이용자가 집중할 수 있는 환경을 제공합니다 </p>
 </article>
 <div style="height: 20px;"></div>
-<jsp:include page="/Common/rfooter.jsp" />
-<script src="/Final1/js/header.js"></script> 
 </body>
+<footer>
+	<jsp:include page="/Common/afooter.jsp" />
+</footer>
 </html>
