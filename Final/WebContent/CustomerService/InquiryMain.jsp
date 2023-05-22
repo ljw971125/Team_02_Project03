@@ -16,14 +16,17 @@ InquiryDAO dao = new InquiryDAO(application);
 Map<String, Object> param = new HashMap<String, Object>(); 
 String searchField = request.getParameter("searchField");
 String searchWord = request.getParameter("searchWord");	
+
 if (searchWord != null) {
     param.put("searchField", searchField);
     param.put("searchWord", searchWord);
 }
 
 String nik = (String)session.getAttribute("Nik"); // 로그인중인 닉네임
-int totalCount = dao.selectCount(param, nik);  // 게시물 수 확인
-List<InquiryDTO> boardLists = dao.selectList(param, nik);  // 게시물 목록 받기
+String viewValue = request.getParameter("viewValue");
+
+int totalCount = dao.selectCount(param, nik, viewValue);  // 게시물 수 확인
+List<InquiryDTO> boardLists = dao.selectList(param, nik, viewValue);  // 게시물 목록 받기
 dao.close();  // DB 연결 닫기
 %>
 <!DOCTYPE html>
@@ -42,12 +45,15 @@ dao.close();  // DB 연결 닫기
     <h2><a href="<%=request.getContextPath() %>/CustomerService/InquiryMain.jsp" class="my_inquiry">문의 게시판</a></h2>
  	<article>
     <!-- 검색폼 --> 
+    
     <form method="get">  
     <table class="table table-striped-columns table-success 
     				table-bordered border-dark width="90%">
     <tr>
         <td align="right" >
         <div>
+            <label><input type="radio" name="viewValue" value="viewAll" checked>전체보기</label>
+            <label><input type="radio" name="viewValue" value="viewNotAnswer"/>미답변 보기</label>
             <select name="searchField"> 
                 <option value="title">제목</option> 
                 <option value="icontent">내용</option>

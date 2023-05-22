@@ -66,7 +66,7 @@
 	            		if(userId != null) {   // 회원 로그인 O
 	                %>
 	                		<li><%=userNik%>님</li>
-	                		<li><a href="<%=request.getContextPath() %>../mvc2/mypage.do" class="login">마이페이지</a></li>
+	                		<li><a href="<%=request.getContextPath() %>/mvc2/mypage.do" class="login">마이페이지</a></li>
 	                		<li><a href="<%=request.getContextPath() %>/Logout.do" class="logout">로그아웃</a></li> 
 	                		<li><a href="<%=request.getContextPath() %>/CustomerService/InquiryMain.jsp" class="my_inquiry">문의사항</a></li>
 	                <%

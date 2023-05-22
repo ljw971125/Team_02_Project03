@@ -60,4 +60,21 @@ img:hover + .edit-container {
 	color: black;
 	font-weight: bold;
 }
-        
+
+.bx-wrapper {
+	top: 5% !important;
+  	max-width: 100%;
+  	height: 100%;
+}
+
+.bx-caption {
+  display: none;
+}
+.bx-pager {
+  display: none;
+}
+
+.bx-wrapper img{
+	width: 100%;
+	height: 5% !important;
+}

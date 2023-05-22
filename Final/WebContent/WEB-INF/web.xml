@@ -35,7 +35,7 @@
   </context-param>
   <context-param>
     <param-name>OracleId</param-name>
-    <param-value>ryan</param-value>
+    <param-value>dwit</param-value>
   </context-param>
   <context-param>
     <param-name>OraclePwd</param-name>
@@ -92,6 +92,37 @@
     <servlet-name>MVC2cancel</servlet-name>
 
     <url-pattern>/mvc2/cancel.do</url-pattern>
+
+  </servlet-mapping>
+
+  <servlet>
+
+    <servlet-name>reWrite</servlet-name>
+
+    <servlet-class>reviewPage.WriteController</servlet-class>
+
+  </servlet>
+
+  <servlet-mapping>
+
+    <servlet-name>reWrite</servlet-name>
+
+    <url-pattern>/mvc2/reWrite.do</url-pattern>
+
+  </servlet-mapping>
+  <servlet>
+
+    <servlet-name>review</servlet-name>
+
+    <servlet-class>reviewPage.reviewController</servlet-class>
+
+  </servlet>
+
+  <servlet-mapping>
+
+    <servlet-name>review</servlet-name>
+
+    <url-pattern>/mvc2/review.do</url-pattern>
 
   </servlet-mapping>
 </web-app>

@@ -35,14 +35,6 @@ public class RoomDAO extends JDBConnect {
 			}		
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (psmt != null) psmt.close();
-				if (con != null) con.close();
-			} catch (Exception e) {
-				
-			}
 		}
 		return roomList;
 	}
