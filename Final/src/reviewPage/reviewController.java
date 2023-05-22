@@ -25,6 +25,4 @@ public class reviewController extends HttpServlet{
         req.setAttribute("DetailReview", DetailReview);
         req.getRequestDispatcher("/Detail/detail.jsp").forward(req, resp);
 	}
-	
-
 }

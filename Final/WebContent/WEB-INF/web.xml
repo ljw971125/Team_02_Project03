@@ -35,7 +35,7 @@
   </context-param>
   <context-param>
     <param-name>OracleId</param-name>
-    <param-value>dwit</param-value>
+    <param-value>ryan</param-value>
   </context-param>
   <context-param>
     <param-name>OraclePwd</param-name>
@@ -124,5 +124,23 @@
 
     <url-pattern>/mvc2/review.do</url-pattern>
 
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Join</servlet-name>
+    <servlet-class>membership.JoinController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Join</servlet-name>
+    <url-pattern>/mvc2/Join.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Register</servlet-name>
+    <servlet-class>signUp.RegisterController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Register</servlet-name>
+    <url-pattern>/mvc2/register.do</url-pattern>
   </servlet-mapping>
 </web-app>
