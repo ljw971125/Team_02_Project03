@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .outer-div{
-	 justify-content : left;
+	 justify-content : right;
 }
 .star-rating {
   display: flex;

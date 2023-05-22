@@ -13,25 +13,37 @@
 	
     RoomDAO dao = new RoomDAO(drv, url, id, pw);
     ArrayList<RoomDTO> roomList101 = dao.getList(101);
-    
-    RoomDAO dao1 = new RoomDAO(drv, url, id, pw);
-    ArrayList<RoomDTO> roomList102 = dao1.getList(102);
-    
-    RoomDAO dao2 = new RoomDAO(drv, url, id, pw);
-    ArrayList<RoomDTO> roomList103 = dao2.getList(103);
+    ArrayList<RoomDTO> roomList102 = dao.getList(102);
+    ArrayList<RoomDTO> roomList103 = dao.getList(103);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/Common/header.jsp" />
-<link rel="stylesheet" type="text/css" href="CSS/main.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/CSS/main.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <meta charset="UTF-8">
 <title>메인</title>
 </head>
 <body>
 <div style="height: 100px;"></div>
 <article>
-	<a href="#"><img src="Image/1.jpg" alt="" title="101호" width=100% height="10%"></a>
+	<div>
+		<ul class="bxslider">
+			<li>
+				<a href="#"><img src="/Final/Image/1.jpg" alt="" width=100% height="5%"></a>
+			</li>
+			<li>
+				<a href="#"><img src="/Final/Image/2.jpg" alt="" width=100% height="5%"></a>
+			</li>
+			<li>
+				<a href="#"><img src="/Final/Image/3.jpg" alt="" width=100% height="5%"></a>
+			</li>
+		</ul>
+	</div>
 </article>
 <article>
 	<div class="container">
@@ -88,7 +100,10 @@
 </article>
 
 <div style="height: 30px;"></div>
-
+<%
+	dao.close();
+%>
+<script src="/Final/js/main.js"></script> 
 </body>
 <footer>
 	<jsp:include page="/Common/afooter.jsp" />

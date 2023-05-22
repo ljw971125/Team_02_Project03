@@ -22,7 +22,7 @@ public class JDBConnect {
 
             // DB에 연결
             String url = "jdbc:oracle:thin:@localhost:1521:xe";  
-            String id = "system";
+            String id = "ryan";
             String pwd = "1234"; 
             con = DriverManager.getConnection(url, id, pwd); 
 

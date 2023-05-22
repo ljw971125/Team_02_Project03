@@ -23,9 +23,6 @@ public class reviewController extends HttpServlet{
 
         System.out.println(DetailReview);
         req.setAttribute("DetailReview", DetailReview);
-        //req.setAttribute("map", map);
         req.getRequestDispatcher("/Detail/detail.jsp").forward(req, resp);
 	}
-	
-
 }

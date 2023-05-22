@@ -67,9 +67,9 @@ public class ReviewDAO extends JDBConnect {
                 dto.setRate(rs.getFloat("rate")); // 평점
                 
                 bbs.add(dto);  // 결과 목록에 저장
-            }
-        } 
-        catch (Exception e) {
+	            }
+	        } 
+	        catch (Exception e) {
             System.out.println("게시물 조회 중 예외 발생");
             e.printStackTrace();
         }
@@ -244,20 +244,30 @@ public class ReviewDAO extends JDBConnect {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (psmt != null) psmt.close();
-                if (con != null) con.close();
-            } catch (Exception e) {
-
-            }
         }
         return rateAvg;
     }
+    
+    public int getRate5(int rnum, int rate) {
+        int rate5 = 0;
+        String query = "SELECT COUNT(rate) FROM review WHERE rnum=? AND rate=?";
+        try {
+            psmt = con.prepareStatement(query);
+            psmt.setInt(1, rnum);
+            psmt.setInt(2, rate);
+            rs = psmt.executeQuery();
+            if (rs.next()) {
+                rate5 = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rate5;
+    }
+    
     public List<DetailReview> reviewList(int room) {
         List<DetailReview> bbs = new ArrayList<DetailReview>();
-        String query = " SELECT * FROM review WHERE Rnum=?";
+        String query = " SELECT * FROM review WHERE rnum=?";
                    
         try {
             psmt = con.prepareStatement(query); // 쿼리문 준비
@@ -281,5 +291,33 @@ public class ReviewDAO extends JDBConnect {
         }
         return bbs;
     }	
+    // 게시글 데이터를 받아 DB에 추가합니다. 
+    public int reviewWrite(String rct, int star, int room, String nik) {
+        int result = 0;
+        
+        try {
+            // INSERT 쿼리문 작성 
+            String query = "INSERT INTO review ( "
+                         + " recontent,nik,rnum,redate,rate) "
+                         + " VALUES ( "
+                         + " ?, ?, ?, sysdate, ?)";  
+
+            psmt = con.prepareStatement(query);  // 동적 쿼리 
+            psmt.setString(1, rct);  
+            psmt.setString(2, nik);
+            psmt.setInt(3, room); 
+            psmt.setInt(4, star);
+            
+            
+            
+            result = psmt.executeUpdate(); 
+        }
+        catch (Exception e) {
+            System.out.println("게시물 입력 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
 
 }

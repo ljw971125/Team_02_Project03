@@ -1,21 +1,18 @@
 <%@page import="org.apache.tomcat.util.http.ConcurrentDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.List"%>
-
+<%@page import="reservation.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 
 <%@ page import="java.time.LocalDate"%>
 <%@ page import="java.time.format.DateTimeFormatter"%>
 
-
-<%@ page import="java.time.LocalDate"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="currentDate" value="<%=LocalDate.now()%>" />
-
 
 <!DOCTYPE html>
 
@@ -74,7 +71,6 @@ function test() {
 	<br>
 	<br>
 
-
 	<div class="used_list_area">
 		<c:forEach items="${reviewLists}" var="n">
 			<ul class="used_list">
@@ -89,21 +85,15 @@ function test() {
 						<div class="upper_box">
 							<div class="review_area">
 								<c:choose>
-									<c:when test="${n.rdate lt currentDate}">
-										<a href="#?room=${n.num}"
-											class="link_review_write">리뷰 쓰기</a>
-										<a href="/Detail/detail.jsp?room=${n.num}"
-											class="re_reservation">다시 예약하기</a>
+									<c:when test="${n.rdate lt currentDate}">				
+										<a href="/Review/review.jsp?room=${n.num}" class="link_review_write?">리뷰 쓰기</a>
+										<a href="/Detail/detail.jsp" class="re_reservation">다시 예약하기</a>
 									</c:when>
-									<c:when test="${n.rdate eq currentDate}">
-									</c:when>
+									<c:when test="${n.rdate eq currentDate}"></c:when>
 									<c:otherwise>
-										<a
-											href="../mvc2/cancel.do?rnum=${n.rnum}"
-											onclick="test()" class="cancel_reservation">예약 취소</a>
+										<a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
 									</c:otherwise>
 								</c:choose>
-
 							</div>
 						</div>
 						<a class="lower_box">
