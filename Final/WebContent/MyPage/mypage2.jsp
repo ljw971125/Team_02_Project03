@@ -106,6 +106,7 @@ function test() {
 			<br>
 		</c:forEach>
 	</div>
-	<jsp:include page="../Common/rfooter.jsp" />
+	<div style="height: 30px;"></div>
+	<jsp:include page="../Common/afooter.jsp" />
 </body>
 </html>

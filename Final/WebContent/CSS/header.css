@@ -87,7 +87,9 @@ a {
   overflow: hidden;
   z-index: 2; 
 }
-
+.menu ul li a:active{
+	color: red;
+}
 .top-bar:hover {
   height: 100%;
   width: 15%;

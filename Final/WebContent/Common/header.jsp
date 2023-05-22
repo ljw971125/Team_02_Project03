@@ -31,9 +31,9 @@
 					<li class="name">
 						회의실 예약
 						<ul class="innerMenu">
-							<li><a href="<%=request.getContextPath() %>/detail.do?room=101">101호</a></li>
-							<li><a href="<%=request.getContextPath() %>/detail.do?room=102">102호</a></li>
-							<li><a href="<%=request.getContextPath() %>/detail.do?room=103">103호</a></li>
+							<li><a href="<%=request.getContextPath() %>/mvc2/review.do?room=101">101호</a></li>
+							<li><a href="<%=request.getContextPath() %>/mvc2/review.do?room=102">102호</a></li>
+							<li><a href="<%=request.getContextPath() %>/mvc2/review.do?room=103">103호</a></li>
 						</ul>
 					</li>
 	 				<li class="name">
