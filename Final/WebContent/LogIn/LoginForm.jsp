@@ -43,7 +43,7 @@
 	<div id="login-form">
 		<div class="login-box">
 		  <h2>로그인</h2>
-		  <form action="/Final/LogIn/LoginProcess.jsp" method="post" name="loginFrm" onsubmit="return validateForm(this);">
+		  <form action="/Final/mvc2/Join.do" method="post" name="loginFrm" onsubmit="return validateForm(this);">
 		    <div class="user-box">
 		      <input type="text" name="user_id" required="" placeholder="ID">
 		      <label>아이디</label>
