@@ -32,13 +32,13 @@
 			    <tr>
 			        <td class="col1">비밀번호</td>
 			        <td class="col2">
-			            <input type="password" name="pw" id="pw" maxlength="16">
+			            <input type="password" name="pw" id="pw" maxlength="15">
 			        </td>
 			    </tr>
 			    <tr>
 			        <td class="col1">닉네임</td>
 			        <td class="col2">
-			        	<input type="text" name="nik" id="nik" maxlength="5">
+			        	<input type="text" name="nik" id="nik" maxlength="15">
 			        	<input class='but1' type="button" value="중복확인" onclick="checkDuplicate1()">
 			        </td>
 			    </tr>

@@ -6,6 +6,7 @@
 }
 header{
     justify-content: space-between;
+    z-index: 9999;
 }
 
 .menu {
@@ -51,7 +52,7 @@ header{
     top: 0;
     left: 0;
     right: 0;
-    z-index: 3;
+    z-index: 9999;
     background: #B1C7C9;
 }
 

@@ -62,7 +62,7 @@ button{
 	width: 200px;
 	height: 200px;
 }
-
-.card-body{
-	margin-left: 5px;
+.bx-wrapper .bx-controls-direction a {
+    z-index: 9000 !important;
 }
+

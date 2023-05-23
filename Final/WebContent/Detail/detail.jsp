@@ -77,7 +77,7 @@
 		%>
 			<article>		
 				<div class="image-container" style="float: left;">
-			            <img src="/Final/Image/101호.jpg" width="900px" height="500px">
+			            <img src="/Final/Image/101.jpg" width="900px" height="500px">
 	            </div>
 	            <div style="float: left;">
 		    	<% for (RoomDTO room : roomList101) { %>
@@ -96,22 +96,22 @@
 		        <div style="height: 30px;"></div>
 					<ul class="bxslider">
 						<li>
-							<a href="#"><img src="/Final/Image/101호.jpg" alt="" title="101호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/101.jpg" alt="" title="101호" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/의자.jpg" alt="" title="101호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/chair.jpg" alt="" title="101호" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/냉장고.jpg" alt="" title="101호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/refri.jpg" alt="" title="101호" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/에어컨.jpg" alt="" title="102호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/aircon.jpg" alt="" title="102호" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/책상.jpg" alt="" title="103호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/chair.jpg" alt="" title="103호" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/컴퓨터.jpg" alt="" title="103호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/com.jpg" alt="" title="103호" width="100px" height="100px"></a>
 						</li>
 						<li>
 							<a href="#"><img src="/Final/Image/WB.jpg" alt="" title="103호" width="100px" height="100px"></a>
@@ -233,7 +233,7 @@
 		%>
 			<article>		
 				<div class="image-container" style="float: left;">
-			            <img src="/Final/Image/102호.jpg" width="900px" height="500px">
+			            <img src="/Final/Image/102.jpg" width="900px" height="500px">
 	            </div>
 	            <div style="float: left;">
 		    	<% for (RoomDTO room : roomList102) { %>
@@ -252,22 +252,22 @@
 		        <div style="height: 30px;"></div>
 					<ul class="bxslider">
 						<li>
-							<a href="#"><img src="/Final/Image/102호.jpg" alt="" title="102호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/102.jpg" alt="" title="102호" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/의자.jpg" alt="" title="의자" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/chair.jpg" alt="" title="의자" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/냉장고.jpg" alt="" title="냉장고" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/refri.jpg" alt="" title="냉장고" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/에어컨.jpg" alt="" title="에어컨" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/aircon.jpg" alt="" title="에어컨" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/책상.jpg" alt="" title="책상" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/desk.jpg" alt="" title="책상" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/컴퓨터.jpg" alt="" title="컴퓨터" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/com.jpg" alt="" title="컴퓨터" width="100px" height="100px"></a>
 						</li>
 						<li>
 							<a href="#"><img src="/Final/Image/WB.jpg" alt="" title="화이트보드" width="100px" height="100px"></a>
@@ -389,7 +389,7 @@
 		%>
 			<article>		
 				<div class="image-container" style="float: left;">
-			            <img src="/Final/Image/103호.jpg" width="900px" height="500px">
+			            <img src="/Final/Image/103.jpg" width="900px" height="500px">
 	            </div>
 	            <div style="float: left;">
 		    	<% for (RoomDTO room : roomList103) { %>
@@ -408,22 +408,22 @@
 		        <div style="height: 30px;"></div>
 					<ul class="bxslider">
 						<li>
-							<a href="#"><img src="/Final/Image/103호.jpg" alt="" title="103호" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/103.jpg" alt="" title="103호" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/의자.jpg" alt="" title="의자" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/chair.jpg" alt="" title="의자" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/냉장고.jpg" alt="" title="냉장고" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/refri.jpg" alt="" title="냉장고" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/에어컨.jpg" alt="" title="에어컨" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/aircon.jpg" alt="" title="에어컨" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/책상.jpg" alt="" title="책상" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/desk.jpg" alt="" title="책상" width="100px" height="100px"></a>
 						</li>
 						<li>
-							<a href="#"><img src="/Final/Image/컴퓨터.jpg" alt="" title="컴퓨터" width="100px" height="100px"></a>
+							<a href="#"><img src="/Final/Image/com.jpg" alt="" title="컴퓨터" width="100px" height="100px"></a>
 						</li>
 						<li>
 							<a href="#"><img src="/Final/Image/WB.jpg" alt="" title="화이트보드" width="100px" height="100px"></a>

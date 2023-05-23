@@ -48,7 +48,7 @@
 <article>
 	<div class="container">
    			<div class="image-container">
-	           	<img src="/Final/Image/101호.jpg" width="500px" height="400px">
+	           	<img src="/Final/Image/101.jpg" width="500px" height="400px">
 		    	<div class="edit-container">
 			    	<% for (RoomDTO room : roomList101) { %>
 			            <p id="text-101">회의실 방번호 <%= room.getNum() %>호</p>
@@ -65,7 +65,7 @@
 		        </div>
 		    </div>
    			<div class="image-container">
-	           	<img src="/Final/Image/102호.jpg" width="500px" height="400px">
+	           	<img src="/Final/Image/102.jpg" width="500px" height="400px">
 			    <div class="edit-container">
 			        <% for (RoomDTO room : roomList102) { %>
 			            <p id="text-102">회의실 방번호 <%= room.getNum() %>호</p>
@@ -81,7 +81,7 @@
 			    </div>
 			</div>
    			<div class="image-container">
-	           	<img src="/Final/Image/103호.jpg" width="500px" height="400px">
+	           	<img src="/Final/Image/103.jpg" width="500px" height="400px">
 			    <div class="edit-container">
 				<% for (RoomDTO room : roomList103	) { %>
 			            <p id="text-103">회의실 방번호 <%= room.getNum() %>호</p>
