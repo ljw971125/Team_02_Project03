@@ -1,37 +1,51 @@
-<%@page import="reservation.ReservationDAO"%>
+<%@page import="room.RoomDTO"%>
+<%@page import="room.RoomDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="reservation.ReservationDTO"%>
+<%@ page import="reservation.ReservationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.selected {
+	background: linear-gradient(to right, red, orange, yellow, green, blue, indigo,
+		violet);
+}
+</style>
 <meta charset="UTF-8">
 <%
-	int room = Integer.parseInt(request.getParameter("room"));
-ReservationDAO dao = new ReservationDAO();
-dao.reservationList();
-//boolean isChecked = dao.checkDuplicateReservation(dto);
+	String room = (String) request.getParameter("room");
+ReservationDAO resDao = new ReservationDAO();
+ReservationDTO resDto = new ReservationDTO();
+ArrayList<ReservationDTO> list = resDao.reservationList();
+
 %>
 <title>회의실 예약</title>
 <jsp:include page="../Common/header.jsp" />
 </head>
 <script type="text/javascript">
+
+
+
 var today = new Date();
 var startTime = 9;
 var endTime = 18;
 var selectedTimes = [];
+
 
 function buildCalendar() {
 	  var row = null;
 	  var cnt = 0;
 	  var calendarTable = document.getElementById("calendar");
 	  var calendarTableTitle = document.getElementById("calendarTitle");
-	  calendarTableTitle.innerHTML =
-	    today.getFullYear() + "년" + (today.getMonth() + 1) + "월";
+	  calendarTableTitle.innerHTML = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월";
 
 	  var firstDate = new Date(today.getFullYear(), today.getMonth(), 1);
 	  var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 	  var currentDate = new Date(); // 현재 날짜 가져오기
-
 	  while (calendarTable.rows.length > 2) {
 	    calendarTable.deleteRow(calendarTable.rows.length - 1);
 	  }
@@ -51,24 +65,25 @@ function buildCalendar() {
 	    cell.align = "center";
 
 	    if (
-	      currentDate.getFullYear() === today.getFullYear() &&
-	      currentDate.getMonth() === today.getMonth() &&
-	      i < currentDate.getDate()
+	      (currentDate.getFullYear() > today.getFullYear()) ||
+	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() > today.getMonth()) ||
+	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() === today.getMonth() && i < currentDate.getDate())
 	    ) {
 	      cell.style.pointerEvents = "none"; // 현재 날짜 이전은 선택할 수 없도록 이벤트 비활성화
 	      cell.style.color = "gray"; // 현재 날짜 이전은 색상을 회색으로 변경
 	    } else {
 	      cell.onclick = function () {
-	        clickedYear = today.getFullYear();
-	        clickedMonth = 1 + today.getMonth();
-	        clickedDate = this.getAttribute("id");
+	        var clickedYear = today.getFullYear();
+	        var clickedMonth = 1 + today.getMonth();
+	        var clickedDate = this.getAttribute("id");
 
 	        clickedDate = clickedDate >= 10 ? clickedDate : "0" + clickedDate;
 	        clickedMonth = clickedMonth >= 10 ? clickedMonth : "0" + clickedMonth;
-	        clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
+	        var clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
 
 	        document.getElementById("date").value = clickedYMD;
 	      };
+
 	      cell.addEventListener("mouseenter", function () {
 	        this.style.backgroundColor = "yellow"; // 마우스가 들어올 때 배경색을 노란색으로 변경합니다.
 	      });
@@ -102,6 +117,9 @@ function nextCalendar() {
     today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
     buildCalendar();
 }
+
+
+
 
 function timeTableMaker() {
     var row = null;
@@ -171,7 +189,7 @@ function timeTableMaker() {
             });
         })(cellTime);
     }
-}
+} 
 
 window.onload = function() {
     buildCalendar();
@@ -191,23 +209,36 @@ function resetTimeTable() {
     }
 
     // 선택된 시간, 가격, 날짜 초기화
-    selectedTimesInput.value = "";
+    //selectedTimesInput.value = "";
     priceInput.value = "";
     dateInput.value = "";
 }
 
+function makeReservation() {
+	  var dateInput = document.getElementById("date");
+	  var timeInput = document.getElementById("selectedTimes");
 
+	  var date = dateInput.value.trim();
+	  var time = timeInput.value.trim();
+
+	  if (date === "") {
+	    alert("예약 날짜를 선택해주세요.");
+	    return false; // 폼 제출을 중단하기 위해 false를 반환합니다.
+	  }
+
+	  if (time === "") {
+	    alert("예약 시간을 선택해주세요.");
+	    return false; // 폼 제출을 중단하기 위해 false를 반환합니다.
+	  }
+	  return true; // 폼을 제출합니다.
+	}
 </script>
 <body>
 	<jsp:include page="/LogIn/IsLoggedIn.jsp" />
-	<h1><%=room%>호 예약
-	</h1>
+<div style="height: 100px;"></div>
+	<form action="saveReservationInfo.jsp" method="post" id="reservationForm" onsubmit="return makeReservation()">
 
-
-
-	<form action="saveReservationInfo.jsp" method="post">
-
-		<section style="text-align: center;">
+		<section style="text-align: center; top: 100px">
 			<div style="display: inline-block; padding: 10px;">
 				<table id="calendar"
 					style="display: inline-block; padding: 10px; vertical-align: top;">
@@ -229,7 +260,6 @@ function resetTimeTable() {
 					</tr>
 					<tr></tr>
 				</table>
-
 				<table id="timeTable" style="display: inline-block; padding: 10px;"></table>
 
 				<div style="text-align: left; padding: 10px;">
@@ -239,10 +269,13 @@ function resetTimeTable() {
 					<input type="hidden" name="room" value="<%=room%>">
 					<div style="align: center">
 						<input type="button" value="초기화" onclick="resetTimeTable()">
-						<input type="submit" value="예약하기">
+						<input type="submit" value="예약하기" onclick="resertCheck()">
 					</div>
 				</div>
 			</div>
+			<%
+				
+			%>
 		</section>
 
 	</form>

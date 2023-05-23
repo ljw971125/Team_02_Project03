@@ -17,7 +17,18 @@ public class ReservationDAO extends JDBConnect {
 		super();
 	}
 
-	
+	/*
+	 * public void insertReservationInfo(ReservationDTO dto) { int result = 0;
+	 * 
+	 * try {
+	 * 
+	 * // 예약 정보 저장 String query =
+	 * "INSERT INTO reservation (num, nik, rtime, rnum, rdate, price) VALUES (?, ?, ?,reservation_seq.NEXTVAL, ?, ?)"
+	 * ; psmt = con.prepareStatement(query); psmt.setInt(1, dto.getNum());
+	 * psmt.setString(2, dto.getNik()); psmt.setString(3, dto.getRtime());
+	 * psmt.setString(4, dto.getRdate()); psmt.setInt(5, dto.getPrice());
+	 * psmt.executeUpdate(); } catch (Exception e) { e.printStackTrace(); } }
+	 */
 
 	public int insertReservationInfo(ReservationDTO dto) {
 		int result = 0;
@@ -35,56 +46,25 @@ public class ReservationDAO extends JDBConnect {
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (psmt != null) {
-				try {
-					psmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+		} 
 		return result;
 	}
 
-	// 이름 중복체크하기 위한 메서드
-	public boolean checkResExists(String rdate) {
-		boolean exists = false;
-
-		try {
-			String query = "SELECT * FROM reservation WHERE rdate=?";
-			psmt = con.prepareStatement(query);
-			psmt.setString(1, rdate);
-			rs = psmt.executeQuery();
-
-			if (rs.next()) {
-				exists = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (psmt != null)
-					psmt.close();
-				if (con != null)
-					con.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		return exists;
-	}
-
+	
+	// 전체 데이터 출력
+	/*
+	 * public ArrayList<ReservationDTO> reservationList() {
+	 * ArrayList<ReservationDTO> resList = null; String query =
+	 * "select * from reservation"; try { psmt = con.prepareStatement(query); rs =
+	 * psmt.executeQuery(); resList = new ArrayList<ReservationDTO>(); while
+	 * (rs.next()) { ReservationDTO dto = new ReservationDTO();
+	 * dto.setNik(rs.getString("Nik")); dto.setNum(rs.getInt("num"));
+	 * dto.setPrice(rs.getInt("price")); dto.setRdate(rs.getString("rdate"));
+	 * dto.setRnum(rs.getInt("rnum")); dto.setRtime(rs.getString("rtime"));
+	 * 
+	 * resList.add(dto); } } catch (Exception e) { e.printStackTrace(); } return
+	 * resList; }
+	 */
 	// 전체 데이터 출력
 	public ArrayList<ReservationDTO> reservationList() {
 		ArrayList<ReservationDTO> resList = null;
@@ -106,18 +86,7 @@ public class ReservationDAO extends JDBConnect {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (psmt != null)
-					psmt.close();
-				if (con != null)
-					con.close();
-			} catch (Exception e) {
-
-			}
-		}
+		} 
 		return resList;
 	}	
 

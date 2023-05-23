@@ -85,7 +85,7 @@ function test() {
                 </tbody>
             </table>
         </div>
-        <div class="infoDetail">
+        <div class="infoDetail" >
             <ul>
                 <li class=" sizing ">
                     <strong class="title" >리뷰</strong>
@@ -124,12 +124,12 @@ function test() {
 							<div class="review_area">
 								<c:choose>
 									<c:when test="${n.rdate lt currentDate}">				
-										<a href="../Review/Write.jsp?room=${n.rnum}" class="link_review_write?">리뷰 쓰기</a>
-										<a href="/Detail/detail.jsp" class="re_reservation">다시 예약하기</a>
+										<a href="../Review/Write.jsp?room=${n.num}" class="link_review_write?">리뷰 쓰기</a>
+										<a href="/Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
 									</c:when>
 									<c:when test="${n.rdate eq currentDate}"></c:when>
 									<c:otherwise>
-										<a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
+										<a href="../mvc2/cancel.do?rnum=${n.num}" onclick="test()" class="cancel_reservation">예약 취소</a>
 									</c:otherwise>
 								</c:choose>
 							</div>
