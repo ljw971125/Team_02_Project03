@@ -20,8 +20,7 @@
 <html>
 <head>
 <jsp:include page="/Common/header.jsp" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/CSS/main.css">
-
+<link rel="stylesheet" type="text/css" href="CSS/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -34,13 +33,13 @@
 	<div>
 		<ul class="bxslider">
 			<li>
-				<a href="#"><img src="/Final/Image/1.jpg" alt="" width=100% height="5%"></a>
+				<a href="#"><img src="Image/1.jpg" alt="" width=100% height="5%"></a>
 			</li>
 			<li>
-				<a href="#"><img src="/Final/Image/2.jpg" alt="" width=100% height="5%"></a>
+				<a href="#"><img src="Image/2.jpg" alt="" width=100% height="5%"></a>
 			</li>
 			<li>
-				<a href="#"><img src="/Final/Image/3.jpg" alt="" width=100% height="5%"></a>
+				<a href="#"><img src="Image/3.jpg" alt="" width=100% height="5%"></a>
 			</li>
 		</ul>
 	</div>

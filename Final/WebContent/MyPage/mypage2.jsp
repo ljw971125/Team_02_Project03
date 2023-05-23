@@ -9,8 +9,8 @@
 
 <%@ page import="java.time.LocalDate"%>
 <%@ page import="java.time.format.DateTimeFormatter"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.time.LocalDate"%>
 
 <c:set var="currentDate" value="<%=LocalDate.now()%>" />
 
@@ -41,7 +41,6 @@ function test() {
 
 
 </script>
-
 </head>
 <body class="mypage">
 	<div style="height: 200px;"></div>
@@ -94,6 +93,16 @@ function test() {
 										<a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
 									</c:otherwise>
 								</c:choose>
+									<%-- <c:if test="${n.rdate < currentDate}">
+                                        <a href="../Review/Write.jsp?room=${n.num}" class="link_review_write">리뷰 쓰기</a>
+                                        <a href="/Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
+                                    </c:if>
+                                    <c:if test="${n.rdate == currentDate}">
+                                        <!-- 해당 날짜에 대한 처리를 추가하세요 -->
+                                    </c:if>
+                                    <c:if test="${n.rdate > currentDate}">
+                                        <a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
+                                    </c:if> --%>
 							</div>
 						</div>
 						<a class="lower_box">
@@ -106,7 +115,6 @@ function test() {
 			<br>
 		</c:forEach>
 	</div>
-	<div style="height: 30px;"></div>
 	<jsp:include page="../Common/afooter.jsp" />
 </body>
 </html>

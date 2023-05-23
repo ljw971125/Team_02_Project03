@@ -1,24 +1,16 @@
 package membership;
 
-import java.util.ArrayList;
-import java.util.List;
 import common.JDBConnect;
 
-
 public class MemberDAO extends JDBConnect {
-	public MemberDAO() {
-	
-	}
     // 명시한 데이터베이스로의 연결이 완료된 MemberDAO 객체를 생성합니다.
     public MemberDAO(String drv, String url, String id, String pw) {
         super(drv, url, id, pw);
     }
 
     // 명시한 아이디/패스워드와 일치하는 회원 정보를 반환합니다.
-    public List<MemberDTO> getMemberDTO(String uid, String upass) {
+    public MemberDTO getMemberDTO(String uid, String upass) {
         MemberDTO dto = new MemberDTO();  // 회원 정보 DTO 객체 생성
-        List<MemberDTO> mlist = new ArrayList<MemberDTO>();
-        
         String query = "SELECT * FROM member1 WHERE id=? AND pw=?";  // 쿼리문 템플릿
 
         try {
@@ -42,13 +34,14 @@ public class MemberDAO extends JDBConnect {
                 dto.setJdate(rs.getString(9));
                 dto.setNum(rs.getInt(10));
                 
-                mlist.add(dto);                  
+                
+                
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
 
-        return mlist;  // DTO 객체 반환
+        return dto;  // DTO 객체 반환
     }
 }

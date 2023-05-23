@@ -3,6 +3,7 @@ package reviewPage;
 public class DetailReview {
 	private String nik;
 	private String recontent;
+	private String rate;
 	
 	public String getNik() {
 		return nik;

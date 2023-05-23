@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <div style="height: 100px;"></div>
 
 <article>
-<form action="/Final/mvc2/register.do" method="post">
+<form action="/Final/LogIn/memberJoin.jsp" method="post">
     <div class="container">
 	    <div class="insert">
 	    	<table>

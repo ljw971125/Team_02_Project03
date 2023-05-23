@@ -7,7 +7,6 @@ import javax.servlet.ServletContext;
 import common.JDBConnect;
 
 public class SignUpDAO extends JDBConnect{
-	public SignUpDAO() {}
 	
 	public SignUpDAO (ServletContext application) {
 		super(application);
@@ -90,7 +89,16 @@ public class SignUpDAO extends JDBConnect{
 		    }
 		  } catch (Exception e) {
 		    e.printStackTrace();
+		  } finally {
+		    try {
+		      if (rs != null) rs.close();
+		      if (psmt != null) psmt.close();
+		      if (con != null) con.close();
+		    } catch (Exception e) {
+
+		    }
 		  }
+
 		  return exists;
 	}
 	// 닉네임 중복체크하기 위한 메서드
@@ -108,7 +116,16 @@ public class SignUpDAO extends JDBConnect{
 		    }
 		  } catch (Exception e) {
 		    e.printStackTrace();
-		  } 
+		  } finally {
+		    try {
+		      if (rs != null) rs.close();
+		      if (psmt != null) psmt.close();
+		      if (con != null) con.close();
+		    } catch (Exception e) {
+
+		    }
+		  }
+
 		  return exists;
 	}
 

@@ -52,7 +52,7 @@ header{
     left: 0;
     right: 0;
     z-index: 3;
-    background: #C8C8FF;
+    background: #B1C7C9;
 }
 
 /* 메뉴바 디자인 */
@@ -87,9 +87,7 @@ a {
   overflow: hidden;
   z-index: 2; 
 }
-.menu ul li a:active{
-	color: red;
-}
+
 .top-bar:hover {
   height: 100%;
   width: 15%;
@@ -102,7 +100,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: black;
+  background-color: #5A8EA3;
 }
 
 .top-bar > .menu-box-bg::after {
@@ -112,7 +110,7 @@ a {
   left: 0;
   width: 50px;
   height: 50px;
-  background-color: #C8C8FF;
+  background-color: #B1C7C9;
 }
 
 .top-bar > .row::after {
@@ -136,7 +134,7 @@ a {
 }
 
 .name {
-  color: #989442;
+  color: #FEFF86;
   margin-right: 80px;
   float: left;
   z-index: 3;
@@ -170,5 +168,5 @@ a {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	color: #9E37D1
+	color: #F6F1F1;
 }
