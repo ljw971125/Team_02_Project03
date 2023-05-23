@@ -52,7 +52,7 @@ header{
     left: 0;
     right: 0;
     z-index: 3;
-    background: #B1C7C9;
+    background: #C8C8FF;
 }
 
 /* 메뉴바 디자인 */
@@ -100,7 +100,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #5A8EA3;
+  background-color: black;
 }
 
 .top-bar > .menu-box-bg::after {
@@ -110,7 +110,7 @@ a {
   left: 0;
   width: 50px;
   height: 50px;
-  background-color: #B1C7C9;
+  background-color: #C8C8FF;
 }
 
 .top-bar > .row::after {
@@ -134,7 +134,7 @@ a {
 }
 
 .name {
-  color: #FEFF86;
+  color: #989442;
   margin-right: 80px;
   float: left;
   z-index: 3;
@@ -168,5 +168,5 @@ a {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	color: #F6F1F1;
+	color: #9E37D1
 }

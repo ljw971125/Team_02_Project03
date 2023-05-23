@@ -71,7 +71,7 @@
 	  </div>
 	 
 	  <div class="create">
-	        <input class="but3" type="button" value="돌아가기" onclick="location.href='/Final/Login.do'">
+	        <input class="but3" type="button" value="돌아가기" onclick="location.href='/Login.do'">
 	        <input class="but4" type="submit" value="가입하기" onclick="return validateForm()">
 	  </div>
   </div>

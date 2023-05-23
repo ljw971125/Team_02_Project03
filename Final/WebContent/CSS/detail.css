@@ -1,5 +1,11 @@
 @charset "UTF-8";
-
+article {
+    min-height: 1000px;
+}
+body{
+	width: 100%;
+	height: 100%;
+}
 .bxslider li {
   display: flex;
 }
@@ -58,11 +64,3 @@ button{
 	font-size: 20px;
 }
 
-#myChart{
-	width: 200px;
-	height: 200px;
-}
-
-.card-body{
-	margin-left: 5px;
-}

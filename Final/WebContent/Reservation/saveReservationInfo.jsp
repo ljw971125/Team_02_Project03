@@ -11,56 +11,59 @@
 </head>
 <body>
 
-<%
-String nik = (String) session.getAttribute("Nik");
-String id = (String) session.getAttribute("UserId");
-String rdate = request.getParameter("rdate");
-String rtime = request.getParameter("rtime");
-int price = Integer.parseInt(request.getParameter("price"));
-int room = Integer.parseInt(request.getParameter("room"));
+	<%
+	String nik = (String) session.getAttribute("Nik");
+	String id = (String) session.getAttribute("UserId");
+	String rdate = request.getParameter("rdate");
+	String rtime = request.getParameter("rtime");
+	int price = Integer.parseInt(request.getParameter("price"));
+	int room = Integer.parseInt(request.getParameter("room"));
 
-boolean isCheck = false;
+	boolean isCheck = false;
 
-ReservationDTO dto = new ReservationDTO();
-ReservationDAO dao = new ReservationDAO(application);
+	ReservationDTO dto = new ReservationDTO();
+	ReservationDAO dao = new ReservationDAO();
 
-ArrayList<ReservationDTO> list = dao.reservationList();
-for(int i = 0; i < list.size(); i++) {
-	String rdateCheck = list.get(i).getRdate();
-	if (rdateCheck.equals(rdate)){
-		isCheck = false;
-		out.println("브레이크 되었다");
-		break;
-	} else {
-		isCheck = true;
+	ArrayList<ReservationDTO> list = dao.reservationList();
+	for (int i = 0; i < list.size(); i++) {
+		String rdateCheck = list.get(i).getRdate();
+		if (rdateCheck.equals(rdate)) {
+			isCheck = false;
+			break;
+		} else {
+			isCheck = true;
+		}
 	}
-}
 
-out.println(isCheck);
+	//out.println(isCheck);
 
-if (isCheck == true){
-	dto.setNik(nik);
-	dto.setRdate(rdate);
-	dto.setPrice(price);
-	dto.setRtime(rtime);
-	dto.setNum(room);
-	dao.insertReservationInfo(dto);
-%>
+	if (isCheck == true) {
+		dto.setNik(nik) ;
+		dto.setRdate(rdate);
+		dto.setPrice(price);
+		dto.setRtime(rtime);
+		dto.setNum(room);
+		
+		
+		
+		dao.insertReservationInfo(dto);
+	%>
 	<script type="text/javascript">
-        alert("예약이 완료되었습니다. 메인페이지로 이동합니다.");
-        location.href = "../index.jsp";
-    </script>
-<%
+	alert("예약이 완료되었습니다.");
+	location.href = "../index.jsp";
+	</script>
+	<%	
+		
 	} else {
+	%>
+		<script type="text/javascript">
+		alert("이미 예약된 날짜입니다.");
+		history.back();
+		</script>
+	<%	
+	}
+	%>
+dao.close();
 %>
-	<script type="text/javascript">
-        alert("이미 예약된 날짜입니다. 다시 선택해주세요.");
-       history.back();
-    </script>	
-<%	
-}
-%>
-
-
 </body>
 </html>
