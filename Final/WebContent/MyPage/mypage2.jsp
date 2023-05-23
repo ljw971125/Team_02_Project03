@@ -129,7 +129,7 @@ function test() {
 									</c:when>
 									<c:when test="${n.rdate eq currentDate}"></c:when>
 									<c:otherwise>
-										<a href="../mvc2/cancel.do?rnum=${n.num}" onclick="test()" class="cancel_reservation">예약 취소</a>
+										<a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
 									</c:otherwise>
 								</c:choose>
 							</div>

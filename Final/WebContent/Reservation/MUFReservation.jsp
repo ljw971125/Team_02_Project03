@@ -67,7 +67,7 @@ function buildCalendar() {
 	    if (
 	      (currentDate.getFullYear() > today.getFullYear()) ||
 	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() > today.getMonth()) ||
-	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() === today.getMonth() && i < currentDate.getDate())
+	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() === today.getMonth() && i <= currentDate.getDate())
 	    ) {
 	      cell.style.pointerEvents = "none"; // 현재 날짜 이전은 선택할 수 없도록 이벤트 비활성화
 	      cell.style.color = "gray"; // 현재 날짜 이전은 색상을 회색으로 변경
