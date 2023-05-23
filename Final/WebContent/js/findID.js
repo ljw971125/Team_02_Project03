@@ -50,7 +50,7 @@ function findPW() {
         var data = JSON.parse(xhr.responseText);
 
         if(data.pw==""){
-			alert("입력하신 정보와 일치하는 아이디가 없습니다.");
+			alert("입력하신 정보와 일치하는 비밀번호가 없습니다.");
 		}
 		else{
         // 파싱한 데이터에서 ID 값 출력
@@ -67,4 +67,62 @@ function findPW() {
 
   // 폼 제출 방지
   return false;
+}
+
+
+// 입력칸이 비어있거나 중복체크를 실행하지 않았을 경우 알림 - 아이디 찾기
+function validateForm() {
+	  // 입력 필드의 값을 가져옵니다.
+   		var name = document.getElementById('uid_name').value;
+		var birth = document.getElementById('uid_birth').value;
+	  
+	  // 입력 필드의 값이 비어 있는지 확인합니다.
+	  if (!name) {
+	    // 메시지를 표시합니다.
+	    alert('이름 입력칸이 비어있습니다');
+	    // memberJoin.jsp로 이동하지 않습니다.
+	    return false;
+	  }
+	  else if(!birth){
+		// 메시지를 표시합니다.
+		    alert('생년월일 입력칸이 비어있습니다');
+		    // memberJoin.jsp로 이동하지 않습니다.
+		    return false;
+	  }
+
+
+	  // memberJoin.jsp로 이동합니다.
+	  return true;
+}
+
+
+// 입력칸이 비어있거나 중복체크를 실행하지 않았을 경우 알림 - 비밀번호 찾기
+function validateForm1() {
+	  // 입력 필드의 값을 가져옵니다.
+   		var name = document.getElementById('upw_name').value;
+		var birth = document.getElementById('upw_birth').value;
+   		var id = document.getElementById('upw_id').value;
+	  
+	  // 입력 필드의 값이 비어 있는지 확인합니다.
+	  if (!name) {
+	    // 메시지를 표시합니다.
+	    alert('이름 입력칸이 비어있습니다');
+	    // memberJoin.jsp로 이동하지 않습니다.
+	    return false;
+	  }
+	  else if(!birth){
+		// 메시지를 표시합니다.
+		    alert('생년월일 입력칸이 비어있습니다');
+		    // memberJoin.jsp로 이동하지 않습니다.
+		    return false;
+	  }
+	  else if(!id){
+		// 메시지를 표시합니다.
+		    alert('아이디 입력칸이 비어있습니다');
+		    // memberJoin.jsp로 이동하지 않습니다.
+		    return false;
+	  }
+
+	  // memberJoin.jsp로 이동합니다.
+	  return true;
 }

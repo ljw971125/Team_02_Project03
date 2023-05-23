@@ -7,11 +7,6 @@ import signUp.SignUpDTO;
 
 public class RoomDAO extends JDBConnect {
     // 명시한 데이터베이스로의 연결이 완료된 MemberDAO 객체를 생성합니다.
-	
-	public RoomDAO() {
-	}
-	
-	
     public RoomDAO(String drv, String url, String id, String pw) {
         super(drv, url, id, pw);
     }

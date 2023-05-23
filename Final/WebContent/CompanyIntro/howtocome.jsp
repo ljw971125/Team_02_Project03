@@ -14,8 +14,8 @@
 <div style="height: 200px;"></div>
 <h1 align="center"> 오시는 길 </h1>
 <div style="height: 30px;"></div>
-<article style="margin-left: 200px;">
-<div id="map-location">
+<article>
+<div id="map-location" style="width: 50%; margin: 0 auto;">
 <div id="map" style="width:1000px;height:800px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=98b1aacce40bd2d6e395140352e317de"></script>
 <script type="text/javascript" src="/Final/js/kMap.js"></script>

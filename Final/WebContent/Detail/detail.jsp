@@ -4,6 +4,8 @@
 <%@ page import="room.*" %>
 <%@ page import="reviewPage.*"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.lang.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	ReviewDAO dao1 = new ReviewDAO(application);
 	float rate101 = dao1.getRate(101);
@@ -29,6 +31,7 @@
 	int rate103_4 = dao2.getRate5(103,4);
 	int rate103_5 = dao2.getRate5(103,5);
 	
+	//int room2 = Integer.parseInt(request.getParameter("room"));
 	
 	// index.jsp에서 읽어온 방번호
     String room1 = request.getParameter("room");
@@ -44,9 +47,18 @@
     ArrayList<RoomDTO> roomList102 = dao.getList(102);
     ArrayList<RoomDTO> roomList103 = dao.getList(103);
 
+    
+    String roomParam = request.getParameter("room");
+    int room2=0;
+    if (roomParam != null) {
+        room2 = Integer.parseInt(roomParam);
+    } else {
+        out.print("널");
+    }
 %>
 <html>
 <head>
+
 <link rel="stylesheet" type="text/css" href="/Final/CSS/detail.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -77,7 +89,7 @@
 		            <p id="text-101">화이트보드 갯수: <%= room.getWhiteboard() %>개</p>
 		            <p id="text-101">wi-fi 유뮤 : <%= room.getWifi() %></p>
 		            <p id="text-101">시간당 가격 : <%= room.getPrice()%>원</p>
-					<button onclick="location.href='<%=request.getContextPath() %>/Reservation/MUFReservation.jsp?room=101'">101호 예약</button><br><br>            
+					<button onclick="location.href='<%=request.getContextPath() %>/reservation'">101호 예약</button><br><br>            
 		        <% } %>
 		        </div>
 		        <div style="clear: both;">
@@ -538,8 +550,25 @@
 	dao1.close();
 	dao2.close();
 %>
-<div style="height: 300px;"></div>
-<script src="/Final/js/main.js"></script> 
+<div style="height: 500px;"></div>
+<br>
+</br>
+<article>
+<c:forEach items="${DetailReview}" var="n">
+	<div class="card" style="width: 50rem; border: 1px solid black; margin: 0 auto;">
+	  <div class="card-body">
+	    <h2 class="card-title" style="margin-left: 10px;">${ n.nik }</h2>
+	    <hr class="card-subtitle mb-2 text-muted" ></hr>
+	    <h4 class="card-text" style="margin-left: 10px;">${n.recontent}</h4>
+	  </div>
+	</div>
+	<br>
+	</br>
+</c:forEach>
+</article>
+<script src="/Final/js/detail.js"></script> 
 </body>
-<jsp:include page="/Common/afooter.jsp" />
+<footer>
+	<jsp:include page="/Common/afooter.jsp" />
+</footer> 
 </html> 

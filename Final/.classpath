@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-11">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
@@ -13,5 +14,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Develop_Kits/apache-tomcat-9.0.73/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Develop_Kits/apache-tomcat-9.0.73/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

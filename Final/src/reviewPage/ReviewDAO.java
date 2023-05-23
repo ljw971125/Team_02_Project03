@@ -1,5 +1,6 @@
 package reviewPage;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,35 +11,32 @@ import room.RoomDTO;
 
 
 public class ReviewDAO extends JDBConnect {
+	public ReviewDAO() {
+	}
 	
 	public ReviewDAO(ServletContext application) {
         super(application);
     }
 	
 	// 검색 조건에 맞는 게시물의 개수를 반환합니다.
-    public int selectCount(Map<String, Object> map) {
-        int totalCount = 0; // 결과(게시물 수)를 담을 변수
-
-        // 게시물 수를 얻어오는 쿼리문 작성
-        String query = "SELECT COUNT(*) FROM review";
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField") + " "
-                   + " LIKE '%" + map.get("searchWord") + "%'";
-        }
-
-        try {
-            stmt = con.createStatement();   // 쿼리문 생성
-            rs = stmt.executeQuery(query);  // 쿼리 실행
-            rs.next();  // 커서를 첫 번째 행으로 이동
-            totalCount = rs.getInt(1);  // 첫 번째 칼럼 값을 가져옴
-        }
-        catch (Exception e) {
-            System.out.println("게시물 수를 구하는 중 예외 발생");
-            e.printStackTrace();
-        }
-
-        return totalCount; 
-    }
+	public int selectCount(Map<String, Object> map, String room) {
+	    int totalCount = 0;
+	    String query = "SELECT COUNT(*) FROM review WHERE rnum = ?";
+	    if (map.get("searchWord") != null) {
+	        query += " AND " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
+	    }
+	    try {
+	        psmt = con.prepareStatement(query);
+	        psmt.setString(1, room);
+	        rs = psmt.executeQuery();
+	        rs.next();
+	        totalCount = rs.getInt(1);
+	    } catch (Exception e) {
+	        System.out.println("게시물 수 조회 중 예외 발생");
+	        e.printStackTrace();
+	    }
+	    return totalCount;
+	}
     
  // 검색 조건에 맞는 게시물 목록을 반환합니다.
     public List<ReviewDTO> selectList(Map<String, Object> map) { 
@@ -69,9 +67,9 @@ public class ReviewDAO extends JDBConnect {
                 dto.setRate(rs.getFloat("rate")); // 평점
                 
                 bbs.add(dto);  // 결과 목록에 저장
-            }
-        } 
-        catch (Exception e) {
+	            }
+	        } 
+	        catch (Exception e) {
             System.out.println("게시물 조회 중 예외 발생");
             e.printStackTrace();
         }
@@ -80,15 +78,11 @@ public class ReviewDAO extends JDBConnect {
     }
     
     // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
-    public List<ReviewDTO> selectListPage(Map<String, Object> map) {
-    	
-        List<ReviewDTO> bbs = new Vector<ReviewDTO>();  // 결과(게시물 목록)를 담을 변수
-        
-        // 쿼리문 템플릿  
+    public List<ReviewDTO> selectListPage(Map<String, Object> map, String room) {
+        List<ReviewDTO> bbs = new Vector<ReviewDTO>();
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM RowN FROM ( "
                      + "        SELECT * FROM review ";
-        // 검색 조건 추가 
         if (map.get("searchWord") != null) {
             query += " WHERE " + map.get("searchField")
                    + " LIKE '%" + map.get("searchWord") + "%' ";
@@ -97,39 +91,29 @@ public class ReviewDAO extends JDBConnect {
         query += "      ORDER BY num DESC "
                + "     ) Tb "
                + " ) "
-               + " WHERE RowN BETWEEN ? AND ?"; 
-
+               + " WHERE RwoN BETWEEN ? AND ?";
         try {
-            // 쿼리문 완성 
             psmt = con.prepareStatement(query);
-            psmt.setString(1, map.get("start").toString());
-            psmt.setString(2, map.get("end").toString());
-            
-            // 쿼리문 실행 
+            psmt.setString(1, room);
+            psmt.setString(2, map.get("start").toString());
+            psmt.setString(3, map.get("end").toString());
             rs = psmt.executeQuery();
-            
             while (rs.next()) {
-                // 한 행(게시물 하나)의 데이터를 DTO에 저장
                 ReviewDTO rto = new ReviewDTO();
-                rto.setNum(rs.getString("num"));          // 리뷰글 번호
-                rto.setNik(rs.getString("nik"));      // 닉네임
-                rto.setRnum(rs.getString("rnum"));  // 방번호
-                rto.setRecomment(rs.getString("recomment"));  // 관리자 댓글
-                rto.setTitle(rs.getString("title"));            // 제목
-                rto.setRecontent(rs.getString("recontent"));  // 내용
-                rto.setRedate(rs.getDate("redate")); //오류 발생 가능
-                rto.setRate(rs.getFloat("rate")); // 평점
-
-                // 반환할 결과 목록에 게시물 추가
+                rto.setNum(rs.getString("num"));
+                rto.setNik(rs.getString("nik"));
+                rto.setRnum(rs.getString("rnum"));
+                rto.setRecomment(rs.getString("recomment"));
+                rto.setTitle(rs.getString("title"));
+                rto.setRecontent(rs.getString("recontent"));
+                rto.setRedate(rs.getDate("redate"));
+                rto.setRate(rs.getFloat("rate"));
                 bbs.add(rto);
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("게시물 조회 중 예외 발생");
             e.printStackTrace();
         }
-        
-        // 목록 반환
         return bbs;
     }
 	
@@ -263,7 +247,7 @@ public class ReviewDAO extends JDBConnect {
         }
         return rateAvg;
     }
-
+    
     public int getRate5(int rnum, int rate) {
         int rate5 = 0;
         String query = "SELECT COUNT(rate) FROM review WHERE rnum=? AND rate=?";
@@ -279,5 +263,81 @@ public class ReviewDAO extends JDBConnect {
             e.printStackTrace();
         }
         return rate5;
+    }
+    
+    public List<DetailReview> reviewList(int room) {
+        List<DetailReview> bbs = new ArrayList<DetailReview>();
+        String query = " SELECT * FROM review WHERE rnum=?";
+                   
+        try {
+            psmt = con.prepareStatement(query); // 쿼리문 준비
+            psmt.setInt(1, room); // 인파라미터 설정
+
+            rs = psmt.executeQuery(); // 쿼리문 실행
+            //Class.forName("oracle.jdbc.driver.OracleDriver"); 
+            Statement st= con.createStatement();
+
+        
+            while (rs.next()) {
+            	DetailReview rto = new DetailReview();
+              
+                rto.setNik(rs.getString("nik"));
+                rto.setRecontent(rs.getString("recontent"));
+                bbs.add(rto);
+            }
+        } catch (Exception e) {
+            System.out.println("게시물 조회 중 예외 발생");
+            e.printStackTrace();
+        }
+        return bbs;
+    }	
+    // 게시글 데이터를 받아 DB에 추가합니다. 
+    public int reviewWrite(String rct, int star, int room, String nik) {
+        int result = 0;
+        
+        try {
+            // INSERT 쿼리문 작성 
+            String query = "INSERT INTO review ( "
+                         + " recontent,nik,rnum,redate,rate) "
+                         + " VALUES ( "
+                         + " ?, ?, ?, sysdate, ?)";  
+
+            psmt = con.prepareStatement(query);  // 동적 쿼리 
+            psmt.setString(1, rct);  
+            psmt.setString(2, nik);
+            psmt.setInt(3, room); 
+            psmt.setInt(4, star);
+            
+            
+            
+            result = psmt.executeUpdate(); 
+        }
+        catch (Exception e) {
+            System.out.println("게시물 입력 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
+    public int countReview(String nik) {
+		String query = "SELECT * FROM review WHERE Nik=?";
+		int recordCount = 0;
+		try {
+		    psmt = con.prepareStatement(query); // 쿼리문 준비
+		    psmt.setString(1, nik); // 인파라미터 설정
+		    rs = psmt.executeQuery(); // 쿼리문 실행
+		    Statement st= con.createStatement();
+		    while (rs.next()) { // 결과셋에 포함된 레코드 갯수 카운트
+		        recordCount++;
+		    }
+		 
+	      
+		} catch (Exception e) {
+			System.out.println("게시물 상세보기 중 예외 발생");
+            e.printStackTrace();
+		}
+		System.out.println(recordCount);
+		return recordCount;
+
     }
 }
