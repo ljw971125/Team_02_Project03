@@ -36,13 +36,7 @@
 							<li><a href="<%=request.getContextPath() %>/detail.do?room=103">103호</a></li>
 						</ul>
 					</li>
-	 				<li class="name">
-					 	고객센터
-					 	<ul class="innerMenu">
-					 		<li>공지사항</li>
-					 		<li>문의사항</li>
-					 	</ul>
-					 </li>
+
 				</ul>
 			</nav>
 			<div class="menu-box-bg"></div>

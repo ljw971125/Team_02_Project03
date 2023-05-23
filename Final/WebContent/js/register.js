@@ -12,7 +12,7 @@ function checkDuplicate() {
     return;
   }
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'check-duplicate.jsp?id=' + id, true);
+  xhr.open('GET', '/Final/LogIn/check-duplicate.jsp?id=' + id, true);
   xhr.onload = function() {
     if (this.status === 200) {
       var data = JSON.parse(this.responseText);
@@ -39,7 +39,7 @@ function checkDuplicate1() {
   }
   var xhr = new XMLHttpRequest();
   // 새 연결을 엽니다. URL 엔드포인트에서 GET 요청을 사용합니다.
-  xhr.open('GET', 'check-duplicate1.jsp?nik=' + nik, true);
+  xhr.open('GET', '/Final/LogIn/check-duplicate1.jsp?nik=' + nik, true);
   // 응답을 처리하는 함수를 설정합니다.
   xhr.onload = function() {
     if (this.status === 200) {

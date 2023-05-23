@@ -57,13 +57,14 @@
 							여자 <input type="radio" name="user1_gender" id="upw_gender_f" value="F" />  
 					    </span>
 					</p>
-					<button class="findPW_button" type="button" onclick="findPW()">비밀번호찾기</button>
+					<button class="findId_button" type="button" onclick="if (validateForm1()) findPW()">비밀번호찾기</button>
+					
 				</div>
 			</div>
 		</form>
 	</div>
 </article>
 <jsp:include page="/Common/rfooter.jsp" />
-<script src="/Final1/js/findID.js"></script>
+<script src="/Final/js/findID.js"></script>
 </body>
 </html>

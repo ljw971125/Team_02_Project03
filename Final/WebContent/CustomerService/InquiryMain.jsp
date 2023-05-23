@@ -22,7 +22,7 @@ if (searchWord != null) {
     param.put("searchWord", searchWord);
 }
 
-String nik = (String)session.getAttribute("Nik"); // 로그인중인 닉네임
+String nik = (String)session.getAttribute("UserNik"); // 로그인중인 닉네임*
 String viewValue = request.getParameter("viewValue");
 
 int totalCount = dao.selectCount(param, nik, viewValue);  // 게시물 수 확인

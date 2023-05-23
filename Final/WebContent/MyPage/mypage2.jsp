@@ -9,7 +9,8 @@
 
 <%@ page import="java.time.LocalDate"%>
 <%@ page import="java.time.format.DateTimeFormatter"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.time.LocalDate"%>
 
 <c:set var="currentDate" value="<%=LocalDate.now()%>" />
@@ -41,10 +42,11 @@ function test() {
 
 
 </script>
+
 </head>
 <body class="mypage">
 	<div style="height: 200px;"></div>
-	<div class="contents_area">
+	<%-- <div class="contents_area">
 		<div class="contents_inner">
 			<div class="info_profile">
 				<div class="info_content">
@@ -57,7 +59,7 @@ function test() {
 							<span class="text">리뷰</span></br> <em calsss="num">0</em>
 						</button>
 						<button type="button" class="item" data-click-code="gnb.count">
-							<span class="text">예약 횟수</span></br> <em calsss="num"><%-- ${recordCount} --%></em>
+							<span class="text">예약 횟수</span></br> <em calsss="num">${recordCount}</em>
 						</button>
 						<!-- <button type="button" class="item" data-click-code="gnb.rewrite">
 							<span class="text">회원정보 수정</span>
@@ -66,7 +68,44 @@ function test() {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
+	<div class="container">
+        <div class="infoWrap">
+            <table class="myInfo">
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>
+                                <strong>
+                                    <h2><%=session.getAttribute("UserNik")%> 환영합니다.</h2>
+                                </strong>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="infoDetail">
+            <ul>
+                <li class=" sizing ">
+                    <strong class="title" >리뷰</strong>
+                    <strong class="data use">${recount }</strong>
+                </li>
+                <li class=" sizing ">
+                    <strong class="title" >예약</strong>
+                    <strong class="data use">${reservationCount }</strong>
+                </li>
+                <li class=" sizing ">
+                    <strong class="title" >보유금액</strong>
+                    <strong class="data use"></strong>
+                </li>
+                <li class=" sizing ">
+                    <strong class="title" >가입날짜</strong>
+                    <strong class="data use"></strong>
+                </li>
+            </ul>
+        </div>
+    </div>
 	<br>
 	<br>
 
@@ -85,7 +124,7 @@ function test() {
 							<div class="review_area">
 								<c:choose>
 									<c:when test="${n.rdate lt currentDate}">				
-										<a href="/Review/review.jsp?room=${n.num}" class="link_review_write?">리뷰 쓰기</a>
+										<a href="../Review/Write.jsp?room=${n.rnum}" class="link_review_write?">리뷰 쓰기</a>
 										<a href="/Detail/detail.jsp" class="re_reservation">다시 예약하기</a>
 									</c:when>
 									<c:when test="${n.rdate eq currentDate}"></c:when>
@@ -93,16 +132,6 @@ function test() {
 										<a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
 									</c:otherwise>
 								</c:choose>
-									<%-- <c:if test="${n.rdate < currentDate}">
-                                        <a href="../Review/Write.jsp?room=${n.num}" class="link_review_write">리뷰 쓰기</a>
-                                        <a href="/Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
-                                    </c:if>
-                                    <c:if test="${n.rdate == currentDate}">
-                                        <!-- 해당 날짜에 대한 처리를 추가하세요 -->
-                                    </c:if>
-                                    <c:if test="${n.rdate > currentDate}">
-                                        <a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
-                                    </c:if> --%>
 							</div>
 						</div>
 						<a class="lower_box">

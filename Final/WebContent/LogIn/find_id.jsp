@@ -51,13 +51,13 @@
 					        여자 <input type="radio" name="user_gender" id="uid_gender_f" value="F" />
 					    </span>
 					</p>
-					<button class="findId_button" type="button" onclick="findID()">아이디찾기</button>
+					<button class="findId_button" type="button" onclick="if (validateForm()) findID()">아이디찾기</button>				
 				</div>
 			</div>
 		</form>
 	</div>
 </article>
 <jsp:include page="/Common/rfooter.jsp" />
-<script src="/Final1/js/findID.js"></script>
+<script src="/Final/js/findID.js"></script>
 </body>
 </html>

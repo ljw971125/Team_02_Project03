@@ -58,7 +58,7 @@ public class ReservationDTO {
 		return rdate;
 	}
 	public void setRdate(String rdate) {
-		this.rdate = rdate;
+		this.rdate = rdate.substring(0, 10);
 	}
 	public int getPrice() {
 		return price;

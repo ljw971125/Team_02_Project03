@@ -30,7 +30,7 @@
 
 <div class="container">
 
-  <h2>#</h2>          
+  <h2><%=session.getAttribute("UserNik")%></h2>          
 
   <table class="table table-hover">
 

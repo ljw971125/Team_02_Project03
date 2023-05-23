@@ -51,4 +51,17 @@ public class MemberDAO extends JDBConnect {
 
         return mlist;  // DTO 객체 반환
     }
+	/*
+	 * public String memPrice(String nik) { String query =
+	 * "SELECT money FROM member1 WHERE nik=?"; // 쿼리문 템플릿 MemberDTO dto = new
+	 * MemberDTO(); try { // 쿼리 실행 psmt = con.prepareStatement(query); // 동적 쿼리문 준비
+	 * psmt.setString(1, nik); // 쿼리문의 첫 번째 인파라미터에 값 설정
+	 * 
+	 * rs = psmt.executeQuery(); // 쿼리문 실행 while (rs.next()) { // 결과셋에 포함된 레코드 갯수
+	 * 카운트 dto.set }
+	 * 
+	 * 
+	 * } catch (Exception e) { System.out.println("게시물 상세보기 중 예외 발생");
+	 * e.printStackTrace(); } return recount; }
+	 */
 }

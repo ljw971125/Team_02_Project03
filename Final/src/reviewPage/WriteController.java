@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class WriteController extends HttpServlet {
 	
@@ -37,10 +38,11 @@ public class WriteController extends HttpServlet {
 		  
 	/*	  String rct ="안녕하세요"; int star = 5; int room = 101;*/
 		  
-		  String nik = "장기헌"; //System.out.println(room);
+		  HttpSession session = req.getSession();
+	      String nickname = (String) session.getAttribute("UserNik"); //System.out.println(room);
 		  ReviewDAO dao = new ReviewDAO(); 
 		  DetailReview dto = new DetailReview();
-		  dao.reviewWrite(rct,star, room, nik);
+		  dao.reviewWrite(rct,star, room, nickname);
 		  
 		  List<DetailReview>DetailReview = dao.reviewList(room); 
 		  dao.close(); // DB 연결닫기

@@ -9,10 +9,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import reviewPage.ReviewDAO;
+
 public class ReservationCancelController extends HttpServlet {
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int rnum=Integer.parseInt(req.getParameter("rnum"));
+		HttpSession session = req.getSession();
         String nickname = (String) session.getAttribute("UserNik");
-        System.out.println(nickname);
-    }
+		ReservationDAO dao = new ReservationDAO();
+		dao.cancelReview(rnum);
+		
+		ReservationDTO dto = new ReservationDTO();
+		List<ReservationDTO> reviewLists = dao.mReview(nickname);  // 게시물 목록 받기
+		ReviewDAO rdao = new ReviewDAO();
+		int recount=rdao.countReview(nickname);
+		int reservationCount=dao.countReservation(nickname);
+        dao.close(); // DB 연결 닫기
+        req.setAttribute("recount", recount);
+        req.setAttribute("reviewLists", reviewLists);
+        req.setAttribute("reservationCount", reservationCount);
+        req.getRequestDispatcher("/MyPage/mypage2.jsp").forward(req, resp);
+		
+	}
 }

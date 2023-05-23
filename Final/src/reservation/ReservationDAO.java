@@ -155,7 +155,7 @@ public class ReservationDAO extends JDBConnect {
         return reviewList; // 결과 반환
 	}
 	
-	public int countReview(String nik) {
+	public int countReservation(String nik) {
 		String query = "SELECT * FROM reservation WHERE Nik=?";
 		int recordCount = 0;
 		try {

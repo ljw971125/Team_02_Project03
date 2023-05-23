@@ -58,6 +58,7 @@
 %>
 <html>
 <head>
+
 <link rel="stylesheet" type="text/css" href="/Final/CSS/detail.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -556,12 +557,9 @@
 <c:forEach items="${DetailReview}" var="n">
 	<div class="card" style="width: 50rem; border: 1px solid black; margin: 0 auto;">
 	  <div class="card-body">
-	    <h3 class="card-title">${ n.nik }</h3>
-	    <h6 class="card-subtitle mb-2 text-muted"></h6>
-	    <hr>
-	    <br>
-	    </br>
-	    <h4 class="card-text">${n.recontent}</h4>
+	    <h2 class="card-title" style="margin-left: 10px;">${ n.nik }</h2>
+	    <hr class="card-subtitle mb-2 text-muted" ></hr>
+	    <h4 class="card-text" style="margin-left: 10px;">${n.recontent}</h4>
 	  </div>
 	</div>
 	<br>

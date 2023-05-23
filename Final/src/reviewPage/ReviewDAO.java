@@ -319,5 +319,25 @@ public class ReviewDAO extends JDBConnect {
         
         return result;
     }
+    public int countReview(String nik) {
+		String query = "SELECT * FROM review WHERE Nik=?";
+		int recordCount = 0;
+		try {
+		    psmt = con.prepareStatement(query); // 쿼리문 준비
+		    psmt.setString(1, nik); // 인파라미터 설정
+		    rs = psmt.executeQuery(); // 쿼리문 실행
+		    Statement st= con.createStatement();
+		    while (rs.next()) { // 결과셋에 포함된 레코드 갯수 카운트
+		        recordCount++;
+		    }
+		 
+	      
+		} catch (Exception e) {
+			System.out.println("게시물 상세보기 중 예외 발생");
+            e.printStackTrace();
+		}
+		System.out.println(recordCount);
+		return recordCount;
 
+    }
 }
