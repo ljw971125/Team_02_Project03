@@ -31,4 +31,6 @@
 .star-rating label:hover,
 .star-rating label:hover ~ label {
   -webkit-text-fill-color: #fff58c;
+  
 }	
+

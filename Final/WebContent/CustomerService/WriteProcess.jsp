@@ -12,7 +12,7 @@ String icontent = request.getParameter("icontent");
 InquiryDTO dto = new InquiryDTO();
 dto.setTitle(title);
 dto.setIcontent(icontent);
-dto.setNik(session.getAttribute("Nik").toString());
+dto.setNik(session.getAttribute("UserNik").toString());
 
 // DAO 객체를 통해 DB에 DTO 저장
 InquiryDAO dao = new InquiryDAO(application);

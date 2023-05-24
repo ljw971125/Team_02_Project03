@@ -3,7 +3,16 @@ package reviewPage;
 public class DetailReview {
 	private String nik;
 	private String recontent;
+	private String rate;
+	private String Redate;
 	
+
+	public String getRedate() {
+		return Redate;
+	}
+	public void setRedate(String redate) {
+		Redate = redate.substring(0,10);
+	}
 	public String getNik() {
 		return nik;
 	}
@@ -12,6 +21,12 @@ public class DetailReview {
 	}
 	public String getRecontent() {
 		return recontent;
+	}
+	public String getRate() {
+		return rate;
+	}
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 	public void setRecontent(String recontent) {
 		this.recontent = recontent;

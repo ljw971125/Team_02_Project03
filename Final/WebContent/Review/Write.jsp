@@ -21,12 +21,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>게시판 글쓰기 페이지</title>
-
+<script>
+    function validateForm() {
+        var content = document.forms[0]["contentDetail"].value;
+        var rating = document.querySelector('input[name="rating"]:checked');
+        if (content == "" || rating == null) {
+            alert("내용과 별점을 입력해주세요.");
+            return false;
+        }
+        return true;
+    }
+</script>
 </head>
 
 <body>
 
-<form method="post" action="../mvc2/reWrite.do?room=101">
+<form method="post" action="../mvc2/reWrite.do?room=101" onsubmit="return validateForm()">
 
 <div class="container">
 

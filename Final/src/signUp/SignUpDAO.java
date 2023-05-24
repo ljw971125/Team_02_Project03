@@ -54,7 +54,7 @@ public class SignUpDAO extends JDBConnect{
 			
 			String query = "insert into member1 "
 						 + " values ( "
-						 + "?,?,?,?,?,?,?,?,?,?)";
+						 + "?,?,?,?,?,?,?,?,sysdate,?)";
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getId());

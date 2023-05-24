@@ -6,7 +6,12 @@
 <html>
 <head>
 <style>
-
+.button-container p {
+    min-height: 30px;
+}
+.button-container > div {
+    width: 350px;
+}
 </style>
 <jsp:include page="/Common/header.jsp" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/CSS/company.css">

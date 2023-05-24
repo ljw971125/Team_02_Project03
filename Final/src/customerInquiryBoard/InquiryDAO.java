@@ -84,7 +84,6 @@ public class InquiryDAO extends JDBConnect {
                 dto.setIcontent(rs.getString("icontent"));  // 글내용
                 dto.setNik(rs.getString("nik"));            // 작성자 아이디
                 dto.setIcomment(rs.getString("icomment"));  // 조회수
-                dto.setId(rs.getString("id")); 				// 아이디
 
                 bbs.add(dto);  // 결과 목록에 저장
             }
@@ -106,15 +105,14 @@ public class InquiryDAO extends JDBConnect {
         try {
             // INSERT 쿼리문 작성 
             String query = "INSERT INTO inquiry ( "
-                         + " num,title,icontent,nik,id) "
+                         + " num,title,icontent,nik) "
                          + " VALUES ( "
-                         + " seq_inquiry_num.NEXTVAL, ?, ?, ?, ?)";  
+                         + " seq_inquiry_num.NEXTVAL, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setString(1, dto.getTitle());  
             psmt.setString(2, dto.getIcontent());
             psmt.setString(3, dto.getNik());
-            psmt.setString(4, dto.getId());
             
             result = psmt.executeUpdate(); 
         }
@@ -157,7 +155,7 @@ public class InquiryDAO extends JDBConnect {
         
         // 쿼리문 준비
         String query = "SELECT I.*, M.nik " 
-                     + " FROM member M INNER JOIN inquiry I " 
+                     + " FROM member1 M INNER JOIN inquiry I " 
                      + " ON M.nik=I.nik "
                      + " WHERE num=?";
 
@@ -173,7 +171,6 @@ public class InquiryDAO extends JDBConnect {
                 dto.setNik(rs.getString("nik"));
                 dto.setIcomment(rs.getString("icomment"));
                 dto.setNum(rs.getString("num")); 
-                dto.setId(rs.getString("id"));
             }
         } 
         catch (Exception e) {

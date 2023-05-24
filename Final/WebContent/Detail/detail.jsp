@@ -4,8 +4,9 @@
 <%@ page import="room.*" %>
 <%@ page import="reviewPage.*"%>
 <%@ page import="java.util.*" %>
-<%@ page import="java.lang.*" %>
+<%@ page import="java.lang.*" %>]\
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 	ReviewDAO dao1 = new ReviewDAO(application);
 	float rate101 = dao1.getRate(101);
@@ -58,21 +59,22 @@
 %>
 <html>
 <head>
-
 <link rel="stylesheet" type="text/css" href="/Final/CSS/detail.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <jsp:include page="/Common/header.jsp" />
 <meta charset="UTF-8">
-<title>상세보기</title>
+<title><%=room1 %>호 상세보기</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2"></script>
 
 </head>
 
 <body>
 	<article>
+	
 		<div style="height: 100px;"></div>
+		
 		<%  if ("101".equals(room1)){
 		%>
 			<article>		
@@ -80,6 +82,7 @@
 			            <img src="/Final/Image/101.jpg" width="900px" height="500px">
 	            </div>
 	            <div style="float: left;">
+	            <p class="sub_text_tit_type01" style="font-weight: 700;">시설안내</p>
 		    	<% for (RoomDTO room : roomList101) { %>
 		            <p id="text-101">회의실 방번호 <%= room.getNum() %>호</p>
 		            <p id="text-101">회의실 평수 : <%= room.getArea() %>대</p>
@@ -118,8 +121,13 @@
 						</li>
 					</ul>
 		        </div>
+		        <div style="text-align: center;">
+				    <p class="sub_text_tit_type01" style="font-weight: 700;">평점</p>
+				</div>
+
 		        <div style="height: 30px; display: flex; text-align: center;">
 			    	<div style="width: 800px; margin-left: 50px; height:600px;">
+			    	
 						<canvas id="myChart"></canvas>
 						<p>평균 평점(5점만점)</p>
 						<p>101호 평점 : <%= getStars(rate101) %></p>
@@ -188,6 +196,11 @@
 					        }]
 					    },
 					    options: {
+                            legend: {
+                                onClick: function(e) {
+                                    e.stopPropagation();
+                                }
+                            },
 					        animation: {
 					            onComplete: function() {
 					                var chartInstance = this.chart;
@@ -274,6 +287,9 @@
 						</li>
 					</ul>
 		        </div>
+		        <div style="text-align: center;">
+				    <p class="sub_text_tit_type01" style="font-weight: 700;">평점</p>
+				</div>
 			    <div style="height: 30px; display: flex; text-align: center;">
 			    	<div style="width: 800px; margin-left: 50px">
 						<canvas id="myChart"></canvas>
@@ -344,6 +360,11 @@
 					        }]
 					    },
 					    options: {
+					    	legend: {
+                                onClick: function(e) {
+                                    e.stopPropagation();
+                                }
+                            },
 					        animation: {
 					            onComplete: function() {
 					                var chartInstance = this.chart;
@@ -430,6 +451,9 @@
 						</li>
 					</ul>
 		        </div>
+		        <div style="text-align: center;">
+				    <p class="sub_text_tit_type01" style="font-weight: 700;">평점</p>
+				</div>
 		        <div style="height: 30px; display: flex; text-align: center;">
 			    	<div style="width: 800px; margin-left: 50px">
 						<canvas id="myChart"></canvas>
@@ -500,6 +524,11 @@
 					        }]
 					    },
 					    options: {
+					    	legend: {
+                                onClick: function(e) {
+                                    e.stopPropagation();
+                                }
+                            },
 					        animation: {
 					            onComplete: function() {
 					                var chartInstance = this.chart;
@@ -550,20 +579,32 @@
 	dao1.close();
 	dao2.close();
 %>
+
 <div style="height: 500px;"></div>
 <br>
 </br>
 <article>
+
 <c:forEach items="${DetailReview}" var="n">
-	<div class="card" style="width: 50rem; border: 1px solid black; margin: 0 auto;">
-	  <div class="card-body">
-	    <h2 class="card-title" style="margin-left: 10px;">${ n.nik }</h2>
-	    <hr class="card-subtitle mb-2 text-muted" ></hr>
-	    <h4 class="card-text" style="margin-left: 10px;">${n.recontent}</h4>
-	  </div>
-	</div>
-	<br>
-	</br>
+    <div class="card" style="width: 50rem; border: 1px solid black; margin: 0 auto;">
+        <div class="card-body">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 class="card-title" style="margin-left: 10px;">${ n.nik }</h2>
+                <div class="star-ratings">
+                <h4 class="card-rate" style="margin-right: 10px;">평점:
+                    <c:forEach begin="1" end="${n.rate}" step="1">
+                        <span class="star">★</span>
+                    </c:forEach>
+                </h4>
+                </div>
+            </div>
+            <hr class="card-subtitle mb-2 text-muted"></hr>
+            <h4 class="card-text" style="margin-left: 10px;">${n.recontent}</h4>
+            <h2 class="card-redate" align="right" style="margin-right: 10px;">작성일:${ n.redate }</h2>
+            
+        </div>
+    </div>
+    <br></br>
 </c:forEach>
 </article>
 <script src="/Final/js/detail.js"></script> 

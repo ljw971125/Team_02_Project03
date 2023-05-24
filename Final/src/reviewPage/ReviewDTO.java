@@ -7,7 +7,7 @@ public class ReviewDTO {
 	private String recomment;
 	private String title;
 	private String recontent;
-	private java.sql.Date redate;
+	private String redate;
 	private float rate;
 	
 	public String getNum() {
@@ -46,11 +46,11 @@ public class ReviewDTO {
 	public void setRecontent(String recontent) {
 		this.recontent = recontent;
 	}
-	public java.sql.Date getRedate() {
+	public String getRedate() {
 		return redate;
 	}
-	public void setRedate(java.sql.Date redate) {
-		this.redate = redate;
+	public void setRedate(String redate) {
+		this.redate = redate.substring(0, 10);
 	}
 	public float getRate() {
 		return rate;

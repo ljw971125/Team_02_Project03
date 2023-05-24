@@ -7,7 +7,7 @@ public class InquiryDTO {
     private String nik;		 //회원닉네임
     private String icomment; //관리자댓글
     private String num;		 //글번호
-    private String id;
+    
     
     // 멤버 변수별 게터와 세터 메서드
 
@@ -40,12 +40,6 @@ public class InquiryDTO {
 	}
 	public void setNum(String num) {
 		this.num = num;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 
 }

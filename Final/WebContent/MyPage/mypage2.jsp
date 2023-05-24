@@ -97,11 +97,11 @@ function test() {
                 </li>
                 <li class=" sizing ">
                     <strong class="title" >보유금액</strong>
-                    <strong class="data use"></strong>
+                    <strong class="data use">30,000원</strong>
                 </li>
                 <li class=" sizing ">
                     <strong class="title" >가입날짜</strong>
-                    <strong class="data use"></strong>
+                    <strong class="data use">2023/05/24</strong>
                 </li>
             </ul>
         </div>
@@ -125,7 +125,7 @@ function test() {
 								<c:choose>
 									<c:when test="${n.rdate lt currentDate}">				
 										<a href="../Review/Write.jsp?room=${n.num}" class="link_review_write?">리뷰 쓰기</a>
-										<a href="/Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
+										<a href="../Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
 									</c:when>
 									<c:when test="${n.rdate eq currentDate}"></c:when>
 									<c:otherwise>

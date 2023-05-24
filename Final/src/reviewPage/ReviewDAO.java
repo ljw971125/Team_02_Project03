@@ -63,7 +63,7 @@ public class ReviewDAO extends JDBConnect {
                 dto.setRecomment(rs.getString("recomment"));  // 관리자 댓글
                 dto.setTitle(rs.getString("title"));            // 제목
                 dto.setRecontent(rs.getString("recontent"));  // 내용
-                dto.setRedate(rs.getDate("redate")); //오류 발생 가능
+                dto.setRedate(rs.getString("redate")); //오류 발생 가능
                 dto.setRate(rs.getFloat("rate")); // 평점
                 
                 bbs.add(dto);  // 결과 목록에 저장
@@ -106,7 +106,7 @@ public class ReviewDAO extends JDBConnect {
                 rto.setRecomment(rs.getString("recomment"));
                 rto.setTitle(rs.getString("title"));
                 rto.setRecontent(rs.getString("recontent"));
-                rto.setRedate(rs.getDate("redate"));
+                rto.setRedate(rs.getString("redate"));
                 rto.setRate(rs.getFloat("rate"));
                 bbs.add(rto);
             }
@@ -169,7 +169,7 @@ public class ReviewDAO extends JDBConnect {
                 dto.setRecomment(rs.getString("recomment"));  // 관리자 댓글
                 dto.setTitle(rs.getString("title"));            // 제목
                 dto.setRecontent(rs.getString("recontent"));  // 내용
-                dto.setRedate(rs.getDate("redate")); //오류 발생 가능
+                dto.setRedate(rs.getString("redate")); //오류 발생 가능
                 dto.setRate(rs.getFloat("rate")); // 평점
             }
         } 
@@ -283,6 +283,8 @@ public class ReviewDAO extends JDBConnect {
               
                 rto.setNik(rs.getString("nik"));
                 rto.setRecontent(rs.getString("recontent"));
+                rto.setRate(rs.getString("rate"));
+                rto.setRedate(rs.getString("redate").replace("/", "-"));
                 bbs.add(rto);
             }
         } catch (Exception e) {

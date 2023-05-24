@@ -65,4 +65,19 @@ button{
 .bx-wrapper .bx-controls-direction a {
     z-index: 9000 !important;
 }
-
+.sub_text_tit_type01:before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 20px;
+    border-radius: 3px;
+    background: #97ccff;
+    position: absolute;
+    top: 6px;
+    left: 0;
+}
+.star{
+	-webkit-text-fill-color: gold;
+	-webkit-text-stroke-width: 1.3px;
+	-webkit-text-stroke-color: #2b2a29;
+}

@@ -23,7 +23,7 @@
 					<li class="name">회사소개
 						<ul class="innerMenu">
 							<li><a href="<%=request.getContextPath() %>/about.do">회사소개</a></li>
-							<li><a href="<%=request.getContextPath() %>/year.do">회사연도</a></li>
+							<li><a href="<%=request.getContextPath() %>/year.do">회사연혁</a></li>
 							<li><a href="<%=request.getContextPath() %>/op.do">방침 및 목표</a></li>
 							<li><a href="<%=request.getContextPath() %>/howtocome.do">오시는길</a></li>
 						</ul>
@@ -31,9 +31,9 @@
 					<li class="name">
 						회의실 예약
 						<ul class="innerMenu">
-							<li><a href="<%=request.getContextPath() %>/detail.do?room=101">101호</a></li>
-							<li><a href="<%=request.getContextPath() %>/detail.do?room=102">102호</a></li>
-							<li><a href="<%=request.getContextPath() %>/detail.do?room=103">103호</a></li>
+							<li><a href="<%=request.getContextPath() %>/mvc2/review.do?room=101">101호</a></li>
+							<li><a href="<%=request.getContextPath() %>/mvc2/review.do?room=102">102호</a></li>
+							<li><a href="<%=request.getContextPath() %>/mvc2/review.do?room=103">103호</a></li>
 						</ul>
 					</li>
 
