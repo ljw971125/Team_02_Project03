@@ -1,50 +1,93 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 10px;
+	display: flex;
+	justify-content: center;
+	/* align-items: flex-start; */
+	gap: 20px;
+	padding: 10px;
+	flex-wrap: wrap; /* 아이템이 넘칠 경우 여러 줄에 걸쳐 표시 */
 }
-
 #calendar {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+	font-size: 14px;
 }
 
 #calendarTitle {
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 10px;
 }
 
 #timeTable {
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	font-size: 14px;
 }
 
 .form-group {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 label {
-  display: block;
-  font-weight: bold;
+	display: block;
+	font-weight: bold;
 }
 
-input[type="text"],
-input[type="button"],
-input[type="submit"] {
-  padding: 5px 10px;
+input[type="text"], input[type="button"], input[type="submit"] {
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+input[type="button"], input[type="submit"] {
+	background-color: #f2f2f2;
+	cursor: pointer;
+}
+
+#calendarTitle {
+	position: relative;
+}
+
+#calendarTitle::before {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background-color: black;
+}
+
+.notice-wrapper {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.notice-box {
+  text-align: left;
+  width: 100%;
+  max-width: 620px; /* 원하는 크기로 조정 */
   border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 20px;
 }
 
-input[type="button"],
-input[type="submit"] {
-  background-color: #f2f2f2;
-  cursor: pointer;
+.notice-box h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
+.notice-box ul {
+  font-size: 14px;
+  list-style: none;
+  padding: 0;
+}
+
+.notice-box li {
+  margin-bottom: 5px;
+}

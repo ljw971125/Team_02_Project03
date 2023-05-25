@@ -48,6 +48,20 @@ function buildCalendar() {
 	    var cell = row.insertCell();
 	    cnt += 1;
 	  }
+	  
+	  var clickedCell = null; // 클릭한 셀을 저장할 변수
+
+	  function resetCellColor() {
+	    if (clickedCell) {
+	      clickedCell.style.backgroundColor = ""; // 클릭한 셀의 색상 초기화
+	    }
+	  }
+
+	  function changeCellColor(cell) {
+	    resetCellColor(); // 다른 셀 클릭 시 변경된 셀의 색상 초기화
+	    cell.style.backgroundColor = "yellow"; // 클릭한 셀의 색상 변경
+	    clickedCell = cell; // 클릭한 셀 저장
+	  }
 
 	  
 
@@ -79,14 +93,19 @@ function buildCalendar() {
 	        var clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
 
 	        document.getElementById("date").value = clickedYMD;
+	        changeCellColor(this);
 
 	      };
 
 	      cell.addEventListener("mouseenter", function () {
-	        this.style.backgroundColor = "yellow"; // 마우스가 들어올 때 배경색을 노란색으로 변경합니다.
+	    	  if (this !== clickedCell) {
+	              this.style.backgroundColor = "yellow"; // 마우스가 들어올 때 배경색을 노란색으로 변경합니다.
+	            }
 	      });
 	      cell.addEventListener("mouseleave", function () {
-	        this.style.backgroundColor = ""; // 마우스가 벗어날 때 배경색을 초기화합니다.
+	    	  if (this !== clickedCell) {
+	              this.style.backgroundColor = ""; // 마우스가 벗어날 때 배경색을 초기화합니다.
+	            }
 	      });
 	    }
 
@@ -207,6 +226,11 @@ function resetTimeTable() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].style.backgroundColor = "";
     }
+    var calendarTable = document.getElementById("calendar");
+    var cells = calendarTable.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].style.backgroundColor = "";
+    }
 
     // 선택된 시간, 가격, 날짜 초기화
     selectedTimesInput.value = "";
@@ -238,8 +262,12 @@ function makeReservation() {
 	<div style="height: 100px;"></div>
 	<form action="../saveReservationInfo.do" method="post"
 		id="reservationForm" onsubmit="return makeReservation()">
+		
+		
+		<aside>
+		</aside>
 
-		<section style="text-align: center; top: 100px">
+		<section>
 			<div class="container">
 				<table id="calendar"
 					style="display: inline-block; padding: 10px; vertical-align: top;">
@@ -252,13 +280,15 @@ function makeReservation() {
 							onclick="nextCalendar()"> ▶ </label></td>
 					</tr>
 					<tr>
-						<td align="center" style="padding: 10px;"><fontcolor="#F79DC2">일</td>
+						<td align="center" style="padding: 10px;"><font
+							color="#F79DC2">일</td>
 						<td align="center" style="padding: 10px;">월</td>
 						<td align="center" style="padding: 10px;">화</td>
 						<td align="center" style="padding: 10px;">수</td>
 						<td align="center" style="padding: 10px;">목</td>
 						<td align="center" style="padding: 10px;">금</td>
-						<td align="center" style="padding: 10px;"><fontcolor="skyblue">토</td>
+						<td align="center" style="padding: 10px;"><font
+							color="skyblue">토</td>
 					</tr>
 					<tr></tr>
 				</table>
@@ -286,7 +316,18 @@ function makeReservation() {
 					</div>
 				</div>
 			</div>
-
+			<div class="notice-wrapper">
+				<div class="notice-box">
+					<h2>이용 시 유의사항</h2>
+					<ul>
+						<li>예약한 시간에 맞춰 정시에 입실해 주세요.</li>
+						<li>예약된 시간 내에 이용을 완료해야 하며, 시간 연장은 추가 비용이 발생합니다.</li>
+						<li>회의실 내부 물품 및 시설물은 소중히 사용해 주세요. 파손 시 추가 비용이 발생할 수 있습니다.</li>
+						<li>흡연은 금지되어 있습니다.</li>
+						<li>다른 고객들의 이용을 방해할 수 있는 행위는 자제해 주세요.</li>
+					</ul>
+				</div>
+			</div>
 		</section>
 
 	</form>
