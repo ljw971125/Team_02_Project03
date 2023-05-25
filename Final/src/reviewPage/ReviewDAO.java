@@ -267,7 +267,7 @@ public class ReviewDAO extends JDBConnect {
     
     public List<DetailReview> reviewList(int room) {
         List<DetailReview> bbs = new ArrayList<DetailReview>();
-        String query = " SELECT * FROM review WHERE rnum=?";
+        String query = " SELECT * FROM review WHERE rnum=? order by redate desc";
                    
         try {
             psmt = con.prepareStatement(query); // 쿼리문 준비

@@ -12,7 +12,7 @@ import common.JDBConnect;
 import reservation.*;
 import signUp.SignUpDTO;
 
-public class ReservationDAO extends DBConnPool {
+public class ReservationDAO extends JDBConnect {
 
 	public ReservationDAO() {
 		super();
@@ -94,7 +94,7 @@ public class ReservationDAO extends DBConnPool {
 
 	public List<ReservationDTO> mReview(String id) {
         List<ReservationDTO> reviewList = new ArrayList<ReservationDTO>(); // DTO 객체 리스트 생성
-        String query = "SELECT * FROM reservation WHERE Nik=?"; // 쿼리문 템플릿 준비
+        String query = "SELECT * FROM reservation WHERE Nik=? order by rdate desc"; // 쿼리문 템플릿 준비
         try {
             psmt = con.prepareStatement(query); // 쿼리문 준비
             psmt.setString(1, id); // 인파라미터 설정

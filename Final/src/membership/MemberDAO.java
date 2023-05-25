@@ -77,7 +77,7 @@ public class MemberDAO extends JDBConnect {
                 dto.setPhone(rs.getString(6));
                 dto.setAdr(rs.getString(7));
                 dto.setNik(rs.getString(8));
-                dto.setJdate(rs.getString(9));
+                dto.setJdate(rs.getString(9).replace("/", "-"));
                 dto.setNum(rs.getInt(10));
                 
                 mInfolist.add(dto);                  

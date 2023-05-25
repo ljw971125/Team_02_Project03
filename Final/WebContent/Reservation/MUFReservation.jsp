@@ -290,6 +290,6 @@ function makeReservation() {
 		</section>
 
 	</form>
-	<jsp:include page="../Common/af.jsp" />
+	<jsp:include page="/Common/af.jsp" />
 </body>
 </html>

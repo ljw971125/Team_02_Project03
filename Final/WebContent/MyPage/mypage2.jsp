@@ -72,41 +72,47 @@ function test() {
                     <strong class="title" >예약</strong>
                     <strong class="data use">${reservationCount }</strong>
                 </li>
-	           	<c:forEach items="${memInfo}" var="n">
+	           	<c:forEach items="${memInfo}" var="v">
 	                <c:choose>
-	                	<c:when test="${empty n.birth}">
-                <li class=" sizing ">
+	                	<c:when test="${empty v.birth}">
+			                <li class=" sizing ">
 			                    <strong class="title" >생년월일</strong>
-			                    <strong class="data use"></strong>
-                </li>
-		                </c:when>
-		                <c:otherwise>
-								<strong class="title" >생년월일</strong>
-			                    <strong class="data use">${v.birth}</strong>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>  
-						<c:when test="${empty v.jdate}">
-                <li class=" sizing ">
-                    <strong class="title" >가입날짜</strong>
 			                    <strong class="data use"></strong>
 			                </li>
 		                </c:when>
 		                <c:otherwise>
+		                	<li class=" sizing ">
+								<strong class="title" >생년월일</strong>
+			                    <strong class="data use">${v.birth}</strong>
+		                    </li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>  
+						<c:when test="${empty v.jdate}">
+			                <li class=" sizing ">
+			                    <strong class="title" >가입날짜</strong>
+						        <strong class="data use"></strong>
+						    </li>
+		                </c:when>
+		                <c:otherwise>
+		                	<li class=" sizing ">
 								<strong class="title" >가입날짜</strong>
 			                    <strong class="data use">${v.jdate}</strong>
+			                </li>
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
-		                <c:when test="${empty v.phone}">
+		                <c:when test="${empty v.phone}">		                
 			                <li class=" sizing ">
 			                    <strong class="title" >전화번호</strong>
 			                    <strong class="data use"></strong>
 			                </li>
 		                </c:when>
 		                <c:otherwise>
+		                	<li class=" sizing ">
 								<strong class="title" >전화번호</strong>
 			                    <strong class="data use">${v.phone}</strong>
+			                </li>    
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
@@ -114,11 +120,13 @@ function test() {
 			                <li class=" sizing ">
 			                    <strong class="title" >주소</strong>
 			                    <strong class="data use"></strong>
-                </li>
+                			</li>
 		                </c:when>
 		                <c:otherwise>
+		                	<li class=" sizing ">
 								<strong class="title" >주소</strong>
 			                    <strong class="data use">${v.adr}</strong>
+		                    </li>
 						</c:otherwise>	                
 		        	</c:choose>
 		        </c:forEach>	                
@@ -145,11 +153,11 @@ function test() {
 								<c:choose>
 									<c:when test="${n.rdate lt currentDate}">				
 										<a href="../Review/Write.jsp?room=${n.num}" class="link_review_write?">리뷰 쓰기</a>
-										<a href="/Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
+										<a href="../Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
 									</c:when>
 									<c:when test="${n.rdate eq currentDate}"></c:when>
 									<c:otherwise>
-										<a href="../mvc2/cancel.do?rnum=${n.num}" onclick="test()" class="cancel_reservation">예약 취소</a>
+										<a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
 									</c:otherwise>
 								</c:choose>
 							</div>

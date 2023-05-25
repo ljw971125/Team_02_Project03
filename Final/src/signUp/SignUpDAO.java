@@ -54,7 +54,7 @@ public class SignUpDAO extends JDBConnect{
 			
 			String query = "insert into member1 "
 						 + " values ( "
-						 + "?,?,?,?,?,?,?,?,sysdate,?)";
+						 + "?,?,?,?,?,?,?,?,sysdate,0)";
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getId());
@@ -65,8 +65,6 @@ public class SignUpDAO extends JDBConnect{
 			psmt.setString(6, dto.getPhone());
 			psmt.setString(7, dto.getAdr());
 			psmt.setString(8, dto.getNik());
-			psmt.setString(9, dto.getJdate());
-			psmt.setInt(10, dto.getMoney());
 			result = psmt.executeUpdate();
 			
 		} catch(Exception e) {

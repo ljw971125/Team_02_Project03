@@ -35,7 +35,7 @@ public class MemberDTO {
 		return birth;
 	}
 	public void setBirth(String birth) {
-		this.birth = birth;
+		this.birth = birth.substring(0, 10);
 	}
 	public String getGender(String gender) {
 		return gender;
@@ -66,7 +66,7 @@ public class MemberDTO {
 		return jdate;
 	}
 	public void setJdate(String jdate) {
-		this.jdate = jdate;
+		this.jdate = jdate.substring(0, 10);
 	}
 	public int getNum() {
 		return num;
