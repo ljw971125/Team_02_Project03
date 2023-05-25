@@ -143,4 +143,14 @@
     <servlet-name>Register</servlet-name>
     <url-pattern>/mvc2/register.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ReservationProcess</servlet-name>
+    <servlet-class>reservation.ReservationProcessController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationProcess</servlet-name>
+    <url-pattern>/saveReservationInfo.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
