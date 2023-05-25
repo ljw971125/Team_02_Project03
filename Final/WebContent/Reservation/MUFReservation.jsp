@@ -9,19 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.selected {
-	background: linear-gradient(to right, red, orange, yellow, green, blue, indigo,
-		violet);
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/Final/CSS/reservation.css">
+
 <meta charset="UTF-8">
 <%
 	String room = (String) request.getParameter("room");
-ReservationDAO resDao = new ReservationDAO();
-ReservationDTO resDto = new ReservationDTO();
-ArrayList<ReservationDTO> list = resDao.reservationList();
-
+int price = Integer.parseInt(request.getParameter("price"));
 %>
 <title>회의실 예약</title>
 <jsp:include page="../Common/header.jsp" />
@@ -34,7 +27,7 @@ var today = new Date();
 var startTime = 9;
 var endTime = 18;
 var selectedTimes = [];
-
+var clickedCell = null; // 클릭한 셀을 저장할 변수
 
 function buildCalendar() {
 	  var row = null;
@@ -56,6 +49,10 @@ function buildCalendar() {
 	    cnt += 1;
 	  }
 
+	  
+
+
+
 	  for (var i = 1; i <= lastDate.getDate(); i++) {
 	    var cell = row.insertCell();
 	    cnt += 1;
@@ -67,7 +64,7 @@ function buildCalendar() {
 	    if (
 	      (currentDate.getFullYear() > today.getFullYear()) ||
 	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() > today.getMonth()) ||
-	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() === today.getMonth() && i < currentDate.getDate())
+	      (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() === today.getMonth() && i <= currentDate.getDate())
 	    ) {
 	      cell.style.pointerEvents = "none"; // 현재 날짜 이전은 선택할 수 없도록 이벤트 비활성화
 	      cell.style.color = "gray"; // 현재 날짜 이전은 색상을 회색으로 변경
@@ -82,6 +79,7 @@ function buildCalendar() {
 	        var clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
 
 	        document.getElementById("date").value = clickedYMD;
+
 	      };
 
 	      cell.addEventListener("mouseenter", function () {
@@ -108,6 +106,8 @@ function buildCalendar() {
 	    }
 	  }
 	}
+	
+
 function prevCalendar(){
     today = new Date(today.getFullYear(), today.getMonth()-1, today.getDate());
     buildCalendar();
@@ -179,7 +179,7 @@ function timeTableMaker() {
 
                     // 가격 계산 및 표시
                     var cellCount = endCellTime - startCellTime + 1;
-                    var pricePerCell = 5000;
+                    var pricePerCell = parseInt(document.getElementById("price2").value);
                     var totalPrice = cellCount * pricePerCell;
                     document.getElementById("price").value = totalPrice;
                 } else {
@@ -209,7 +209,7 @@ function resetTimeTable() {
     }
 
     // 선택된 시간, 가격, 날짜 초기화
-    //selectedTimesInput.value = "";
+    selectedTimesInput.value = "";
     priceInput.value = "";
     dateInput.value = "";
 }
@@ -235,50 +235,61 @@ function makeReservation() {
 </script>
 <body>
 	<jsp:include page="/LogIn/IsLoggedIn.jsp" />
-<div style="height: 100px;"></div>
-	<form action="saveReservationInfo.jsp" method="post" id="reservationForm" onsubmit="return makeReservation()">
+	<div style="height: 100px;"></div>
+	<form action="../saveReservationInfo.do" method="post"
+		id="reservationForm" onsubmit="return makeReservation()">
 
 		<section style="text-align: center; top: 100px">
-			<div style="display: inline-block; padding: 10px;">
+			<div class="container">
 				<table id="calendar"
 					style="display: inline-block; padding: 10px; vertical-align: top;">
 					<tr>
-						<td align="center"><label onclick="prevCalendar()"> ◀
-						</label></td>
-						<td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
-						<td align="center"><label onclick="nextCalendar()"> ▶
-						</label></td>
+						<td align="center" style="padding: 20px;"><label
+							onclick="prevCalendar()"> ◀ </label></td>
+						<td colspan="5" align="center" id="calendarTitle"
+							style="font-size: 20px;">yyyy년 m월</td>
+						<td align="center" style="padding: 20px;"><label
+							onclick="nextCalendar()"> ▶ </label></td>
 					</tr>
 					<tr>
-						<td align="center"><font color="#F79DC2">일</td>
-						<td align="center">월</td>
-						<td align="center">화</td>
-						<td align="center">수</td>
-						<td align="center">목</td>
-						<td align="center">금</td>
-						<td align="center"><font color="skyblue">토</td>
+						<td align="center" style="padding: 10px;"><fontcolor="#F79DC2">일</td>
+						<td align="center" style="padding: 10px;">월</td>
+						<td align="center" style="padding: 10px;">화</td>
+						<td align="center" style="padding: 10px;">수</td>
+						<td align="center" style="padding: 10px;">목</td>
+						<td align="center" style="padding: 10px;">금</td>
+						<td align="center" style="padding: 10px;"><fontcolor="skyblue">토</td>
 					</tr>
 					<tr></tr>
 				</table>
-				<table id="timeTable" style="display: inline-block; padding: 10px;"></table>
 
-				<div style="text-align: left; padding: 10px;">
-					예약 날짜: <input type="text" id="date" name="rdate" readonly><br>
-					선택된 시간: <input type="text" id="selectedTimes" name="rtime" readonly><br>
-					가격: <input type="text" id="price" name="price" readonly><br>
-					<input type="hidden" name="room" value="<%=room%>">
-					<div style="align: center">
+				<table id="timeTable"></table>
+
+				<div>
+					<div class="form-group">
+						<label for="date">예약 날짜</label> <input type="text" id="date"
+							name="rdate" readonly>
+					</div>
+					<div class="form-group">
+						<label for="selectedTimes">선택된 시간</label> <input type="text"
+							id="selectedTimes" name="rtime" readonly>
+					</div>
+					<div class="form-group">
+						<label for="price">가격</label> <input type="text" id="price"
+							name="price" readonly>
+					</div>
+					<input type="hidden" name="room" value="<%=room%>"> <input
+						type="hidden" id="price2" name="price2" value="<%=price%>">
+					<div>
 						<input type="button" value="초기화" onclick="resetTimeTable()">
 						<input type="submit" value="예약하기" onclick="resertCheck()">
 					</div>
 				</div>
 			</div>
-			<%
-				
-			%>
+
 		</section>
 
 	</form>
-	<jsp:include page="../Common/afooter.jsp" />
+	<jsp:include page="../Common/af.jsp" />
 </body>
 </html>

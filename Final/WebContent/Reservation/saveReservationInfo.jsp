@@ -10,58 +10,20 @@
 <title>회의실 예약</title>
 </head>
 <body>
+<%if (session.getAttribute("reservationComplete") != null) {%>
+<script type="text/javascript">
+	alert("예약이 완료되었습니다.");
+	location.href = "/Final/mvc2/mypage.do";
+</script>
+<% session.removeAttribute("reservationComplete"); %>
+<%} else if (session.getAttribute("reservationError") != null) {%>
+<script type="text/javascript">
+	alert("이미 예약된 날짜입니다.");
+	history.back();
+</script>
+<% session.removeAttribute("reservationError"); %>
+<%} %>
 
-	<%
-		String nik = (String) session.getAttribute("UserNik");
-	String id = (String) session.getAttribute("UserId");
-	String rdate = request.getParameter("rdate");
-	String rtime = request.getParameter("rtime");
-	int price = Integer.parseInt(request.getParameter("price"));
-	int room = Integer.parseInt(request.getParameter("room"));
-
-	boolean isCheck = true;
-
-	ReservationDTO dto = new ReservationDTO();
-	ReservationDAO dao = new ReservationDAO();
-
-	ArrayList<ReservationDTO> list = dao.reservationList();
-	for (int i = 0; i < list.size(); i++) {
-		String rdateCheck = list.get(i).getRdate();
-		int roomcheck = list.get(i).getNum();
-		if (rdateCheck.equals(rdate) && roomcheck == room) {
-			isCheck = false;
-			break;
-		} else {
-			isCheck = true;
-		}
-
-	}
-
-	//out.println(isCheck);
-
-	if (isCheck == true) {
-		dto.setNik(nik);
-		dto.setRdate(rdate);
-		dto.setPrice(price);
-		dto.setRtime(rtime);
-		dto.setNum(room);
-
-		dao.insertReservationInfo(dto);
-	%>
-	<script type="text/javascript">
-		alert("예약이 완료되었습니다.");
-		location.href = "../index.jsp";
-	</script>
-	<%
-		} else {
-	%>
-	<script type="text/javascript">
-		alert("이미 예약된 날짜입니다.");
-		history.back();
-	</script>
-	<%
-		}
-	%>
-	dao.close(); %>
+	
 </body>
 </html>

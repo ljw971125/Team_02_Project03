@@ -89,7 +89,7 @@
 		            <p id="text-101">화이트보드 갯수: <%= room.getWhiteboard() %>개</p>
 		            <p id="text-101">wi-fi 유뮤 : <%= room.getWifi() %></p>
 		            <p id="text-101">시간당 가격 : <%= room.getPrice()%>원</p>
-					<button onclick="location.href='<%=request.getContextPath() %>/Reservation/MUFReservation.jsp?room=101'">101호 예약</button><br><br>            
+					<button onclick="location.href='<%=request.getContextPath() %>/Reservation/MUFReservation.jsp?room=101&price=15000'">101호 예약</button><br><br>            
 		        <% } %>
 		        </div>
 		        <div style="clear: both;">
@@ -245,7 +245,7 @@
 		            <p id="text-102">화이트보드 갯수: <%= room.getWhiteboard() %>개</p>
 		            <p id="text-102">wi-fi 유뮤 : <%= room.getWifi() %></p>
 		            <p id="text-102">시간당 가격 : <%= room.getPrice()%>원</p>
-					<button onclick="location.href='<%=request.getContextPath() %>/Reservation/MUFReservation.jsp?room=102'">102호 예약</button><br><br>            
+					<button onclick="location.href='<%=request.getContextPath() %>/Reservation/MUFReservation.jsp?room=102&price=20000'">102호 예약</button><br><br>            
 		        <% } %>
 		        </div>
 		        <div style="clear: both;">
@@ -401,7 +401,7 @@
 		            <p id="text-101">화이트보드 갯수: <%= room.getWhiteboard() %>개</p>
 		            <p id="text-101">wi-fi 유뮤 : <%= room.getWifi() %></p>
 		            <p id="text-101">시간당 가격 : <%= room.getPrice()%>원</p>
-					<button onclick="location.href='<%=request.getContextPath() %>/Reservation/MUFReservation.jsp?room=103'">103호 예약</button><br><br>            
+					<button onclick="location.href='<%=request.getContextPath() %>/Reservation/MUFReservation.jsp?room=103&price=17000'">103호 예약</button><br><br>            
 		        <% } %>
 		        </div>
 		        <div style="clear: both;">

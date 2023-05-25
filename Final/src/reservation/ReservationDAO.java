@@ -7,11 +7,12 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import common.DBConnPool;
 import common.JDBConnect;
 import reservation.*;
 import signUp.SignUpDTO;
 
-public class ReservationDAO extends JDBConnect {
+public class ReservationDAO extends DBConnPool {
 
 	public ReservationDAO() {
 		super();
