@@ -46,29 +46,6 @@ function test() {
 </head>
 <body class="mypage">
 	<div style="height: 200px;"></div>
-	<%-- <div class="contents_area">
-		<div class="contents_inner">
-			<div class="info_profile">
-				<div class="info_content">
-					<div class="info_id">
-						<a href="../mvc2/mypage.do" class="id_link"><%=session.getAttribute("UserId")%>님
-							환영합니다! </a>
-					</div>
-					<div class="info_links">
-						<button type="button" class="item" data-click-code="gnb.review">
-							<span class="text">리뷰</span></br> <em calsss="num">0</em>
-						</button>
-						<button type="button" class="item" data-click-code="gnb.count">
-							<span class="text">예약 횟수</span></br> <em calsss="num">${recordCount}</em>
-						</button>
-						<!-- <button type="button" class="item" data-click-code="gnb.rewrite">
-							<span class="text">회원정보 수정</span>
-						</button> -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> --%>
 	<div class="container">
         <div class="infoWrap">
             <table class="myInfo">
@@ -95,16 +72,59 @@ function test() {
                     <strong class="title" >예약</strong>
                     <strong class="data use">${reservationCount }</strong>
                 </li>
+	           	<c:forEach items="${memInfo}" var="n">
+	                <c:choose>
+	                	<c:when test="${empty n.birth}">
                 <li class=" sizing ">
-                    <strong class="title" >보유금액</strong>
-                    <strong class="data use">30,000원</strong>
+			                    <strong class="title" >생년월일</strong>
+			                    <strong class="data use"></strong>
                 </li>
+		                </c:when>
+		                <c:otherwise>
+								<strong class="title" >생년월일</strong>
+			                    <strong class="data use">${v.birth}</strong>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>  
+						<c:when test="${empty v.jdate}">
                 <li class=" sizing ">
                     <strong class="title" >가입날짜</strong>
-                    <strong class="data use">2023/05/24</strong>
+			                    <strong class="data use"></strong>
+			                </li>
+		                </c:when>
+		                <c:otherwise>
+								<strong class="title" >가입날짜</strong>
+			                    <strong class="data use">${v.jdate}</strong>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+		                <c:when test="${empty v.phone}">
+			                <li class=" sizing ">
+			                    <strong class="title" >전화번호</strong>
+			                    <strong class="data use"></strong>
+			                </li>
+		                </c:when>
+		                <c:otherwise>
+								<strong class="title" >전화번호</strong>
+			                    <strong class="data use">${v.phone}</strong>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${empty v.adr}">
+			                <li class=" sizing ">
+			                    <strong class="title" >주소</strong>
+			                    <strong class="data use"></strong>
                 </li>
+		                </c:when>
+		                <c:otherwise>
+								<strong class="title" >주소</strong>
+			                    <strong class="data use">${v.adr}</strong>
+						</c:otherwise>	                
+		        	</c:choose>
+		        </c:forEach>	                
             </ul>
         </div>
+        
     </div>
 	<br>
 	<br>
@@ -125,11 +145,11 @@ function test() {
 								<c:choose>
 									<c:when test="${n.rdate lt currentDate}">				
 										<a href="../Review/Write.jsp?room=${n.num}" class="link_review_write?">리뷰 쓰기</a>
-										<a href="../Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
+										<a href="/Detail/detail.jsp?room=${n.num}" class="re_reservation">다시 예약하기</a>
 									</c:when>
 									<c:when test="${n.rdate eq currentDate}"></c:when>
 									<c:otherwise>
-										<a href="../mvc2/cancel.do?rnum=${n.rnum}" onclick="test()" class="cancel_reservation">예약 취소</a>
+										<a href="../mvc2/cancel.do?rnum=${n.num}" onclick="test()" class="cancel_reservation">예약 취소</a>
 									</c:otherwise>
 								</c:choose>
 							</div>

@@ -1,5 +1,5 @@
 package membership;
-
+import java.lang.*;
 public class MemberDTO {
     // 멤버 변수 선언 - 필드
     private String id;
@@ -12,6 +12,7 @@ public class MemberDTO {
     private String nik;
     private String jdate;
     private int num;
+    
 	public String getId() {
 		return id;
 	}
@@ -35,6 +36,13 @@ public class MemberDTO {
 	}
 	public void setBirth(String birth) {
 		this.birth = birth;
+	}
+	public String getGender(String gender) {
+		return gender;
+	}
+	public void setGender(String gender) {
+		// TODO Auto-generated method stub
+		this.gender = gender;
 	}
 	public String getPhone() {
 		return phone;
@@ -65,13 +73,6 @@ public class MemberDTO {
 	}
 	public void setNum(int num) {
 		this.num = num;
-	}
-	public String getGender(String gender) {
-		return gender;
-	}
-	public void setGender(String gender) {
-		// TODO Auto-generated method stub
-		this.gender = gender;
 	}
     
     
