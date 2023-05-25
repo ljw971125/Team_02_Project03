@@ -152,5 +152,73 @@
     <servlet-name>ReservationProcess</servlet-name>
     <url-pattern>/saveReservationInfo.do</url-pattern>
   </servlet-mapping>
+      <!-- 서블릿 매핑 문의 리스트 -->
+  <servlet>
+    <servlet-name>MVC2InquiryList</servlet-name>
+    <servlet-class>mvc2InquiryBoard.InquiryListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVC2InquiryList</servlet-name>
+    <url-pattern>/mvc2/inquirylist.do</url-pattern>
+  </servlet-mapping>
   
+    <!-- 서블릿 매핑 문의 뷰 -->
+  <servlet>
+    <servlet-name>MVC2InquiryView</servlet-name>
+    <servlet-class>mvc2InquiryBoard.InquiryViewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVC2InquiryView</servlet-name>
+    <url-pattern>/mvc2/inquiryview.do</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 서블릿 매핑 문의 글쓰기 -->
+  <servlet>
+    <servlet-name>MVC2InquiryWrite</servlet-name>
+    <servlet-class>mvc2InquiryBoard.InquiryWriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVC2InquiryWrite</servlet-name>
+    <url-pattern>/mvc2/write.do</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 서블릿 매핑 문의 글수정 -->
+  <servlet>
+    <servlet-name>MVC2InquiryEdit</servlet-name>
+    <servlet-class>mvc2InquiryBoard.InquiryEditController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVC2InquiryEdit</servlet-name>
+    <url-pattern>/mvc2/edit.do</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 서블릿 매핑 문의 답변 -->
+  <servlet>
+    <servlet-name>MVC2InquiryAnswer</servlet-name>
+    <servlet-class>mvc2InquiryBoard.InquiryAnswerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVC2InquiryAnswer</servlet-name>
+    <url-pattern>/mvc2/answer.do</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 서블릿 매핑 문의 답변수정 -->
+  <servlet>
+    <servlet-name>MVC2InquiryAnswerEdit</servlet-name>
+    <servlet-class>mvc2InquiryBoard.InquiryAnswerEditController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVC2InquiryAnswerEdit</servlet-name>
+    <url-pattern>/mvc2/answeredit.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 서블릿 매핑 문의 답변수정 -->
+    <servlet>
+    <servlet-name>MVC2InquiryDelete</servlet-name>
+    <servlet-class>mvc2InquiryBoard.InquiryDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVC2InquiryDelete</servlet-name>
+    <url-pattern>/mvc2/delete.do</url-pattern>
+  </servlet-mapping>
 </web-app>

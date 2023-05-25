@@ -1,36 +1,34 @@
-package customerInquiryBoard;
+package mvc2InquiryBoard;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-import javax.servlet.ServletContext;
 
 import common.JDBConnect;
 
 public class InquiryDAO extends JDBConnect {
-    public InquiryDAO(ServletContext application) {
-        super(application);
+	public InquiryDAO() {
+        super();
     }
     
  // 검색 조건에 맞는 게시물의 개수를 반환합니다.
-    public int selectCount(Map<String, Object> map, String sessionNik, String viewValue) {
+    public int selectCount(Map<String, Object> map) {
         int totalCount = 0; // 결과(게시물 수)를 담을 변수
         String query = "SELECT COUNT(*) FROM inquiry";  // 게시물 수를 얻어오는 쿼리문 작성
         
-        if (!"admin".equals(sessionNik)) {
-            query += " WHERE nik = '" + sessionNik + "'";
+        if (!"admin".equals(map.get("sessionNik"))) {
+            query += " WHERE nik = '" + map.get("sessionNik") + "'";
         }
         
-        
         if (map.get("searchWord") != null) {
-            if (!"admin".equals(sessionNik)) {
+            if (!"admin".equals(map.get("sessionNik"))) {
                 query += " AND " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%'";
             } else {
                 query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%'";
             }
         }
         
-        if(viewValue != null && !viewValue.equals("viewAll")) { // 전체보기가 아닐경우 미답변한 게시글만 출력
+        if(map.get("viewValue") != null && !map.get("viewValue").equals("viewAll")) { // 전체보기가 아닐경우 미답변한 게시글만 출력
     	  query += " AND icomment is null ";
         }
         
@@ -49,18 +47,18 @@ public class InquiryDAO extends JDBConnect {
     }
     
     // 검색조건에 맞는 리스트를 반환합니다.
-    public List<InquiryDTO> selectList(Map<String, Object> map, String sessionNik, String viewValue) { 
+    public List<InquiryDTO> selectList(Map<String, Object> map) { 
         List<InquiryDTO> bbs = new Vector<InquiryDTO>();  // 결과(게시물 목록)를 담을 변수
         
         String query = "SELECT * FROM inquiry";
-        if ("admin".equals(sessionNik)) {  // 현재 로그인한 사용자가 관리자일 경우 모든 문의사항(inquiry) 데이터를 가져옴
+        if ("admin".equals(map.get("sessionNik"))) {  // 현재 로그인한 사용자가 관리자일 경우 모든 문의사항(inquiry) 데이터를 가져옴
         	query += " WHERE nik is not null ";
         }
         else {  // 현재 로그인한 사용자가 관리자가 아닐 경우 해당 사용자가 작성한 문의사항 데이터만 가져옴
-            query += " WHERE nik='" + sessionNik + "'";
+            query += " WHERE nik='" + map.get("sessionNik") + "'";
         }
         
-        if(viewValue != null && !viewValue.equals("viewAll")) { // 전체보기가 아닐경우 미답변한 게시글만 출력
+        if(map.get("viewValue") != null && !map.get("viewValue").equals("viewAll")) { // 전체보기가 아닐경우 미답변한 게시글만 출력
     	  query += " AND icomment is null ";
         }
         
@@ -83,7 +81,7 @@ public class InquiryDAO extends JDBConnect {
                 dto.setTitle(rs.getString("title"));      // 글제목
                 dto.setIcontent(rs.getString("icontent"));  // 글내용
                 dto.setNik(rs.getString("nik"));            // 작성자 아이디
-                dto.setIcomment(rs.getString("icomment"));  // 조회수
+                dto.setIcomment(rs.getString("icomment"));  // 답변
 
                 bbs.add(dto);  // 결과 목록에 저장
             }
@@ -210,7 +208,7 @@ public class InquiryDAO extends JDBConnect {
     }
 
     // 지정한 게시물을 삭제합니다.
-    public int deletePost(InquiryDTO dto) { 
+    public int deletePost(String num) { 
         int result = 0;
 
         try {
@@ -219,7 +217,7 @@ public class InquiryDAO extends JDBConnect {
 
             // 쿼리문 완성
             psmt = con.prepareStatement(query); 
-            psmt.setString(1, dto.getNum()); 
+            psmt.setString(1, num); 
 
             // 쿼리문 실행
             result = psmt.executeUpdate(); 

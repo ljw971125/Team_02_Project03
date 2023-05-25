@@ -1,4 +1,4 @@
-package customerInquiryBoard;
+package mvc2InquiryBoard;
 
 public class InquiryDTO {
     // 멤버 변수 선언 - 필드
@@ -6,8 +6,7 @@ public class InquiryDTO {
     private String icontent; //글내용
     private String nik;		 //회원닉네임
     private String icomment; //관리자댓글
-    private String num;		 //글번호
-    
+    private String num;		 //글번호;
     
     // 멤버 변수별 게터와 세터 메서드
 
@@ -41,5 +40,6 @@ public class InquiryDTO {
 	public void setNum(String num) {
 		this.num = num;
 	}
+
 
 }

@@ -55,7 +55,7 @@
 				    <li>${UserNik}</li>
 				    <li><a href="/Final/mvc2/mypage.do" class="login">마이페이지</a></li>
 				    <li><a href="/Final/Logout.do" class="logout">로그아웃</a></li> 
-				    <li><a href="/Final/CustomerService/InquiryMain.jsp" class="my_inquiry">문의사항</a></li>
+				    <li><a href="/Final/mvc2/inquirylist.do" class="my_inquiry">문의사항</a></li>
 				</c:if>          	
             </ul>
         </div>
