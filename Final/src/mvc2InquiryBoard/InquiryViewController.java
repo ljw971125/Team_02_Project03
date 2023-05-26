@@ -18,6 +18,7 @@ public class InquiryViewController extends HttpServlet {
 	        // 게시물 불러오기
 	        InquiryDAO dao = new InquiryDAO();
 	        String num = req.getParameter("num");
+	        String virtualnum = req.getParameter("virtualnum");
 	        InquiryDTO dto = dao.selectView(num);
 	        dao.close();
 	        
@@ -28,6 +29,7 @@ public class InquiryViewController extends HttpServlet {
 
 	        // 게시물(dto) 저장 후 뷰로 포워드
 	        req.setAttribute("dto", dto);
+	        req.setAttribute("virtualnum", virtualnum);
 	        req.getRequestDispatcher("/MVC2Inquiry/InquiryView.jsp").forward(req, resp);
 	    }
 	}

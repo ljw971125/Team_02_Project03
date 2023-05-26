@@ -97,7 +97,7 @@
         <% if(!session.getAttribute("UserNik").equals("admin")){ %>
             <c:choose>	
             <c:when test="${ dto.icomment == null }">
-            <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='../mvc2/edit.do?num=${ param.num }';">
+            <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='../mvc2/edit.do?num=${ param.num }&virtualnum=${ param.virtualnum }';">
                 수정하기
             </button>
             <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='../mvc2/delete.do?num=${ param.num }';">
