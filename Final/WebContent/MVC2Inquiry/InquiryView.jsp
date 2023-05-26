@@ -69,7 +69,7 @@
 
     <!-- 게시글 정보 -->
     <tr>
-        <td>번호</td> <td>${ dto.num }</td>
+        <td>번호</td> <td>${ param.virtualnum }</td>
         <td>작성자</td> <td>${ dto.nik }</td> <!-- 닉네임 -->
     </tr>
 
