@@ -110,7 +110,7 @@
             </td>
             
             <td align="left">  <!-- 제목(링크) -->
-                <a href="../mvc2/inquiryview.do?num=${ row.num }">${ row.title }</a> 
+                <a href="../mvc2/inquiryview.do?num=${ row.num }&virtualnum=${ loop.index + map.totalCount }">${ row.title }</a> 
             </td> 
                         
             <c:choose> 
