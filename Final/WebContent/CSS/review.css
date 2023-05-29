@@ -2,6 +2,15 @@
 .outer-div{
 	 justify-content : right;
 }
+
+.re-date{
+	margin-top: -10px;
+	margin-right: 20px;
+	font-size: 2rem;
+	
+	
+}
+
 .star-rating {
   display: flex;
   flex-direction: row-reverse;

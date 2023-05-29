@@ -72,7 +72,7 @@
                 <option value="title">제목</option> 
                 <option value="icontent">내용</option>
             </select>
-            <input type="text" placeholder="입력" name="searchWord" />
+            <input type="text" placeholder="입력" name="searchWord" value="${param.searchWord }"  />
             <input type="submit" class="btn btn-light btn-sm" value="검색" />
             </div>
         </td>

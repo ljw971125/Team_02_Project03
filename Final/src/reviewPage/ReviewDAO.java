@@ -182,55 +182,9 @@ public class ReviewDAO extends JDBConnect {
     }
 
     
-    // 지정한 게시물을 수정합니다.
-    public int updateEdit(ReviewDTO dto) { 
-        int result = 0;
-        
-        try {
-            // 쿼리문 템플릿 
-            String query = "UPDATE review SET "
-                         + " title=?, recontent=? "
-                         + " WHERE num=?";
-            
-            // 쿼리문 완성
-            psmt = con.prepareStatement(query);
-            psmt.setString(1, dto.getTitle());
-            psmt.setString(2, dto.getRecontent());
-            psmt.setString(3, dto.getNum());
-            
-            // 쿼리문 실행 
-            result = psmt.executeUpdate();
-        } 
-        catch (Exception e) {
-            System.out.println("게시물 수정 중 예외 발생");
-            e.printStackTrace();
-        }
-        
-        return result; // 결과 반환 
-    }
+   
 
-    // 지정한 게시물을 삭제합니다.
-    public int deletePost(ReviewDTO dto) { 
-        int result = 0;
-
-        try {
-            // 쿼리문 템플릿
-            String query = "DELETE FROM review WHERE num=?"; 
-
-            // 쿼리문 완성
-            psmt = con.prepareStatement(query); 
-            psmt.setString(1, dto.getNum()); 
-
-            // 쿼리문 실행
-            result = psmt.executeUpdate(); 
-        } 
-        catch (Exception e) {
-            System.out.println("게시물 삭제 중 예외 발생");
-            e.printStackTrace();
-        }
-        
-        return result; // 결과 반환
-    }
+    
     
     public float getRate(int rnum) {
         float rateAvg = 0;
@@ -280,7 +234,7 @@ public class ReviewDAO extends JDBConnect {
         
             while (rs.next()) {
             	DetailReview rto = new DetailReview();
-              
+                rto.setNum(rs.getInt("num"));
                 rto.setNik(rs.getString("nik"));
                 rto.setRecontent(rs.getString("recontent"));
                 rto.setRate(rs.getString("rate"));
@@ -294,15 +248,15 @@ public class ReviewDAO extends JDBConnect {
         return bbs;
     }	
     // 게시글 데이터를 받아 DB에 추가합니다. 
-    public int reviewWrite(String rct, int star, int room, String nik) {
+    public int reviewWrite(String rct, int star, int room, String nik ) {
         int result = 0;
         
         try {
             // INSERT 쿼리문 작성 
             String query = "INSERT INTO review ( "
-                         + " recontent,nik,rnum,redate,rate) "
+                         + " num, recontent,nik,rnum,redate,rate) "
                          + " VALUES ( "
-                         + " ?, ?, ?, sysdate, ?)";  
+                         + " seq_review_num.NEXTVAL,?, ?, ?, sysdate, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setString(1, rct);  
@@ -342,4 +296,68 @@ public class ReviewDAO extends JDBConnect {
 		return recordCount;
 
     }
+    // 지정한 게시물을 수정합니다.
+    public void updateEdit(String rct, int star, int num) { 
+        int result = 0;
+        
+        try {
+            // 쿼리문 템플릿 
+            String query = "UPDATE review SET "
+                         + " recontent=?, rate=? "
+                         + " WHERE num=?";
+            
+            // 쿼리문 완성
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, rct);
+            psmt.setInt(2, star);
+            psmt.setInt(3, num);
+            
+            // 쿼리문 실행 
+            result = psmt.executeUpdate();
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 수정 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+       
+    }
+ // 지정한 게시물을 삭제합니다.
+	/*
+	 * public void deletePost(int num) { String query =
+	 * "delete FROM review WHERE num=?"; try { psmt = con.prepareStatement(query);
+	 * // 쿼리문 준비 psmt.setInt(1, num); // 인파라미터 설정 psmt.executeUpdate(); // 쿼리문 실행
+	 * 
+	 * 
+	 * 
+	 * 
+	 * } catch (Exception e) { System.out.println("게시물 상세보기 중 예외 발생");
+	 * e.printStackTrace(); }
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
+    
+    // 지정한 게시물을 삭제합니다.
+    public void deletePost(int num) { 
+        int result = 0;
+
+        try {
+            // 쿼리문 템플릿
+            String query = "DELETE FROM review WHERE num=?"; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(query); 
+            psmt.setInt(1, num); 
+            result = psmt.executeUpdate(); 
+           
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+    }
 }
+

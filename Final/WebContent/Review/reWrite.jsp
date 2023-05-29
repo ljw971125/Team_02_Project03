@@ -36,7 +36,7 @@
 
 <body>
 
-<form method="post" action="../mvc2/reWrite.do?room=${param.room }&num=${param.num}" onsubmit="return validateForm()">
+<form method="post" action="../mvc2/rereWrite.do?room=${param.room }&num=${param.num}" onsubmit="return validateForm()">
 
 <div class="container">
 
@@ -49,7 +49,7 @@
 
       <tr>
 
-      	<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="contentDetail" maxlength="1024" style="height: 400px;"></textarea></td>
+      	<td><textarea type="text" class="form-control" name = "contentDetail" maxlength="1024" style="height: 400px;"></textarea></td>
 
       </tr>
 

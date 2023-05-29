@@ -110,6 +110,24 @@
     <url-pattern>/mvc2/reWrite.do</url-pattern>
 
   </servlet-mapping>
+  
+  <servlet>
+
+    <servlet-name>rereWrite</servlet-name>
+
+    <servlet-class>reviewPage.ReviewEditController</servlet-class>
+
+  </servlet>
+
+  <servlet-mapping>
+
+    <servlet-name>rereWrite</servlet-name>
+
+    <url-pattern>/mvc2/rereWrite.do</url-pattern>
+
+  </servlet-mapping>
+  
+  
   <servlet>
 
     <servlet-name>review</servlet-name>
@@ -123,7 +141,15 @@
     <servlet-name>review</servlet-name>
 
     <url-pattern>/mvc2/review.do</url-pattern>
-
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>reviewDelete</servlet-name>
+    <servlet-class>reviewPage.ReviewDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>reviewDelete</servlet-name>
+    <url-pattern>/mvc2/redelete.do</url-pattern>
   </servlet-mapping>
   
   <servlet>

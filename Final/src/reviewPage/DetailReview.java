@@ -1,12 +1,18 @@
 package reviewPage;
 
 public class DetailReview {
+	private int num;
 	private String nik;
 	private String recontent;
 	private String rate;
 	private String Redate;
 	
-
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getRedate() {
 		return Redate;
 	}

@@ -63,10 +63,6 @@ public class InquiryEditController extends HttpServlet {
                 "../mvc2/inquiryview.do?num=" + num);
         }
     }
-	
-	
-	
-	
 }
 	
 	

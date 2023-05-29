@@ -7,6 +7,8 @@
 <%@ page import="java.lang.*" %>]\
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+
 <%
 	ReviewDAO dao1 = new ReviewDAO(application);
 	float rate101 = dao1.getRate(101);
@@ -60,13 +62,16 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/Final/CSS/detail.css">
+<link rel="stylesheet" type="text/css" href="/Final/CSS/review.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <jsp:include page="/Common/header.jsp" />
 <meta charset="UTF-8">
 <title><%=room1 %>호 상세보기</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2"></script>
+
 
 </head>
 
@@ -587,7 +592,7 @@
 
 <c:forEach items="${DetailReview}" var="n">
     <div class="card" style="width: 50rem; border: 1px solid black; margin: 0 auto;">
-        <div class="card-body">
+        <div class="card-body" style="padding-bottom: 70px;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2 class="card-title" style="margin-left: 10px;">${ n.nik }</h2>
                 <div class="star-ratings">
@@ -596,13 +601,27 @@
                         <span class="star">★</span>
                     </c:forEach>
                 </h4>
+                
                 </div>
             </div>
             <hr class="card-subtitle mb-2 text-muted"></hr>
-            <h4 class="card-text" style="margin-left: 10px;">${n.recontent}</h4>
-            <h2 class="card-redate" align="right" style="margin-right: 10px;">작성일:${ n.redate }</h2>
+            <div class="d-flex justify-content-between flex-wrap"><h4 class="card-text" style="font-size: 20px; margin-left: 10px; flex: 1;">${n.recontent}</h4>
+             <h2 align ="right" style="font-size: 14px;">작성일:${ n.redate }</h2></div>           
             
         </div>
+        				<c:choose>
+	                	<c:when test="${ sessionScope.UserNik == n.nik }">
+			                  <button type="button" class="w-auto p-3 h-auto position-absolute bottom-0 start-0 btn btn-outline-primary" style="bottom: 10px;" onclick = "location.href='../Review/reWrite.jsp?room=${param.room }&num=${n.num }'">수정하기</button>
+			                  <button type="button" class="w-auto p-3 h-auto position-absolute bottom-0 end-0 btn btn-outline-danger" onclick = "location.href='../mvc2/redelete.do?room=${param.room}&num=${n.num}'">삭제하기</button>
+		                </c:when>
+		                </c:choose>
+		                <c:choose>
+	                	<c:when test="${ sessionScope.UserNik == 'admin' }">
+			                  <button type="button" class="w-auto p-3 h-auto position-absolute bottom-0 end-0 btn btn-outline-danger" onclick = "location.href='../mvc2/redelete.do?room=${param.room}&num=${n.num}'">삭제하기</button>
+		                </c:when>
+		                </c:choose>
+		                 <%-- type = "button" onclick="location.href='../mvc2/reedit.do?num=${ param.num }';" --%>
+    </div>
     </div>
     <br></br>
 </c:forEach>
