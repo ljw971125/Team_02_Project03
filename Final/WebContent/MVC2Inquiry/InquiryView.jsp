@@ -130,12 +130,12 @@ footer {
 								관리자용삭제하기</button> <c:choose>
 								<c:when test="${ dto.icomment == null }">
 									<button type="button" class="btn btn-secondary btn-lg"
-										onclick="location.href='../mvc2/answer.do?num=${ param.num }';">
+										onclick="location.href='../mvc2/answer.do?num=${ param.num }&virtualnum=${ param.virtualnum }';">
 										답변하기</button>
 								</c:when>
 								<c:otherwise>
 									<button type="button" class="btn btn-secondary btn-lg"
-										onclick="location.href='../mvc2/answeredit.do?num=${ param.num }';">
+										onclick="location.href='../mvc2/answeredit.do?num=${ param.num }&virtualnum=${ param.virtualnum }';">
 										답변수정하기</button>
 								</c:otherwise>
 							</c:choose> <%

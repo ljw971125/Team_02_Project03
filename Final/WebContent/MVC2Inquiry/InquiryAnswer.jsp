@@ -78,6 +78,7 @@ footer {
 				<form name="writeFrm" method="post" action="../mvc2/answer.do"
 					onsubmit="return validateForm(this);">
 					<input type="hidden" name="num" value="${ dto.num }" />
+					<input type="hidden" name="virtualnum" value="${virtualnum}">
 					<table
 						class="table table-striped-columns table-success 
     				table-bordered border-dark table-hover">

@@ -16,12 +16,14 @@ public class InquiryAnswerController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String sessionNik = (String) session.getAttribute("UserNik");
 		String num = req.getParameter("num");
+		String virtualnum = req.getParameter("virtualnum");
 		InquiryDAO dao = new InquiryDAO();
 		InquiryDTO dto = dao.selectView(num);
 
 		if (sessionNik.equals("admin")) {
 
 			req.setAttribute("dto", dto);
+			req.setAttribute("virtualnum", virtualnum);
 			req.getRequestDispatcher("/MVC2Inquiry/InquiryAnswer.jsp").forward(req, resp);
 		}
 	}
@@ -31,6 +33,7 @@ public class InquiryAnswerController extends HttpServlet {
 
 		// 수정 내용을 매개변수에서 얻어옴
 		String num = req.getParameter("num");
+		String virtualnum = req.getParameter("virtualnum");
 		String icomment = req.getParameter("icomment");
 
 		// 닉네임은 session에서 가져옴
@@ -50,7 +53,7 @@ public class InquiryAnswerController extends HttpServlet {
 
 			// 성공 or 실패?
 			if (result == 1) { // 수정 성공
-				resp.sendRedirect("../mvc2/inquiryview.do?num=" + num);
+				resp.sendRedirect("../mvc2/inquiryview.do?num=" + num + "&virtualnum=" + virtualnum);
 			}
 		} else { // 수정 실패
 			JSFunction.alertLocation(resp, "오류가 발생하였습니다.", "../mvc2/inquiryview.do?num=" + num);

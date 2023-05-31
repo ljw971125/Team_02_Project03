@@ -822,7 +822,7 @@ if (roomParam != null) {
 	<br>
 	</br>
 	<article>
-
+<!-- 리뷰 출력 -->
 		<c:forEach items="${DetailReview}" var="n">
 			<div class="card"
 				style="width: 50rem; border: 1px solid black; margin: 0 auto;">

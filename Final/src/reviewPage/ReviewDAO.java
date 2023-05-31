@@ -74,40 +74,6 @@ public class ReviewDAO extends JDBConnect {
 		return bbs;
 	}
 
-	// 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
-	public List<ReviewDTO> selectListPage(Map<String, Object> map, String room) {
-		List<ReviewDTO> bbs = new Vector<ReviewDTO>();
-		String query = " SELECT * FROM ( " + "    SELECT Tb.*, ROWNUM RowN FROM ( " + "        SELECT * FROM review ";
-		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
-		}
-
-		query += "      ORDER BY num DESC " + "     ) Tb " + " ) " + " WHERE RwoN BETWEEN ? AND ?";
-		try {
-			psmt = con.prepareStatement(query);
-			psmt.setString(1, room);
-			psmt.setString(2, map.get("start").toString());
-			psmt.setString(3, map.get("end").toString());
-			rs = psmt.executeQuery();
-			while (rs.next()) {
-				ReviewDTO rto = new ReviewDTO();
-				rto.setNum(rs.getString("num"));
-				rto.setNik(rs.getString("nik"));
-				rto.setRnum(rs.getString("rnum"));
-				rto.setRecomment(rs.getString("recomment"));
-				rto.setTitle(rs.getString("title"));
-				rto.setRecontent(rs.getString("recontent"));
-				rto.setRedate(rs.getString("redate"));
-				rto.setRate(rs.getFloat("rate"));
-				bbs.add(rto);
-			}
-		} catch (Exception e) {
-			System.out.println("게시물 조회 중 예외 발생");
-			e.printStackTrace();
-		}
-		return bbs;
-	}
-
 	// 게시글 데이터를 받아 DB에 추가합니다.
 	public int insertWrite(ReviewDTO dto) {
 		int result = 0;
@@ -197,10 +163,9 @@ public class ReviewDAO extends JDBConnect {
 		}
 		return rate5;
 	}
-
 	public List<DetailReview> reviewList(int room) {
-		List<DetailReview> bbs = new ArrayList<DetailReview>();
-		String query = " SELECT * FROM review WHERE rnum=? order by redate desc";
+		List<DetailReview> bbs = new ArrayList<DetailReview>(); // DetailReview 객체를 저장할 ArrayList를 생성합니다.
+		String query = " SELECT * FROM review WHERE rnum=? order by redate desc"; // 쿼리문을 작성합니다.
 
 		try {
 			psmt = con.prepareStatement(query); // 쿼리문 준비
@@ -210,21 +175,22 @@ public class ReviewDAO extends JDBConnect {
 			// Class.forName("oracle.jdbc.driver.OracleDriver");
 			Statement st = con.createStatement();
 
-			while (rs.next()) {
-				DetailReview rto = new DetailReview();
-				rto.setNum(rs.getInt("num"));
-				rto.setNik(rs.getString("nik"));
-				rto.setRecontent(rs.getString("recontent"));
-				rto.setRate(rs.getString("rate"));
-				rto.setRedate(rs.getString("redate").replace("/", "-"));
-				bbs.add(rto);
+			while (rs.next()) { // 결과 집합에서 다음 행이 있으면 반복합니다.
+				DetailReview rto = new DetailReview(); // DetailReview 객체를 생성합니다.
+				rto.setNum(rs.getInt("num")); // num 컬럼 값을 가져와서 설정합니다.
+				rto.setNik(rs.getString("nik")); // nik 컬럼 값을 가져와서 설정합니다.
+				rto.setRecontent(rs.getString("recontent")); // recontent 컬럼 값을 가져와서 설정합니다.
+				rto.setRate(rs.getString("rate")); // rate 컬럼 값을 가져와서 설정합니다.
+				rto.setRedate(rs.getString("redate").replace("/", "-")); // redate 컬럼 값을 가져와서 "/"를 "-"로 바꾸고 설정합니다.
+				bbs.add(rto); // ArrayList에 DetailReview 객체를 추가합니다.
 			}
 		} catch (Exception e) {
 			System.out.println("게시물 조회 중 예외 발생");
 			e.printStackTrace();
 		}
-		return bbs;
+		return bbs; // DetailReview 객체가 저장된 ArrayList를 반환합니다.
 	}
+
 
 	// 게시글 데이터를 받아 DB에 추가합니다.
 	public int reviewWrite(String rct, int star, int room, String nik) {
@@ -293,22 +259,6 @@ public class ReviewDAO extends JDBConnect {
 		}
 
 	}
-	// 지정한 게시물을 삭제합니다.
-	/*
-	 * public void deletePost(int num) { String query =
-	 * "delete FROM review WHERE num=?"; try { psmt = con.prepareStatement(query);
-	 * // 쿼리문 준비 psmt.setInt(1, num); // 인파라미터 설정 psmt.executeUpdate(); // 쿼리문 실행
-	 * 
-	 * 
-	 * 
-	 * 
-	 * } catch (Exception e) { System.out.println("게시물 상세보기 중 예외 발생");
-	 * e.printStackTrace(); }
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
 
 	// 지정한 게시물을 삭제합니다.
 	public void deletePost(int num) {

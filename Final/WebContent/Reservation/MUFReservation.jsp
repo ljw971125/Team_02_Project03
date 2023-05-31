@@ -59,7 +59,7 @@ function buildCalendar() {
 
 	  function changeCellColor(cell) {
 	    resetCellColor(); // 다른 셀 클릭 시 변경된 셀의 색상 초기화
-	    cell.style.backgroundColor = "yellow"; // 클릭한 셀의 색상 변경
+	    cell.style.backgroundColor = "rainbow"; // 클릭한 셀의 색상 변경
 	    clickedCell = cell; // 클릭한 셀 저장
 	  }
 
@@ -141,74 +141,80 @@ function nextCalendar() {
 
 
 function timeTableMaker() {
-    var row = null;
-    var timeTable = document.getElementById("timeTable");
-    selectedTimes = []; // 선택한 셀의 시간 배열
+	  var row = null;
+	  var timeTable = document.getElementById("timeTable");
+	  var selectedTimes = []; // 선택한 셀의 시간 배열
 
-    // 테이블 초기화
-    while (timeTable.rows.length > 0) {
-        timeTable.deleteRow(timeTable.rows.length - 1);
-    }
+	  // 테이블 초기화
+	  while (timeTable.rows.length > 0) {
+	    timeTable.deleteRow(timeTable.rows.length - 1);
+	  }
 
-    for (var i = 0; i < endTime - startTime; i++) {
-        // 곱해서 숫자타입으로 변환
-        var cellTime = startTime * 1 + i;
+	  for (var i = 0; i < endTime - startTime; i++) {
+	    // 곱해서 숫자 타입으로 변환
+	    var cellTime = startTime * 1 + i;
 
-        var cellStartTimeText = cellTime + ":00";
-        var cellEndTimeText = cellTime + 1 + ":00";
-        var inputCellText = cellStartTimeText + " ~ " + cellEndTimeText;
+	    var cellStartTimeText = formatTime(cellTime) + ":00";
+	    var cellEndTimeText = formatTime(cellTime + 1) + ":00";
+	    var inputCellText = cellStartTimeText + " ~ " + cellEndTimeText;
 
-        // 셀 입력을 위해 테이블 개행
-        row = timeTable.insertRow();
-        // 해당 row의 셀 생성
-        (function(time) {
-            var cell = row.insertCell();
-            // cell에 id 부여
-            cell.setAttribute("id", "time" + time);
-            // 셀에 입력
-            cell.innerHTML = inputCellText;
+	    // 셀 입력을 위해 테이블 개행
+	    row = timeTable.insertRow();
 
-            // 셀 클릭 이벤트 추가
-            cell.addEventListener("click", function () {
-                var index = selectedTimes.indexOf(time);
-                if (index > -1) {
-                    selectedTimes.splice(index, 1);
-                } else {
-                    selectedTimes.push(time);
-                }
+	    // 해당 row의 셀 생성
+	    (function (time) {
+	      var cell = row.insertCell();
+	      // cell에 id 부여
+	      cell.setAttribute("id", "time" + time);
+	      // 셀에 입력
+	      cell.innerHTML = inputCellText;
 
-                // 선택한 구간 전체 시간 강조
-                for (var j = startTime; j <= endTime; j++) {
-                    var cell = document.getElementById("time" + j);
-                    if (cell) {
-                        if (j >= Math.min(...selectedTimes) && j <= Math.max(...selectedTimes)) {
-                            cell.style.backgroundColor = "lightblue";
-                        } else {
-                            cell.style.backgroundColor = "";
-                        }
-                    }
-                }
+	      // 셀 클릭 이벤트 추가
+	      cell.addEventListener("click", function () {
+	        var index = selectedTimes.indexOf(time);
+	        if (index > -1) {
+	          selectedTimes.splice(index, 1);
+	        } else {
+	          selectedTimes.push(time);
+	        }
 
-                // 선택된 시간 표시
-                if (selectedTimes.length >= 1) {
-                    var startCellTime = Math.min(...selectedTimes);
-                    var endCellTime = Math.max(...selectedTimes);
-                    document.getElementById("selectedTimes").value =
-                        startCellTime + ":00~" + (endCellTime + 1) + ":00";
+	        // 선택한 구간 전체 시간 강조
+	        for (var j = startTime; j <= endTime; j++) {
+	          var cell = document.getElementById("time" + j);
+	          if (cell) {
+	            if (j >= Math.min(...selectedTimes) && j <= Math.max(...selectedTimes)) {
+	              cell.style.backgroundColor = "lightblue";
+	            } else {
+	              cell.style.backgroundColor = "";
+	            }
+	          }
+	        }
 
-                    // 가격 계산 및 표시
-                    var cellCount = endCellTime - startCellTime + 1;
-                    var pricePerCell = parseInt(document.getElementById("price2").value);
-                    var totalPrice = cellCount * pricePerCell;
-                    document.getElementById("price").value = totalPrice;
-                } else {
-                    document.getElementById("selectedTimes").value = "";
-                    document.getElementById("price").value = "";
-                }
-            });
-        })(cellTime);
-    }
-} 
+	        // 선택된 시간 표시
+	        if (selectedTimes.length >= 1) {
+	          var startCellTime = Math.min(...selectedTimes);
+	          var endCellTime = Math.max(...selectedTimes);
+	          document.getElementById("selectedTimes").value =
+	            formatTime(startCellTime) + ":00~" + formatTime(endCellTime + 1) + ":00";
+
+	          // 가격 계산 및 표시
+	          var cellCount = endCellTime - startCellTime + 1;
+	          var pricePerCell = parseInt(document.getElementById("price2").value);
+	          var totalPrice = cellCount * pricePerCell;
+	          document.getElementById("price").value = totalPrice;
+	        } else {
+	          document.getElementById("selectedTimes").value = "";
+	          document.getElementById("price").value = "";
+	        }
+	      });
+	    })(cellTime);
+	  }
+	}
+
+	// 시간을 2자리 숫자 형식으로 변환하는 함수
+	function formatTime(time) {
+	  return time < 10 ? "0" + time : time;
+	}
 
 window.onload = function() {
     buildCalendar();
@@ -260,12 +266,11 @@ function makeReservation() {
 <body>
 	<jsp:include page="/LogIn/IsLoggedIn.jsp" />
 	<div style="height: 100px;"></div>
-	<form action="../saveReservationInfo.do" method="post"
+	<form action="../saveReservationInfo.do?" method="post"
 		id="reservationForm" onsubmit="return makeReservation()">
-		
-		
-		<aside>
-		</aside>
+
+
+		<aside></aside>
 
 		<section>
 			<div class="container">
@@ -301,7 +306,7 @@ function makeReservation() {
 							name="rdate" readonly>
 					</div>
 					<div class="form-group">
-						<label for="selectedTimes">선택된 시간</label> <input type="text"
+						<label for="selectedTimes">예약 시간</label> <input type="text"
 							id="selectedTimes" name="rtime" readonly>
 					</div>
 					<div class="form-group">
