@@ -1,71 +1,85 @@
 @charset "UTF-8";
+
 footer {
-    width: 100%;
-    height: 100px; /* footer의 높이 */
-    position: absolute;  
-    bottom: 0;
-    left: 0;
+	width: 100%;
+	height: 100px; /* footer의 높이 */
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
+
 p#muf-1 {
-    font-weight: bold;
-    font-size: 22px;
-    text-decoration: underline;
+	font-weight: bold;
+	font-size: 22px;
+	text-decoration: underline;
 }
+
 p#muf-2 {
 	margin-left: 300px;
-    font-weight: bold;
-    font-size: 20px;
+	font-weight: bold;
+	font-size: 20px;
 }
+
 p#muf-3 {
 	margin-left: 300px;
-    font-size: 15px;
+	font-size: 15px;
 }
+
 p#muf-s {
 	margin-left: 300px;
-    font-size: 15px;
+	font-size: 15px;
 }
+
 p#muf {
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: underline;
+	font-weight: bold;
+	font-size: 18px;
+	text-decoration: underline;
 }
+
 .image-container {
-    display: inline-block;
-    width: 600px;
-    height: 300px;
-    margin-left: 300px;
+	display: inline-block;
+	width: 600px;
+	height: 300px;
+	margin-left: 300px;
 }
+
 .edit-container {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 150px;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 150px;
 }
-#company_year{ 
-	font-size:2em; 
-	text-align:center; 
-} 
-#op-text { 
-	margin-top:200px; 
-	position:relative;     
-} 
-#daewoo-text { 
-	margin-top:400px; 
-	float:left; 
-	margin-left:20px;  
-} 
-#year-text{ 
-	margin-top:200px; 
-	position:relative;  
-} 
+
+#company_year {
+	font-size: 2em;
+	text-align: center;
+}
+
+#op-text {
+	margin-top: 200px;
+	position: relative;
+}
+
+#daewoo-text {
+	margin-top: 400px;
+	float: left;
+	margin-left: 20px;
+}
+
+#year-text {
+	margin-top: 200px;
+	position: relative;
+}
 
 .button-container {
-    display: flex;
+	display: flex;
 }
+
 .button-container button {
-    width: 100px;
-    height: 50px;
+	width: 100px;
+	height: 50px;
 }
-.button-container div{
+
+.button-container div {
 	margin-left: 200px;
-    margin-right: 200px;
+	margin-right: 200px;
 }

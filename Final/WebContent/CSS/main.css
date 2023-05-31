@@ -1,15 +1,18 @@
 @charset "UTF-8";
+
 footer {
-    width: 100%;
-    height: 100x; /* footer의 높이 */
-    position: absolute;  
-    bottom: 0;
-    left: 0;
+	width: 100%;
+	height: 100x; /* footer의 높이 */
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
-body{
+
+body {
 	height: 100%;
 }
-.container{
+
+.container {
 	display: flex;
 }
 
@@ -18,12 +21,13 @@ body{
 	width: 500px;
 	height: 400px;
 	position: relative;
-    margin-right: 40px;
+	margin-right: 40px;
+}
 
-}
 .image-container:first-of-type {
-    margin-left: 5%;
+	margin-left: 5%;
 }
+
 .edit-container {
 	display: none;
 	position: absolute;
@@ -36,26 +40,26 @@ body{
 	align-items: center;
 	justify-content: center;
 	text-align: center;
- }
+}
 
 .edit-container p {
 	padding-left: 0;
-    font-size: 16px;
+	font-size: 16px;
 }
 
 .edit-container button {
-    font-size: 16px;
-    padding: 10px 20px;
-    border: 3px solid black;
-    background-color: white;
-    color: violet;
+	font-size: 16px;
+	padding: 10px 20px;
+	border: 3px solid black;
+	background-color: white;
+	color: violet;
 }
 
-img:hover + .edit-container {
-    display: block;
+img:hover+.edit-container {
+	display: block;
 }
 
-.edit-container p{
+.edit-container p {
 	algin: center;
 	color: black;
 	font-weight: bold;
@@ -63,18 +67,19 @@ img:hover + .edit-container {
 
 .bx-wrapper {
 	top: 5% !important;
-  	max-width: 100%;
-  	height: 100%;
+	max-width: 100%;
+	height: 100%;
 }
 
 .bx-caption {
-  display: none;
-}
-.bx-pager {
-  display: none;
+	display: none;
 }
 
-.bx-wrapper img{
+.bx-pager {
+	display: none;
+}
+
+.bx-wrapper img {
 	width: 100%;
 	height: 5% !important;
 }

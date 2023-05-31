@@ -98,20 +98,18 @@ public class ReservationDAO extends JDBConnect {
 			psmt.setString(1, rdate);
 			rs = psmt.executeQuery();
 			time = new ArrayList<ReservationDTO>();
-			while(rs.next()) {
+			while (rs.next()) {
 				ReservationDTO dto = new ReservationDTO();
 				dto.setRtime(rs.getString("rtime"));
 				dto.setNum(rs.getInt("num"));
 				time.add(dto);
 			}
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return time;
 	}
-
-
 
 	public List<ReservationDTO> mReview(String id) {
 		List<ReservationDTO> reviewList = new ArrayList<ReservationDTO>(); // DTO 객체 리스트 생성
@@ -137,10 +135,8 @@ public class ReservationDAO extends JDBConnect {
 			}
 
 		} catch (Exception e) {
-			System.out.println("게시물 상세보기 중 예외 발생");
 			e.printStackTrace();
 		}
-		System.out.println(reviewList);
 		return reviewList; // 결과 반환
 	}
 
@@ -157,10 +153,8 @@ public class ReservationDAO extends JDBConnect {
 			}
 
 		} catch (Exception e) {
-			System.out.println("게시물 상세보기 중 예외 발생");
 			e.printStackTrace();
 		}
-		System.out.println(recordCount);
 		return recordCount;
 
 	}
@@ -173,7 +167,6 @@ public class ReservationDAO extends JDBConnect {
 			psmt.executeUpdate(); // 쿼리문 실행
 
 		} catch (Exception e) {
-			System.out.println("게시물 상세보기 중 예외 발생");
 			e.printStackTrace();
 		}
 

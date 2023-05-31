@@ -1,13 +1,14 @@
 @charset "UTF-8";
+
 footer {
-    background-color: black;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-    left: auto;
-    right: auto;
-    position: absolute;
-    box-sizing: border-box;
-    bottom: 0;
+	background-color: black;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	width: 100%;
+	left: auto;
+	right: auto;
+	position: absolute;
+	box-sizing: border-box;
+	bottom: 0;
 }

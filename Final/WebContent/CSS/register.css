@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-div.create{
+div.create {
 	width: 800px;
 	text-align: center;
 	padding: 30px;
@@ -8,7 +8,7 @@ div.create{
 	margin: auto;
 }
 
-table{
+table {
 	height: 300px;
 	width: 900px;
 	border-top: 3px solid black;
@@ -16,11 +16,11 @@ table{
 	margin-left: auto;
 }
 
-td{
+td {
 	border-bottom: 1px dotted black;
 }
 
-caption{
+caption {
 	text-align: left;
 }
 
@@ -60,7 +60,7 @@ caption{
 	border: 2px solid black;
 }
 
-.but4{
+.but4 {
 	height: 35px;
 	width: 150px;
 	background-color: white;
@@ -91,22 +91,22 @@ caption{
 	border: 2px solid black;
 }
 
-p{
+p {
 	font-size: 0.7em;
 }
 
-.g{
+.g {
 	font-size: 0.7em;
 }
 
-.c{
+.c {
 	font-size: 0.7em;
 }
 
-.a{
+.a {
 	font-size: 0.7em;
 }
 
-.num{
+.num {
 	color: red;
 }

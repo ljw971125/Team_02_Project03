@@ -306,7 +306,7 @@ function makeReservation() {
 							name="rdate" readonly>
 					</div>
 					<div class="form-group">
-						<label for="selectedTimes">선택된 시간</label> <input type="text"
+						<label for="selectedTimes">예약 시간</label> <input type="text"
 							id="selectedTimes" name="rtime" readonly>
 					</div>
 					<div class="form-group">

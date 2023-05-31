@@ -34,11 +34,11 @@ public class ReservationProcessController extends HttpServlet {
 		my_lastTime = rtime.substring(6, 8).replace(":", "");
 
 		int roomCheck = 0;
-		
+
 		// for(int i = 0; i < timeList2.length; i++) { System.out.println(timeList2[i]
 		// +" " + i); }
 //        System.out.println(rdate);
-		//System.out.println(rtime);
+		// System.out.println(rtime);
 //        System.out.println(price);
 		boolean isCheck = false;
 
@@ -59,7 +59,7 @@ public class ReservationProcessController extends HttpServlet {
 			for (int i = Integer.parseInt(db_firstTime); i <= Integer.parseInt(db_lastTime); i++) {
 				if (!db_lastTime.equals(my_firstTime) && !db_firstTime.equals(my_lastTime)) {
 					timeList[cnt] = i; // 앞 시간을 초기값으로 잡고 끝 시간까지 1씩 증가하도록 반복하여 앞 시간과 끝 시간 사이의 시간을 구하여 저장
-					//System.out.println("db시간리스트 : " + timeList[cnt]);
+					// System.out.println("db시간리스트 : " + timeList[cnt]);
 					cnt++;
 				}
 			}
@@ -74,20 +74,20 @@ public class ReservationProcessController extends HttpServlet {
 
 		cnt = 0;
 		for (int i = Integer.parseInt(my_firstTime); i <= Integer.parseInt(my_lastTime); i++) {
-				timeList2[cnt] = i; // 앞 시간을 초기값으로 잡고 끝 시간까지 1씩 증가하도록 반복하여 앞 시간과 끝 시간 사이의 시간을 구하여 저장
-				//System.out.println("my시간리스트 : " + timeList2[cnt]);
-				//System.out.println("cnt: " + cnt);
-				cnt++;
-			
+			timeList2[cnt] = i; // 앞 시간을 초기값으로 잡고 끝 시간까지 1씩 증가하도록 반복하여 앞 시간과 끝 시간 사이의 시간을 구하여 저장
+			// System.out.println("my시간리스트 : " + timeList2[cnt]);
+			// System.out.println("cnt: " + cnt);
+			cnt++;
+
 		}
 
 		for (int i = 0; i < timeList.length; i++) {
 			if (timeList[i] > 0) {
-				//System.out.println("db시간리스트 : " + timeList[i]);
+				// System.out.println("db시간리스트 : " + timeList[i]);
 				for (int j = 0; j < timeList2.length; j++) {
 					if (timeList2[j] > 0) {
 						if (timeList[i] == timeList2[j] && roomCheck == room) {
-							//System.out.println("my시간리스트 : " + timeList2[j]);
+							// System.out.println("my시간리스트 : " + timeList2[j]);
 							isCheck = true;
 							break;
 						}

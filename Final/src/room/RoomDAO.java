@@ -6,14 +6,14 @@ import common.JDBConnect;
 import signUp.SignUpDTO;
 
 public class RoomDAO extends JDBConnect {
-    // 명시한 데이터베이스로의 연결이 완료된 MemberDAO 객체를 생성합니다.
-    public RoomDAO(String drv, String url, String id, String pw) {
-        super(drv, url, id, pw);
-    }
-    public ArrayList<RoomDTO> getList(int num){
+	// 명시한 데이터베이스로의 연결이 완료된 MemberDAO 객체를 생성합니다.
+	public RoomDAO(String drv, String url, String id, String pw) {
+		super(drv, url, id, pw);
+	}
+
+	public ArrayList<RoomDTO> getList(int num) {
 		ArrayList<RoomDTO> roomList = null;
-		String query = "SELECT num,area,capacity,airConditioner,computer,whiteboard,"
-				+ " wifi, refrigerator, price"
+		String query = "SELECT num,area,capacity,airConditioner,computer,whiteboard," + " wifi, refrigerator, price"
 				+ " FROM room WHERE num=?";
 		try {
 			psmt = con.prepareStatement(query);
@@ -30,9 +30,9 @@ public class RoomDAO extends JDBConnect {
 				dto.setWifi(rs.getString("wifi"));
 				dto.setRefrigerator(rs.getInt("refrigerator"));
 				dto.setPrice(rs.getInt("price"));
-				
+
 				roomList.add(dto);
-			}		
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

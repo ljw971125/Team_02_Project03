@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="signUp.SignUpDAO" %>
-<%@ page import="signUp.SignUpDTO" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="signUp.SignUpDAO"%>
+<%@ page import="signUp.SignUpDTO"%>
 <%
-// check-duplicate.jsp
+	// check-duplicate.jsp
 
 // URL의 "name" 매개 변수의 값을 가져옵니다.
 String nik = request.getParameter("nik");

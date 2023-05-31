@@ -1,168 +1,168 @@
 @charset "UTF-8";
-:root {
-    --white-color: #fff;
-    --black-color: #000;
-    --yellow-color: #989442;
+
+:root { 
+	--white-color: #fff; 
+	--black-color: #000; 
+	--yellow-color: #989442;
 }
-header{
-    justify-content: space-between;
-    z-index: 9999;
+
+header {
+	justify-content: space-between;
+	z-index: 9999;
 }
 
 .menu {
-    display: flex;
-    align-items: center;
-    float: right;
+	display: flex;
+	align-items: center;
+	float: right;
 }
 
 .menu ul {
-    display: flex;
-    list-style: none;
+	display: flex;
+	list-style: none;
 }
 
 .menu ul li {
-    padding: 12px;
-    z-index: 3;
+	padding: 12px;
+	z-index: 3;
 }
 
 .menu ul li a {
-    text-decoration: none;
-    color: var(--black-color);
-    font-size: 15px;
-    opacity: 0.8;
+	text-decoration: none;
+	color: var(- -black-color);
+	font-size: 15px;
+	opacity: 0.8;
 }
 
 .menu .res_btn {
-    size: 10px;
-    margin: 35px 35px 35px;
-    cursor: pointer;
-    padding: 0 20px;
-    background-color: var(--white-color);
-    text-align: center;
-    border: 1px solid var(--black-color);
-    font-size: 18px;
-    height: 70%;
-    z-index: 3;
+	size: 10px;
+	margin: 35px 35px 35px;
+	cursor: pointer;
+	padding: 0 20px;
+	background-color: var(- -white-color);
+	text-align: center;
+	border: 1px solid var(- -black-color);
+	font-size: 18px;
+	height: 70%;
+	z-index: 3;
 }
 
-
-.headerBox{
+.headerBox {
 	height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    background: #B1C7C9;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	background: #B1C7C9;
 }
 
 /* 메뉴바 디자인 */
-
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 .inline-block {
-  display: inline-block;
+	display: inline-block;
 }
 
 .text-align-center {
-  text-align: center;
+	text-align: center;
 }
 
 .line-height-0-ch-only {
-  line-height: 0;
+	line-height: 0;
 }
 
-.line-height-0-ch-only > * {
-  line-height: normal;
+.line-height-0-ch-only>* {
+	line-height: normal;
 }
 
 .top-bar {
-  position: fixed;
-  display: block;
-  height: 100px;
-  width: 100px;
-  transition: height 0.3s, width 0.3s, top 0.3s, left 0.3s, right 0.3s;
-  overflow: hidden;
-  z-index: 2; 
+	position: fixed;
+	display: block;
+	height: 100px;
+	width: 100px;
+	transition: height 0.3s, width 0.3s, top 0.3s, left 0.3s, right 0.3s;
+	overflow: hidden;
+	z-index: 2;
 }
 
 .top-bar:hover {
-  height: 100%;
-  width: 15%;
+	height: 100%;
+	width: 15%;
 }
 
-.top-bar > .sub-menu-bar-bg::after {
-  content: "";
-  position: absolute;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #5A8EA3;
+.top-bar>.sub-menu-bar-bg::after {
+	content: "";
+	position: absolute;
+	top: 100px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #5A8EA3;
 }
 
-.top-bar > .menu-box-bg::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 50px;
-  background-color: #B1C7C9;
+.top-bar>.menu-box-bg::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	background-color: #B1C7C9;
 }
 
-.top-bar > .row::after {
-  content: "";
-  display: block;
-  clear: both;
+.top-bar>.row::after {
+	content: "";
+	display: block;
+	clear: both;
 }
 
-.top-bar > .menu-box ul > li {
-	 position: relative;
-
- }
-
-.top-bar > .menu-box > ul ul {
-  top: 100%;
-  left: 0;
+.top-bar>.menu-box ul>li {
+	position: relative;
 }
 
-.top-bar > .menu-box ul > li > a {
-  padding: 10px;
+.top-bar>.menu-box>ul ul {
+	top: 100%;
+	left: 0;
+}
+
+.top-bar>.menu-box ul>li>a {
+	padding: 10px;
 }
 
 .name {
-  color: #FEFF86;
-  margin-right: 80px;
-  float: left;
-  z-index: 3;
-  font-size: 22px;
+	color: #FEFF86;
+	margin-right: 80px;
+	float: left;
+	z-index: 3;
+	font-size: 22px;
 }
 
 .name .innerMenu {
-  padding: 20px 0;
-  line-height: 50px;
-  color: white;
-  width: 100%;
-  font-size: 17px;
-  font-weight: bold;
+	padding: 20px 0;
+	line-height: 50px;
+	color: white;
+	width: 100%;
+	font-size: 17px;
+	font-weight: bold;
 }
 
 .row {
-  width: 100%;
-  margin-top: 125px;
+	width: 100%;
+	margin-top: 125px;
 }
 
-#menu_box_img{
+#menu_box_img {
 	position: absolute;
-    z-index: 4;
-    top: 40px;
-    right: 50px;
-    font-size: 20px;
+	z-index: 4;
+	top: 40px;
+	right: 50px;
+	font-size: 20px;
 }
+
 .sitename {
 	top: 30px;
 	font-size: 30px;

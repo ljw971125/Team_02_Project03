@@ -12,7 +12,6 @@
 <body>
 
 	<%
-	//if ()
 		if (session.getAttribute("reservationComplete") != null) {
 	%>
 	<script type="text/javascript">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>Final</display-name>
+  <display-name>Final2</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -65,84 +65,45 @@
     <param-value>5</param-value>
   </context-param>
   <servlet>
-
     <servlet-name>MVC2mypage</servlet-name>
-
     <servlet-class>reservation.ReservationController</servlet-class>
-
   </servlet>
-
   <servlet-mapping>
-
     <servlet-name>MVC2mypage</servlet-name>
-
     <url-pattern>/mvc2/mypage.do</url-pattern>
-
   </servlet-mapping>
   <servlet>
-
     <servlet-name>MVC2cancel</servlet-name>
-
     <servlet-class>reservation.ReservationCancelController</servlet-class>
-
   </servlet>
-
   <servlet-mapping>
-
     <servlet-name>MVC2cancel</servlet-name>
-
     <url-pattern>/mvc2/cancel.do</url-pattern>
-
   </servlet-mapping>
-
   <servlet>
-
     <servlet-name>reWrite</servlet-name>
-
     <servlet-class>reviewPage.WriteController</servlet-class>
-
   </servlet>
-
   <servlet-mapping>
-
     <servlet-name>reWrite</servlet-name>
-
     <url-pattern>/mvc2/reWrite.do</url-pattern>
-
   </servlet-mapping>
-  
   <servlet>
-
     <servlet-name>rereWrite</servlet-name>
-
     <servlet-class>reviewPage.ReviewEditController</servlet-class>
-
   </servlet>
-
   <servlet-mapping>
-
     <servlet-name>rereWrite</servlet-name>
-
     <url-pattern>/mvc2/rereWrite.do</url-pattern>
-
   </servlet-mapping>
-  
-  
   <servlet>
-
     <servlet-name>review</servlet-name>
-
     <servlet-class>reviewPage.reviewController</servlet-class>
-
   </servlet>
-
   <servlet-mapping>
-
     <servlet-name>review</servlet-name>
-
     <url-pattern>/mvc2/review.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>reviewDelete</servlet-name>
     <servlet-class>reviewPage.ReviewDeleteController</servlet-class>
@@ -151,7 +112,6 @@
     <servlet-name>reviewDelete</servlet-name>
     <url-pattern>/mvc2/redelete.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>Join</servlet-name>
     <servlet-class>membership.JoinController</servlet-class>
@@ -160,7 +120,6 @@
     <servlet-name>Join</servlet-name>
     <url-pattern>/mvc2/Join.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>Register</servlet-name>
     <servlet-class>signUp.RegisterController</servlet-class>
@@ -169,7 +128,6 @@
     <servlet-name>Register</servlet-name>
     <url-pattern>/mvc2/register.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ReservationProcess</servlet-name>
     <servlet-class>reservation.ReservationProcessController</servlet-class>
@@ -178,7 +136,6 @@
     <servlet-name>ReservationProcess</servlet-name>
     <url-pattern>/saveReservationInfo.do</url-pattern>
   </servlet-mapping>
-      <!-- 서블릿 매핑 문의 리스트 -->
   <servlet>
     <servlet-name>MVC2InquiryList</servlet-name>
     <servlet-class>mvc2InquiryBoard.InquiryListController</servlet-class>
@@ -187,8 +144,6 @@
     <servlet-name>MVC2InquiryList</servlet-name>
     <url-pattern>/mvc2/inquirylist.do</url-pattern>
   </servlet-mapping>
-  
-    <!-- 서블릿 매핑 문의 뷰 -->
   <servlet>
     <servlet-name>MVC2InquiryView</servlet-name>
     <servlet-class>mvc2InquiryBoard.InquiryViewController</servlet-class>
@@ -197,8 +152,6 @@
     <servlet-name>MVC2InquiryView</servlet-name>
     <url-pattern>/mvc2/inquiryview.do</url-pattern>
   </servlet-mapping>
-  
-    <!-- 서블릿 매핑 문의 글쓰기 -->
   <servlet>
     <servlet-name>MVC2InquiryWrite</servlet-name>
     <servlet-class>mvc2InquiryBoard.InquiryWriteController</servlet-class>
@@ -207,8 +160,6 @@
     <servlet-name>MVC2InquiryWrite</servlet-name>
     <url-pattern>/mvc2/write.do</url-pattern>
   </servlet-mapping>
-  
-    <!-- 서블릿 매핑 문의 글수정 -->
   <servlet>
     <servlet-name>MVC2InquiryEdit</servlet-name>
     <servlet-class>mvc2InquiryBoard.InquiryEditController</servlet-class>
@@ -217,8 +168,6 @@
     <servlet-name>MVC2InquiryEdit</servlet-name>
     <url-pattern>/mvc2/edit.do</url-pattern>
   </servlet-mapping>
-  
-    <!-- 서블릿 매핑 문의 답변 -->
   <servlet>
     <servlet-name>MVC2InquiryAnswer</servlet-name>
     <servlet-class>mvc2InquiryBoard.InquiryAnswerController</servlet-class>
@@ -227,8 +176,6 @@
     <servlet-name>MVC2InquiryAnswer</servlet-name>
     <url-pattern>/mvc2/answer.do</url-pattern>
   </servlet-mapping>
-  
-    <!-- 서블릿 매핑 문의 답변수정 -->
   <servlet>
     <servlet-name>MVC2InquiryAnswerEdit</servlet-name>
     <servlet-class>mvc2InquiryBoard.InquiryAnswerEditController</servlet-class>
@@ -237,9 +184,7 @@
     <servlet-name>MVC2InquiryAnswerEdit</servlet-name>
     <url-pattern>/mvc2/answeredit.do</url-pattern>
   </servlet-mapping>
-  
-  <!-- 서블릿 매핑 문의 답변수정 -->
-    <servlet>
+  <servlet>
     <servlet-name>MVC2InquiryDelete</servlet-name>
     <servlet-class>mvc2InquiryBoard.InquiryDeleteController</servlet-class>
   </servlet>
