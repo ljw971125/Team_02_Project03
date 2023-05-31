@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="signUp.*"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="signUp.*" %>
 <%
 String name = request.getParameter("name");
 String id = request.getParameter("id");
@@ -12,7 +12,7 @@ String gender = request.getParameter("gender");
 String phone = request.getParameter("phone");
 String adr = request.getParameter("adr");
 
-SignUpDTO dto = new SignUpDTO();
+SignUpDTO dto = new SignUpDTO(); 
 
 dto.setId(id);
 dto.setPw(pw);
@@ -22,6 +22,7 @@ dto.setBirth(birth);
 dto.setGender(gender);
 dto.setAdr(adr);
 dto.setPhone(phone);
+
 
 SignUpDAO dao = new SignUpDAO(application);
 int isResult = dao.insert_member(dto);

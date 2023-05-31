@@ -9,11 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<footer>
-   		담당자 : 장기헌<br> 
-   		팀원 : 김민수 이지운 장윤종 전장현<br>
-   		대표 연락처 : 010-1234-5678<br> 
-   		(주)프로젝트2팀
-	</footer> 
+<footer>
+    담당자 : 장기헌<br> 
+    팀원 : 김민수 이지운 장윤종 전장현<br>
+    대표 연락처 : 010-1234-5678<br> 
+    (주)프로젝트2팀
+</footer> 
 </body>
 </html>

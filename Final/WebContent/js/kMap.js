@@ -11,7 +11,7 @@
 	// 마커를 표시할 위치입니다 
 	var position =  new kakao.maps.LatLng(37.6015, 127.0806);
 	// 마커 이미지의 이미지 주소입니다
-	var imageSrc = "/Final/Image/marker.png";    
+	var imageSrc = "/Final1/Image/marker.png";    
 	// 마커 이미지의 이미지 크기 입니다
 	var imageSize = new kakao.maps.Size(64, 69); 
 	// 마커 이미지를 생성합니다    
